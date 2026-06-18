@@ -1,0 +1,68 @@
+baseURL = 'https://makmatas.github.io/homelab-blog/'
+title = 'Homelab Guide'
+languageCode = 'de-de'
+theme = 'PaperMod'
+defaultContentLanguage = 'de'
+enableEmoji = true
+enableRobotsTXT = true
+pygmentsUseClasses = true
+buildDrafts = false
+
+[params]
+  ShowShareButtons = true
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+  ShowToc = true
+  description = "Homelab, Virtualisierung & KI Modelle – Praxis-Guides für dein Zuhause-Rechenzentrum"
+  keywords = ["Homelab", "Proxmox", "Virtualisierung", "KI Modelle", "Docker", "Server", "Selbsthosten"]
+  images = ["/homelab-blog/og-image.png"]
+
+  [params.editPost]
+    URL = "https://github.com/makmatas/homelab-blog/content"
+    Text = "Bearbeiten"
+
+  [params.footer]
+    text = "Als Amazon-Partner verdiene ich an qualifizierten Verkäufen."
+
+  [params.homeInfoParams]
+    Title = "Homelab Guide"
+    Content = "Praxis-Guides für dein Homelab – Virtualisierung, Docker, KI Modelle und mehr. Betrieben mit Leidenschaft und Kabelbindern."
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/makmatas/homelab-blog"
+[[params.socialIcons]]
+  name = "instagram"
+  url = "https://instagram.com/makmatas"
+
+[[menu.main]]
+  identifier = "categories"
+  name = "Kategorien"
+  url = "/categories/"
+  weight = 10
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+[[menu.main]]
+  identifier = "suche"
+  name = "🔍 Suche"
+  url = "/search/"
+  weight = 30
+[[menu.main]]
+  identifier = "about"
+  name = "Über"
+  url = "/about/"
+  weight = 40
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
