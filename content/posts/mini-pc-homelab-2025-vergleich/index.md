@@ -2,7 +2,11 @@
 title: "Mini PC für Homelab 2026: Die 5 besten Modelle im Vergleich"
 date: 2026-06-18
 draft: false
-image: "/images/mini-pc-homelab-vergleich.jpg"
+image: "featured.jpg"
+cover:
+  image: "featured.jpg"
+  alt: "Mini PC Vergleich 2026 – Die 5 besten Modelle fürs Homelab"
+  relative: true
 tags:
   - hardware
   - mini-pc
