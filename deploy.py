@@ -1,43 +1,45 @@
 #!/usr/bin/env python3
-"""
-Deploy: Claude review (optional) → Commit → Push → GitHub Actions build.
-"""
-import subprocess, os, sys, time
+"""Deploy: Generate images -> Claude review -> Commit -> Push."""
+import subprocess, os, time
 
 BLOG_DIR = "/root/homelab-blog"
-TOKEN_PATH="/root/.hermes/skills/monetization/homelab-seo-blog/references/github_token.txt"
-with open(TOKEN_PATH) as f:
+
+with open("/root/.hermes/skills/monetization/homelab-seo-blog/references/github_token.txt") as f:
     token = f.read().strip()
 
 os.chdir(BLOG_DIR)
 
-# Claude Review für neue Artikel
 r = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
-new = [l.split()[-1] for l in r.stdout.split("\n") if l.strip() and "index.md" in l and l.startswith("??")]
+new_files = [l.split()[-1] for l in r.stdout.split("\n") if l.strip() and "index.md" in l and l.startswith("??")]
 
-if new:
-    review_script = os.path.join(BLOG_DIR, "claude_review.py")
-    if os.path.exists(review_script):
-        print(f"Claude review: {len(new)} article(s)")
-        for p in new:
-            fp = os.path.join(BLOG_DIR, p)
-            if os.path.exists(fp):
-                subprocess.run(["python3", review_script, fp], capture_output=True, text=True)
-                time.sleep(2)
+if new_files:
+    for ap in new_files:
+        fp = os.path.join(BLOG_DIR, ap)
+        if not os.path.exists(fp):
+            continue
 
-# Commit & Push -> GitHub Actions baut automatisch
+        slug = os.path.basename(os.path.dirname(fp))
+        img_path = os.path.join(BLOG_DIR, "static", "images", slug + ".jpg")
+
+        gen = os.path.join(BLOG_DIR, "generate_image.py")
+        if os.path.exists(gen) and not os.path.exists(img_path):
+            prompt = "Blog image: " + slug.replace("-", " ") + ". Modern tech, clean, no text."
+            subprocess.run(["python3", gen, prompt, img_path], capture_output=True, text=True)
+
+        rev = os.path.join(BLOG_DIR, "claude_review.py")
+        if os.path.exists(rev):
+            subprocess.run(["python3", rev, fp], capture_output=True, text=True)
+            time.sleep(2)
+
 subprocess.run(["git", "config", "user.email", "makmatas@users.noreply.github.com"], capture_output=True)
 subprocess.run(["git", "config", "user.name", "makmatas"], capture_output=True)
-git_url = f"https://makmatas:{token}@github.com/makmatas/homelab-blog.git"
+git_url = "https://makmatas:" + token + "@github.com/makmatas/homelab-blog.git"
 subprocess.run(["git", "remote", "set-url", "origin", git_url], capture_output=True)
-
 subprocess.run(["git", "add", "-A"])
 r = subprocess.run(["git", "diff", "--cached", "--quiet"], capture_output=True)
-
 if r.returncode != 0:
     subprocess.run(["git", "commit", "-m", "Blog Update"])
     push = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True)
-    print(push.stdout[-200:] if len(push.stdout) > 200 else push.stdout)
     print("Deployed: https://makmatas.github.io/homelab-blog/")
 else:
     print("Nothing to commit")
