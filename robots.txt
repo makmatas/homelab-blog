@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://makmatas.github.io/homelab-blog/sitemap.xml

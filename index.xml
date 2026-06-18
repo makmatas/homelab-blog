@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Homelab Guide</title><link>https://makmatas.github.io/homelab-blog/</link><description>Recent content on Homelab Guide</description><image><title>Homelab Guide</title><url>https://makmatas.github.io/homelab-blog/og-image.png</url><link>https://makmatas.github.io/homelab-blog/og-image.png</link></image><generator>Hugo</generator><language>de-de</language><lastBuildDate>Thu, 18 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://makmatas.github.io/homelab-blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Mini PC für Homelab 2026: Die 5 besten Modelle im Vergleich</title><link>https://makmatas.github.io/homelab-blog/posts/mini-pc-homelab-2025-vergleich/</link><pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate><guid>https://makmatas.github.io/homelab-blog/posts/mini-pc-homelab-2025-vergleich/</guid><description>&lt;p>&lt;strong>Aktualisiert: Juni 2026 | Lesezeit: 8 Minuten&lt;/strong>&lt;/p>
+&lt;p>Ein Mini-PC ist die ideale Grundlage für dein Homelab – leise, stromsparend und leistungsstark genug für Proxmox, Docker und sogar erste KI-Experimente. Doch welches Modell lohnt sich 2026 wirklich?&lt;/p>
+&lt;p>In diesem Vergleich stelle ich dir die 5 besten Mini-PCs für dein Homelab vor – vom günstigen Einsteigermodell bis zur leistungsstarken Pro-Variante.&lt;/p></description></item><item><title>Über diesen Blog</title><link>https://makmatas.github.io/homelab-blog/about/</link><pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate><guid>https://makmatas.github.io/homelab-blog/about/</guid><description>&lt;h2 id="homelab-guide">Homelab Guide&lt;/h2>
+&lt;p>Praxis-Guides rund um Homelab, Virtualisierung, Docker, Container, KI Modelle und alles was dazugehört.&lt;/p>
+&lt;p>Betrieben wird das Ganze auf einem &lt;strong>HP ProDesk 400 G4 mini&lt;/strong> mit Proxmox – ganz klassisch im Homelab-Stil.&lt;/p>
+&lt;h3 id="was-dich-hier-erwartet">Was dich hier erwartet&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Kaufberatung&lt;/strong> – Die richtige Hardware für dein Homelab&lt;/li>
+&lt;li>&lt;strong>Tutorials&lt;/strong> – Schritt-für-Schritt Anleitungen (Proxmox, Docker, Kubernetes, Ollama, &amp;hellip;)&lt;/li>
+&lt;li>&lt;strong>Vergleiche&lt;/strong> – SSDs, Mini-PCs, GPUs, NAS-Systeme&lt;/li>
+&lt;li>&lt;strong>KI im Homelab&lt;/strong> – Lokale Modelle hosten, Open WebUI, Ollama, und mehr&lt;/li>
+&lt;/ul>
+&lt;h3 id="affiliate-hinweis">Affiliate-Hinweis&lt;/h3>
+&lt;p>Einige Links auf dieser Seite sind Affiliate-Links (Amazon PartnerNet).&lt;br>
+Wenn du über diese Links einkaufst, erhalte ich eine kleine Provision – für dich ändert sich am Preis nichts.&lt;/p></description></item></channel></rss>
