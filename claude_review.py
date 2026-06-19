@@ -26,19 +26,36 @@ def review_article(content):
     payload = {
         "model": "claude-sonnet-4-6",
         "max_tokens": 8192,
-        "system": """Du bist ein deutschsprachiger SEO-Content-Redakteur und Reviewer.
-Deine Aufgabe: Verbessere den folgenden SEO-Artikel. Behalte die komplette Struktur, den Inhalt und alle Amazon-Links bei.
-Verbessere:
-1. Rechtschreibung & Grammatik
-2. Satzfluss & Lesbarkeit
-3. SEO-Optimierung (Keyword-Dichte, H2/H3-Struktur)
-4. Fakten-Prüfung (offensichtliche Fehler korrigieren)
-5. Call-to-Actions schärfer formulieren
+        "system": """Du bist ein KRITISCHER deutschsprachiger Technik-Redakteur und Faktenprüfer.
+Deine Aufgabe ist es, den folgenden Blog-Artikel über Homelab-Hardware GRÜNDLICH zu reviewen und zu verbessern.
 
-WICHTIG: Gib NUR den verbesserten vollständigen Artikel inkl. YAML-Frontmatter zurück. Keine Erklärungen, keine Einleitungen. 
-Behalte ALLE Amazon-Links mit ?tag=makmatas-homelab-21 exakt so bei.
-Behalte das Datum und alle Metadaten im Frontmatter.
-Ändere keine Fakten oder Produktnamen.""",
+PFLICHT-CHECKLISTE (jeden Punkt prüfen!):
+1. FAKTEN-CHECK: Sind alle Hardware-Spezifikationen korrekt?
+   - CPU-Kerne/Threads stimmen? (z.B. i5-6500T = 4 Kerne, i3-10110U = 2 Kerne/4 Threads)
+   - RAM-Typ (DDR3/DDR4/DDR5) und Limits korrekt?
+   - Netzwerk-Spezifikationen (1GbE/2,5GbE/10GbE) korrekt?
+   - Keine falschen Proxmox-Versionsnummern oder Kernel-Angaben
+
+2. WIDERSPRÜCHE: Gibt es im Artikel innere Widersprüche?
+   - Wenn "2 Kerne minimum" gesagt wird, aber eine CPU 4 Kerne hat → korrigieren
+   - Wenn eine CPU als "schwach" bezeichnet wird, aber mehr Kerne hat als eine andere als "stark" bezeichnete → prüfen
+
+3. KLARHEIT: Ist die Preis-Range-Struktur klar?
+   - Sind die Budget-Grenzen sinnvoll?
+   - Passen die Empfehlungen zum Budget?
+
+4. QUALITÄT: 
+   - Rechtschreibung & Grammatik korrigieren
+   - Satzfluss & Lesbarkeit verbessern
+   - Call-to-Actions schärfer formulieren
+   - Redundanzen entfernen
+
+5. AMAZON-LINKS: Alle Links müssen ?tag=makmatas-homelab-21 enthalten.
+   Keine Links entfernen oder ersetzen.
+
+WICHTIG: Gib NUR den verbesserten vollständigen Artikel zurück (inkl. YAML-Frontmatter).
+Keine Erklärungen, keine Zusammenfassung, kein "Ich habe folgendes geändert".
+Wenn alles perfekt ist, gib den Artikel trotzdem zurück – aber korrigiere mindestens die kritischen Punkte.""",
         "messages": [{"role": "user", "content": f"Hier ist der SEO-Artikel zur Verbesserung:\n\n---\n{content}\n---\n\nBitte verbessere den Artikel und gib NUR den vollständigen verbesserten Artikel zurück."}]
     }
 
