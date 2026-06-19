@@ -2,6 +2,11 @@
 title: "Mini PC fürs Homelab nach Budget: Von 50€ bis 650€ – welcher passt zu dir?"
 date: 2026-06-18
 draft: false
+image: "featured.jpg"
+cover:
+  image: "featured.jpg"
+  alt: "Gebrauchte Business-Mini-PCs fürs Homelab – HP, Lenovo, Dell, Fujitsu"
+  relative: true
 # cover image entfernt (KI-Bild zeigte falsche Modelle)
 tags:
   - hardware
