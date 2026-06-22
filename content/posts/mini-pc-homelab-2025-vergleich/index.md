@@ -31,7 +31,7 @@ Statt einer generischen Rangliste zeige ich dir hier die besten Optionen **nach 
 | Budget | Modell(e) | Zustand | Highlight |
 |--------|-----------|---------|-----------|
 | **Bis 50 €** | Fujitsu Futro S7010 | Gebraucht | **Günstigster Einstieg** – 4 Kerne, extrem sparsam |
-| **50–150 €** | HP ProDesk 400 G3/G4 Mini **oder** Dell OptiPlex 3060/3070 Micro | Gebraucht | **Freie Wahl** – nimm was günstiger ist |
+| **80–150 €** | HP ProDesk 400 G3/G4 Mini **oder** Dell OptiPlex 3060/3070 Micro | Gebraucht | **Freie Wahl** – was du günstiger findest |
 | **150–200 €** | Lenovo ThinkCentre M720q Tiny | Gebraucht | **PCIe-Slot** – erweiterbar wie kein anderer |
 | **200–300 €** | GMKtec G3S (Intel N95) | Neu | **Neugerät** – Alder Lake, Garantie, 16 GB |
 
@@ -49,23 +49,23 @@ Die CPU ist ein **Intel Celeron J4125** (4 Kerne / 4 Threads, 2,0–2,7 GHz). Da
 - **RAM:** 4–8 GB DDR4 (1 Slot, max. 8 GB offiziell)
 - **Storage:** 64 GB M.2 SATA (aufrüstbar)
 - **Netzwerk:** 1× Realtek Gigabit Ethernet
-- **Stromverbrauch:** ca. 4–7 W im Leerlauf – **kaum messbar**
+- **Stromverbrauch:** ca. 3–7 W im Leerlauf
 - **Kühlung:** Passiv (lüfterlos) – absolut lautlos
-- **Abmessungen:** Winzig – passt in jede Tasche
+- **Abmessungen:** ca. 18 × 12 × 4 cm (kompakt)
 
 **👍 Vorteile:** Extrem günstig (ab 30 €). Lüfterlos – absolut lautlos. Sehr stromsparend. 4 Kerne – erstaunlich brauchbar. Kompakte Bauweise. 16 GB RAM möglich (getestet).
 
 **👎 Nachteile:** Nur 1 RAM-Slot (max. 8 GB offiziell). Realtek-NIC (kein Intel – kann bei Proxmox Probleme machen). Kein separater SATA-Port.
 
-**Ideal für:** Pi-hole, Home Assistant, einfache Docker-Container, leichter Dateiserver. Perfekt als **erster Server** zum Ausprobieren, ohne Geld zu verbrennen.
+**Ideal für:** Pi-hole, Home Assistant, einfache Docker-Container, kleiner Dateiserver. Perfekt als **erster Server** zum Ausprobieren, ohne Geld zu verbrennen.
 
 🔍 [Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)
 
 ---
 
-## 50–150 €: HP ProDesk G3/G4 Mini oder Dell OptiPlex 3060/3070 Micro
+## 80–150 €: HP ProDesk G3/G4 Mini oder Dell OptiPlex 3060/3070 Micro
 
-In dieser Preiskategorie hast du die **freie Wahl** – nimm einfach das Modell, das du gerade günstiger findest. Beide Hersteller liefern solide Business-Mini-PCs, die sich perfekt fürs Homelab eignen.
+In dieser Preiskategorie hast du die **freie Wahl** – nimm einfach das Modell, das du gerade günstiger findest.
 
 ### HP ProDesk 400 G3 Mini
 
@@ -117,7 +117,7 @@ Der **Dell OptiPlex 3070 Micro** bringt die 9. Intel-Generation (i5-9500T mit bi
 
 🔍 [Dell OptiPlex 3060/3070 bei Amazon suchen](https://www.amazon.de/s?k=Dell+OptiPlex+Micro&tag=makmatas-homelab-21)
 
-**Meine Meinung zur Kategorie 50–150 €:** Egal ob HP oder Dell – nimm das Modell, das du gerade günstiger siehst. Ein ProDesk 600 G4 mit i5-8500T für 110 € ist genauso gut wie ein OptiPlex 3060 für 100 €. Kauf nach Angebotslage.
+**Meine Meinung zur Kategorie 80–150 €:** Egal ob HP oder Dell – nimm das Modell, das du gerade günstiger findest. Ein ProDesk 600 G4 mit i5-8500T für 110 € ist genauso gut wie ein OptiPlex 3060 für 100 €. Kauf nach Angebotslage.
 
 ---
 
@@ -207,7 +207,7 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 | Budget | KI-Nutzung |
 |--------|------------|
 | **Bis 50 €** | Ollama auf CPU, kleine Modelle (1–3B Parameter) |
-| **50–150 €** | Ollama + Open WebUI, 7B-Modelle (langsam) |
+| **80–150 €** | Ollama + Open WebUI, 7B-Modelle (langsam) |
 | **150–200 €** | 7B-Modelle nutzbar, GPU via PCIe-Riser (M720q) |
 | **200–300 €** | 7B-Modelle auf CPU, effizienter durch Alder-Lake-Architektur |
 
@@ -218,7 +218,7 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 | Dein Budget | Unsere Empfehlung |
 |-------------|-------------------|
 | **40–50 €** | 👉 **Fujitsu Futro S7010** – günstigster Einstieg überhaupt |
-| **50–150 €** | 👉 **HP ProDesk 400 G3/600 G4** oder **Dell OptiPlex 3060/3070** – je nach Angebot |
+| **80–150 €** | 👉 **HP ProDesk 400 G3/600 G4** oder **Dell OptiPlex 3060/3070** – je nach Angebot |
 | **150–200 €** | 👉 **Lenovo M720q Tiny** – PCIe macht den Unterschied |
 | **200–300 €** | 👉 **GMKtec G3S** – Neugerät mit Garantie |
 

@@ -239,7 +239,9 @@ devices:
     video_outputs: ["1× DisplayPort 1.2 (4K)", "1× VGA (über Adapter)"]
     usb_ports: "4× USB 3.0 + 2× USB 2.0"
     cooling: "Passiv (lüfterlos)"
+    idle_power_watts: 3-7
     noise_level: "Lautlos"
+    dimensions_cm: "18 × 12 × 4"
     ram_max_unofficial: "16 GB (getestet)"
     price_range_german: "30-50 € (gebraucht)"
     ideal_for: "Ultra-Budget-Server, Pi-hole, Home Assistant, leichte Docker-Dienste"
