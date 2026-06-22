@@ -267,6 +267,6 @@ Gebraucht bei Amazon Warehouse Deals, eBay Kleinanzeigen oder Refurbished-Händl
 | **150–250 €** | Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich |
 | **250–400 €** | Dell OptiPlex 7070 Micro (i7, 8 Kerne) |
 
-> **🔗 Weiterlesen:** Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren [Mini-PC-Vergleich fürs Homelab 2025/2026](/homelab-blog/posts/mini-pc-homelab-2025-vergleich/) an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.
+> **🔗 Weiterlesen:** Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren [Mini-PC-Vergleich fürs Homelab 2026](/homelab-blog/posts/mini-pc-homelab-vergleich/) an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.
 
 *Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.*
