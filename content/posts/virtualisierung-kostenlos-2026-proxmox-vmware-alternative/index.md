@@ -113,7 +113,7 @@ Seit Broadcom VMware übernommen hat, ist Schluss mit der kostenlosen ESXi-Versi
 
 Proxmox läuft auch auf älteren Rechnern. Anders als VMware (das eine strikte Hardware-Kompatibilitätsliste hat) unterstützt Proxmox praktisch jeden x86_64-Prozessor.
 
-### Minimal-Ausstattung (Tabellen-Struktur)
+### Minimal-Ausstattung
 
 | Komponente | Minimal | Empfohlen |
 |-----------|---------|-----------|
@@ -128,80 +128,75 @@ Proxmox läuft auch auf älteren Rechnern. Anders als VMware (das eine strikte H
 
 ## Gute Hardware für dein Proxmox-Homelab – nach Budget
 
-### 💰 Bis 50 € – Fujitsu Futro S7010
+### 💰 1–50 € – Fujitsu Futro S740 oder S7010
 
-- **CPU:** Intel J4125 (4 Kerne, 4 Threads) – lüfterlos, 10 Watt Leerlauf
-- **RAM:** 8 GB offiziell, 16 GB getestet – ein RAM-Slot, DDR4-SODIMM
-- **Storage:** 64 GB M.2 SATA – kein zweiter Slot, Upgrade auf größere SSD nötig
+Was du auf dem Gebrauchtmarkt findest: meist mit 8 GB RAM und 64 GB SSD.
+
+- **CPU:** Intel J4125 (S7010, 4 Kerne) oder Intel J4105 (S740, 4 Kerne) – **beide lüfterlos**
+- **RAM:** 8 GB DDR4 offiziell, 16 GB getestet – ein einzelner RAM-Slot (SODIMM)
+- **Storage:** 64 GB M.2 SATA – SSD austauschbar, aber M.2 SATA only (kein NVMe)
 - **Netzwerk:** 1× GbE
-- **Upgrade-Fähigkeit:** ❌ RAM verlötet? Nein – aber nur ein Slot. SSD austauschbar, aber M.2 SATA only.
-- **KI-Potenzial:** ❌ Kein lokales KI-Modell möglich (4 Kerne, 8–16 GB RAM). Für Ollama nicht geeignet.
-- **Betriebssystem-Empfehlung:** Proxmox VE mit LXC-Containern (Pi-hole, AdGuard, einfacher Webserver)
-- **Stromverbrauch Idle:** ca. 6–8 Watt – damit günstiger im Dauerbetrieb als jede Glühbirne
-- **Praxis-Tipp:** Läuft bei mir seit Monaten als OPNSense-Firewall und AdGuard-DNS – absolut lautlos, kein Lüftergeräusch
+- **Upgrade-Fähigkeit:** ❌ Nur ein RAM-Slot, M.2 SATA only (kein NVMe), kein zweiter SSD-Slot
+- **KI-Potenzial:** ❌ Für Ollama nicht geeignet – CPU zu schwach, RAM zu knapp
+- **Stromverbrauch Idle:** ca. 6–8 Watt – günstiger im Dauerbetrieb als jede Glühbirne
+- **USB-C?** Nein
+- **Praxis-Tipp:** Läuft bei mir seit Monaten als OPNSense-Firewall und AdGuard-DNS – absolut lautlos
 
-**Ideal für:** Erste Proxmox-Experimente, DNS/DHCP, Monitoring, Backup-Ziel (PBS)
+**Ideal für:** Erste Proxmox-Experimente, Pi-hole, AdGuard, DNS/DHCP, Backup-Ziel (PBS), leichte Dienste
 
 👉 [Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)
 
 ---
 
-### 💰 50–100 € – HP ProDesk 400 G4 Mini / Dell Optiplex 3060 Micro
+### 💰 100–150 € – HP ProDesk 400 G3/G4 oder Dell Optiplex 3060/3070 Micro
 
-- **CPU:** Intel Core i5-8500T (6 Kerne, 6 Threads) – mit Lüfter, ~15 Watt Leerlauf
-- **RAM:** 32 GB DDR4 möglich – zwei RAM-Slots (kein verlöteter RAM)
-- **Storage:** 1× M.2 NVMe + 1× 2,5-Zoll-SATA – zweiter Platz vorhanden
+- **CPU:** Intel Core i5 der 7.–9. Generation (4–6 Kerne) – mit Lüfter
+- **RAM:** Bis zu 32 GB DDR4 – zwei RAM-Slots (SODIMM), **nicht verlötet**
+- **Storage:** 1× M.2 NVMe + 1× 2,5-Zoll-SATA – zwei Plätze, gut erweiterbar
 - **Netzwerk:** 1× GbE
-- **Upgrade-Fähigkeit:** ✅ RAM auf 32 GB erweiterbar. Platz für zweite SSD (2,5 Zoll). Kein PCIe-Slot.
-- **KI-Potenzial:** ⚠️ Basis möglich. Llama-3-8B via CPU (ohne GPU) läuft langsam (~2-3 Tokens/s). Für Phi-3-mini (3,8B) reicht es flüssig mit 16+ GB RAM.
-- **Betriebssystem-Empfehlung:** Proxmox VE + Docker-LXC + Home Assistant VM + Jellyfin
-- **Stromverbrauch Idle:** ca. 12–18 Watt – je nach verbauter SSD und RAM-Bestückung
-- **USB-C?** Nein. Nur USB 3.0 (Typ A). Kein DisplayPort über USB-C.
+- **Upgrade-Fähigkeit:** ✅ RAM auf 32 GB erweiterbar, zweiter SSD-Slot vorhanden. Kein PCIe-Slot.
+- **KI-Potenzial:** ⚠️ Basis möglich. Phi-3-mini (3,8B) läuft mit über 10 Tokens/s auf der CPU – flüssig nutzbar. Llama-3-8B wird langsamer (~4-5 Tokens/s). 16+ GB RAM empfohlen.
+- **Stromverbrauch Idle:** ca. 12–18 Watt
+- **USB-C?** Nein. Nur USB 3.0 (Typ A).
 
-**Ideal für:** Vollwertigen Proxmox-Host für 3–5 VMs/Container, Home Assistant, Medienserver
+**Ideal für:** Vollwertigen Proxmox-Host für viele Container und 3–5 VMs, Home Assistant, Jellyfin, Nextcloud
 
 - 🔍 [HP ProDesk 400 G4 Mini bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21)
-- 🔍 [Dell Optiplex 3060 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+Optiplex+3060+Micro&tag=makmatas-homelab-21)
+- 🔍 [Dell Optiplex 3070 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+Optiplex+3070+Micro&tag=makmatas-homelab-21)
 
 ---
 
-### 💰 100–150 € – Dell Optiplex 3070 Micro / Lenovo M720q Tiny
+### 💰 150–200 € – Lenovo M720q Tiny
 
-- **CPU:** Intel Core i5-9500T (6 Kerne, 6 Threads) – mit Lüfter
+- **CPU:** Intel Core i5-8500T oder i7-8700T (6 Kerne) – mit Lüfter
 - **RAM:** Bis zu 32 GB DDR4 – zwei RAM-Slots (SODIMM)
 - **Storage:** 1× M.2 NVMe + 1× 2,5-Zoll-SATA
 - **Netzwerk:** 1× GbE
-- **Upgrade-Fähigkeit:** ✅ RAM erweiterbar, zweiter SSD-Slot vorhanden. **Lenovo M720q:** zusätzlicher PCIe-Slot (Riser-Karte) für 10GbE oder GPU
-- **KI-Potenzial:** ✅ Phi-3-mini und Llama-3-8B via CPU nutzbar (4-5 Tokens/s). 32 GB RAM empfohlen. Reine CPU-Inferenz ohne dedizierte GPU.
-- **Betriebssystem-Empfehlung:** Proxmox VE mit Ollama-LXC + Open WebUI + Home Assistant + Nextcloud
-- **USB-C?** Dell Optiplex 3070: **Nein**. Lenovo M720q: **Ja** – einmal USB-C (DisplayPort-alt)
+- **Upgrade-Fähigkeit:** ✅ RAM erweiterbar, zweiter SSD-Slot vorhanden. **Plus:** PCIe-Slot (Riser-Karte) für 10GbE oder GPU – das hat kein anderer 1L-PC in dieser Preisklasse.
+- **KI-Potenzial:** ✅ Phi-3-mini läuft mit über 10 Tokens/s. Mit 32 GB RAM auch Llama-3-8B nutzbar. Reine CPU-Inferenz, keine GPU nötig.
 - **Stromverbrauch Idle:** ca. 12–20 Watt
+- **USB-C?** **Ja** – einmal USB-C (DisplayPort-alt). Der einzige 1L-PC in dieser Liga mit USB-C.
 
-**Ideal für:** Den ersten "richtigen" Homelab-Server mit KI-Spielerei. Lenovo M720q für Cluster-Bau mit PCIe-Anbindung.
+**Ideal für:** KI-Spielereien (Ollama, Open WebUI), Cluster-Node mit PCIe-Erweiterung, Home Assistant + Nextcloud + KI alles in einem
 
-- 🔍 [Dell Optiplex 3070 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+Optiplex+3070+Micro&tag=makmatas-homelab-21)
 - 🔍 [Lenovo M720q Tiny bei Amazon suchen](https://www.amazon.de/s?k=Lenovo+M720q+Tiny&tag=makmatas-homelab-21)
 
 ---
 
-### 💰 150–300 € – Lenovo M720q / GMKtec G3S (neu)
+### 💰 > 200 € – Minisforum MS-01 (neu)
 
-**Lenovo M720q (gebraucht, ~90–150 €)**
-- Wie oben, **aber mit PCIe-Slot** – du kannst eine 10GbE-Karte oder eine kleine GPU einbauen
-- **Upgrade-Fähigkeit:** ✅ Einziger 1L-PC mit PCIe-Slot. RAM + Dual-Storage + GPU/10GbE = maximale Flexibilität
+- **CPU:** Intel Core i9-13900H (14 Kerne: 6P+8E, 20 Threads) – High-End-Prozessor
+- **RAM:** Bis zu 96 GB DDR5 – zwei SO-DIMM-Slots
+- **Storage:** 3× M.2 NVMe – extrem erweiterbar
+- **Netzwerk:** 2× 10GbE (SFP+) + 2× 2,5 GbE
+- **Upgrade-Fähigkeit:** ✅ Drei NVMe-Slots, zwei DDR5-Slots. Kein PCIe-Slot intern.
+- **KI-Potenzial:** ✅ Ja, geeignet für lokale KI-Modelle dank 14 Kernen und DDR5. Mit 64+ GB RAM sind auch größere Modelle möglich.
+- **Stromverbrauch Idle:** Keine exakten Daten vorhanden.
+- **USB-C?** Ja
 
-**GMKtec G3S (neu, ~200–230 €)**
-- **CPU:** Intel N95 Alder Lake (4 Kerne, 4 Threads, 2023) – lüfterlos? Nein, mit Lüfter, ~10–15 Watt Leerlauf
-- **RAM:** 16 GB DDR4 verlötet – **nicht erweiterbar** ⚠️
-- **Storage:** 1× M.2 NVMe – kein zweiter Slot
-- **Upgrade-Fähigkeit:** ❌ RAM verlötet, nur ein SSD-Slot. Kaufentscheidung: direkt mit genug RAM kaufen
-- **KI-Potenzial:** ❌ 16 GB RAM für KI zu knapp, CPU zu schwach für flüssige Modelle
-- **Betriebssystem-Empfehlung:** Proxmox VE für leichte Dienste (Pi-hole, AdGuard, kleiner Webserver)
+**Ideal für:** Leistungshungrige VMs, Ceph-Cluster, KI-Workloads, 10GbE-Netzwerk – wenn das Budget es hergibt.
 
-**Ideal für:** Wer Neugerät mit Garantie will (GMKtec) oder maximale Erweiterbarkeit braucht (Lenovo).
-
-- 🔍 [Lenovo M720q Tiny bei Amazon suchen](https://www.amazon.de/s?k=Lenovo+M720q+Tiny&tag=makmatas-homelab-21)
-- 🔍 [GMKtec G3S bei Amazon suchen](https://www.amazon.de/s?k=GMKtec+G3S&tag=makmatas-homelab-21)
+👉 [Preis bei Geizhals prüfen](https://geizhals.de/minisforum-ms-01-a3260346.html)
 
 ---
 
@@ -234,10 +229,10 @@ Die Installation ist erstaunlich einfach – eine der großen Stärken von Proxm
 
 Bevor du Hardware kaufst, hier ein paar **praktische Fallstricke** aus meiner Erfahrung:
 
-- **RAM nicht unterschätzen:** Proxmox selbst braucht kaum RAM (~2 GB), aber jede VM will ihren eigenen Speicher. Faustregel: 8 GB Basis + 2 GB pro LXC + 4 GB pro VM. 32 GB sind ein guter Startwert.
+- **RAM richtig planen:** Proxmox selbst braucht kaum RAM (~2 GB). Ein LXC-Container benötigt je nach Anwendung 0,5–4 GB (Pi-hole: ~0,5 GB, Nextcloud: ~2–4 GB). Eine VM startet bei mindestens 4 GB. Mit 32 GB bist du für die meisten Homelabs gut aufgestellt – 16 GB reichen für den Anfang.
 - **Eine SSD reicht:** ZFS mag zwei SSDs im Mirror, aber fürs Homelab tut es auch eine. Mach regelmäßige Backups auf eine externe HDD oder einen zweiten Rechner.
 - **Netzwerk nicht vergessen:** Ein GbE-Anschluss reicht für die ersten Schritte. Erst wenn du mehrere VMs gleichzeitig stark belastest (z. B. Jellyfin + Nextcloud + Game-Server), wird 2,5 GbE interessant.
-- **Gebraucht ist oft besser als neu:** Für 100–150 € bekommst du einen Business-1L-PC, der vor 5 Jahren noch 1.000 € gekostet hat. Die Dinger sind für 24/7-Betrieb ausgelegt und laufen Jahre ohne Probleme.
+- **Gebraucht ist oft besser als neu:** Business-1L-PCs (HP, Dell, Lenovo) sind für den 24/7-Dauerbetrieb ausgelegt. Ein gebrauchtes Modell für 100–150 € läuft meist jahrelang problemlos.
 
 ---
 
@@ -249,11 +244,11 @@ Sicherungen deiner VMs und Container – dedupliziert, verschlüsselt, mit Bandb
 
 ### 2. Home Assistant via LXC
 
-Home Assistant in einem LXC-Container braucht nur ~2 GB RAM und lässt sich in 10 Minuten einrichten. Perfekt für Smart-Home-Steuerung (Licht, Heizung, Kameras) direkt auf deinem Proxmox-Host.
+Home Assistant in einem LXC-Container braucht nur ~2 GB RAM und lässt sich in 10 Minuten einrichten. Perfekt für Smart-Home-Steuerung (Licht, Heizung, Kameras).
 
 ### 3. Ollama + Open WebUI für lokale KI
 
-Ab 32 GB RAM kannst du kleine KI-Modelle wie **Phi-3-mini (3,8B Parameter)** oder **Llama-3-8B** direkt auf deinem Proxmox-Host laufen lassen. Einrichtung per LXC-Container mit Docker – in 15 Minuten erledigt. Die Modelle laufen rein über die CPU (keine GPU nötig), aber erwarte ~2–5 Tokens pro Sekunde, nicht ChatGPT-Tempo.
+Ab 32 GB RAM kannst du kleine KI-Modelle direkt auf deinem Proxmox-Host laufen lassen. **Phi-3-mini (3,8B Parameter)** läuft mit über 10 Tokens/s auf CPU-only – völlig flüssig für Chat und Textaufgaben. **Llama-3-8B** schafft ~4–5 Tokens/s – langsamer, aber für gelegentliche Nutzung okay. Einrichtung per LXC-Container mit Docker, in 15 Minuten erledigt.
 
 ---
 
@@ -275,14 +270,12 @@ Für die ersten Schritte: nein. Die Weboberfläche erlaubt die vollständige Ver
 
 ## Fazit: Welcher Weg ist der richtige für dich?
 
-| Budget | Empfehlung | Kosten (ca.) | Ideal für |
-|--------|-----------|-------------|-----------|
-| **Bis 50 €** | Fujitsu Futro S7010 + 16 GB RAM | ~50 € | Erste Schritte, Pi-hole, DNS, Monitoring |
-| **~100 €** | HP ProDesk 400 G4 oder Dell Optiplex 3060 | ~90–120 € | Vollwertiger Homelab-Host, Home Assistant, Jellyfin |
-| **~150 €** | Lenovo M720q + PCIe-Erweiterung | ~130–180 € | KI-Spielereien, 10GbE, Cluster-Node |
-| **~250 €** | Lenovo M720q + 32 GB RAM + SSD | ~200–250 € | KI + Home Assistant + Nextcloud + Backup alles in einem |
-
-**Meine klare Empfehlung für Einsteiger:** Hol dir einen **HP ProDesk 400 G4 Mini gebraucht für ~90 €**, pack 16–32 GB RAM rein, eine günstige 500 GB NVMe und installiere Proxmox. Damit hast du für unter **150 € Gesamtkosten** eine Plattform, die dich die nächsten Jahre begleitet.
+| Budget | Empfehlung | Ideal für |
+|--------|-----------|-----------|
+| **1–50 €** | Fujitsu Futro S740/S7010 (gebraucht) | Erste Schritte, Pi-hole, DNS, Monitoring |
+| **100–150 €** | HP ProDesk 400 G4 oder Dell Optiplex 3070 (gebraucht) | Vollwertiger Homelab-Host, Home Assistant, Jellyfin, Nextcloud – läuft auch mit vielen Containern |
+| **150–200 €** | Lenovo M720q Tiny (gebraucht) | KI-Spielereien per CPU, Cluster-Node mit PCIe, maximale Erweiterbarkeit |
+| **> 200 €** | Minisforum MS-01 (neu) | 10GbE, Ceph-Cluster, KI-Workloads, wenn Geld keine Rolle spielt |
 
 Die VMware-Ära im Homelab ist vorbei. Proxmox ist die logische, kostenlose und leistungsfähigere Alternative – und mit gebrauchter Business-Hardware kommst du günstiger weg als mit jedem Fertig-NAS oder Mini-PC aus dem Laden.
 
