@@ -81,7 +81,7 @@ Für **20–60 Euro** bekommst du das Basismodell. Viele Angebote enthalten bere
 - ✅ Netzteil (meist Fujitsu Original-12V-Netzteil, oft dabei)
 - ✅ **DisplayPort-auf-HDMI-Adapter (ca. 5 €) falls nötig** – der Futro hat DisplayPort, kein HDMI. Check: Hat dein Monitor einen DisplayPort-Eingang (eckige Buchse mit abgeschrägter Seite)? Dann brauchst du keinen Adapter. Sieht er nur HDMI-Buchsen? Dann Adapter besorgen.
 - ❌ DDR4 SODIMM RAM (falls nicht im Angebot enthalten – oft ist RAM dabei)
-- ❌ SSD (M.2 NVMe oder 2,5-Zoll-SATA, falls nicht im Angebot enthalten)
+- ❌ SSD (M.2 SATA oder NVMe, falls nicht im Angebot enthalten)
 
 **Beispiel-Angebote (oft mit RAM + SSD):**
 - [Ram-König: Futro S740 mit 4 GB RAM + 16 GB SSD](https://www.ram-koenig.de/fujitsu-futro-s740-thin-client-intel-j4105-4gbddr4-16gb-psu-included/10381?referralCode=019cd701aff574318721876292eacd57)
@@ -100,7 +100,7 @@ Die günstigste Komplettlösung für einen lauffähigen Server. Tipp: Oft wird d
 |-----------|-----------------|------|
 | Fujitsu Futro S740 | ~45 € | 🔍 [Suche bei Amazon](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) |
 | 8 GB DDR4 SODIMM | ~50 € | 🔍 [DDR4 SODIMM bei Amazon](https://www.amazon.de/s?k=DDR4+SODIMM+8GB&tag=makmatas-homelab-21) |
-| 120 GB SATA SSD 2,5" | ~30 € | 🔍 [Günstige SSD bei Amazon](https://www.amazon.de/s?k=120+GB+SATA+SSD+2.5+Zoll&tag=makmatas-homelab-21) |
+| 120 GB M.2 SATA SSD | ~30 € | 🔍 [M.2 SATA SSD bei Amazon](https://www.amazon.de/s?k=M.2+SATA+120GB+SSD&tag=makmatas-homelab-21) |
 | DisplayPort-HDMI-Adapter | ~7 € | 🔍 [Adapter bei Amazon](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
 | **Gesamt (ohne vorhandene Teile)** | **~130 €** | |
 
@@ -235,8 +235,9 @@ Zum Vergleich: Ein ausgemusterter Tower-Server (Dell PowerEdge T320) zieht im Id
 ### Kann ich mit dem Futro S740 Windows 11 nutzen?
 Nein, der Celeron J4105/J4125 wird von Microsoft nicht für Windows 11 unterstützt (kein TPM 2.0 / kein Intel 8. Gen). Windows 10 läuft hingegen problemlos. Für ein Homelab empfehle ich aber Linux (Ubuntu Server LTS oder Debian).
 
-### Passt eine 2,5-Zoll-SSD in den Futro?
-Ja, der Futro S740 hat drei Storage-Optionen: (1) einen **M.2-2280-Slot** für NVMe-SSDs (empfohlen fürs Betriebssystem), (2) einen **mSATA-Slot** für zusätzliche SSDs, und (3) einen **internen 2,5-Zoll-SATA-Bay** für klassische SATA-SSDs. Die 120-GB-SATA-SSD aus der 50–80-€-Budgetstufe kommt in den 2,5-Zoll-Bay. Wer schnelleren Speicher will, nutzt den M.2-Slot für eine NVMe-SSD.
+### Welche SSD passt in den Futro?
+
+Der Futro S740 hat einen **M.2-2280-Slot** für M.2 SATA oder NVMe-SSDs – das ist der empfohlene Platz fürs Betriebssystem. **Wichtig:** Da der Futro nur einen M.2-Slot hat, kauf am besten gleich eine ausreichend große SSD (500 GB oder 1 TB). Zusätzlich gibt es einen mSATA-Slot und einen 2,5-Zoll-SATA-Bay für Erweiterungen, aber für den Einstieg reicht die M.2-SSD völlig.
 
 ### Kann ich den Arbeitsspeicher aufrüsten?
 
