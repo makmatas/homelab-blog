@@ -1,18 +1,1002 @@
-<!doctype html><html lang=de dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server | Homelab Guide</title>
-<meta name=keywords content="fujitsu,futro,thin-client,low-budget,homelab,home-assistant,proxmox"><meta name=description content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
+<!DOCTYPE html>
+<html lang="de" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server | Homelab Guide</title>
+<meta name="keywords" content="fujitsu, futro, thin-client, low-budget, homelab, home-assistant, proxmox">
+<meta name="description" content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
 Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.
-In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst."><meta name=author content><link rel=canonical href=https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/><link crossorigin=anonymous href=/homelab-blog/assets/css/stylesheet.6ff46447b1fa3f8a5cc0bcae48088decc3ae37f5fbc99406a3aefc3bf0e6044a.css integrity="sha256-b/RkR7H6P4pcwLyuSAiN7MOuN/X7yZQGo678O/DmBEo=" rel="preload stylesheet" as=style><link rel=icon href=https://makmatas.github.io/homelab-blog/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://makmatas.github.io/homelab-blog/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://makmatas.github.io/homelab-blog/favicon-32x32.png><link rel=apple-touch-icon href=https://makmatas.github.io/homelab-blog/apple-touch-icon.png><link rel=mask-icon href=https://makmatas.github.io/homelab-blog/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=de href=https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script data-goatcounter=https://makmatas.goatcounter.com/count async src=//gc.zgo.at/count.js></script><meta property="og:url" content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/"><meta property="og:site_name" content="Homelab Guide"><meta property="og:title" content="Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server"><meta property="og:description" content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
+In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.">
+<meta name="author" content="">
+<link rel="canonical" href="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/">
+<link crossorigin="anonymous" href="/homelab-blog/assets/css/stylesheet.6ff46447b1fa3f8a5cc0bcae48088decc3ae37f5fbc99406a3aefc3bf0e6044a.css" integrity="sha256-b/RkR7H6P4pcwLyuSAiN7MOuN/X7yZQGo678O/DmBEo=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://makmatas.github.io/homelab-blog/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://makmatas.github.io/homelab-blog/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://makmatas.github.io/homelab-blog/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://makmatas.github.io/homelab-blog/apple-touch-icon.png">
+<link rel="mask-icon" href="https://makmatas.github.io/homelab-blog/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="de" href="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><script data-goatcounter="https://makmatas.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<meta property="og:url" content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/">
+  <meta property="og:site_name" content="Homelab Guide">
+  <meta property="og:title" content="Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server">
+  <meta property="og:description" content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
 Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.
-In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst."><meta property="og:locale" content="de_de"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-06-22T00:00:00+00:00"><meta property="article:modified_time" content="2026-06-22T00:00:00+00:00"><meta property="article:tag" content="Fujitsu"><meta property="article:tag" content="Futro"><meta property="article:tag" content="Thin-Client"><meta property="article:tag" content="Low-Budget"><meta property="article:tag" content="Homelab"><meta property="article:tag" content="Home-Assistant"><meta property="og:image" content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg"><meta name=twitter:title content="Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server"><meta name=twitter:description content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
+In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-06-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-06-22T00:00:00+00:00">
+    <meta property="article:tag" content="Fujitsu">
+    <meta property="article:tag" content="Futro">
+    <meta property="article:tag" content="Thin-Client">
+    <meta property="article:tag" content="Low-Budget">
+    <meta property="article:tag" content="Homelab">
+    <meta property="article:tag" content="Home-Assistant">
+    <meta property="og:image" content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg">
+  <meta name="twitter:title" content="Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server">
+  <meta name="twitter:description" content="Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten
 Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.
-In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://makmatas.github.io/homelab-blog/posts/"},{"@type":"ListItem","position":2,"name":"Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server","item":"https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server","name":"Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server","description":"Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten\nDu möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.\nIn diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.\n","keywords":["fujitsu","futro","thin-client","low-budget","homelab","home-assistant","proxmox"],"articleBody":"Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten\nDu möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.\nIn diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.\nAuf einen Blick: Budget-Stufen Budget Konfiguration Ideal für ~30 € Futro S740 pur (gebraucht, ohne Zubehör) Wenn du SSD + RAM bereits hast 50–80 € Futro S740 + 8 GB RAM + 120 GB SSD Home Assistant, Pi-hole, leichte Dienste 80–120 € Futro S740 + 16 GB RAM + 256 GB NVMe Mehrere Docker-Container, NAS light 120–250 € Alternativen: HP ProDesk 400 G3 oder Lenovo M720q VMs mit Proxmox, PCIe-Erweiterungen 💡 Einsteiger-Tipp: Der Futro S740 wird meist ohne RAM und ohne Festplatte verkauft. Achte beim Kauf darauf, ob Netzteil und DisplayPort-Kabel dabei sind.\nWas ist der Fujitsu Futro S740? Der Fujitsu Futro S740 ist ein Thin Client – ein kleiner, stromsparender Büro-Computer, der ursprünglich für Terminalserver-Anbindungen entwickelt wurde. Nach der Ausmusterung aus Unternehmen landen diese Geräte für kleines Geld auf dem Gebrauchtmarkt. Und genau dort werden sie für Homelab-Einsteiger interessant.\nKompatible Betriebssysteme: Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind Ubuntu Server LTS (einfachster Einstieg), Debian 12 (ressourcenschonend), Proxmox VE 8.x (für Virtualisierung) oder Home Assistant OS (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).\nTechnische Daten (kanonisch) Komponente Spezifikation CPU Intel Celeron J4105 (4C/4T, 1.5–2.5 GHz, 10W TDP) oder J4125 (4C/4T, 2.0–2.7 GHz) RAM 2× DDR4 SODIMM, offiziell max. 16 GB (inoffiziell bis 32 GB getestet) Storage 1× M.2 2280 SATA/NVMe + 1× mSATA + 1× 2,5-Zoll-SATA-Bay Netzwerk 1× Realtek Gigabit Ethernet (optional zweiter Port) Video 2× DisplayPort USB 4× USB 3.0 Stromverbrauch 4–8 Watt im Leerlauf, 12–18 Watt unter Last Lautstärke Passiv gekühlt oder extrem leiser Lüfter Preis 20–60 € (gebraucht) Futro S740 vs. Futro S7010 – was ist der Unterschied? Der neuere Futro S7010 wird oft mit dem S740 verwechselt. Die wichtigsten Unterschiede:\nMerkmal Futro S740 Futro S7010 CPU Celeron J4105 (älter) Celeron J4125 (neuer, minimal schneller) Preis 20–50 € 30–60 € Verbrauch 4–8 W 4–8 W Ideal für Home Assistant, Pi-hole, Docker light OPNSense, AdGuard Home, leichte VMs Der S7010 hat den minimal besseren J4125-Prozessor und eignet sich besonders gut als dedizierte Firewall (OPNSense) – genau das, wofür ich meinen eigenen S7010 einsetze. Der S740 ist jedoch häufiger und günstiger verfügbar.\nDie Budget-Stufen im Detail Bis 30 €: Der absolute Einstieg Für 20–60 Euro bekommst du das Basismodell. Meist fehlen RAM und Festplatte – aber das ist einkalkuliert. Viele Verkäufer bieten den Futro als “ohne RAM/HDD” an, was den Preis drückt.\nWas du brauchst:\n✅ Netzteil (meist Fujitsu Original-12V-Netzteil, oft dabei) ❌ DDR4 SODIMM RAM (brauchst 4–16 GB, ab ~8€ gebraucht) ❌ SSD (M.2 NVMe oder 2,5-Zoll-SATA, ab ~15€) 🔍 Fujitsu Futro S740 bei Amazon suchen\nBesonders wichtig: Prüfe vor dem Kauf, ob ein Netzteil dabei ist. Ohne Netzteil brauchst du ein Fujitsu-kompatibles 12V-Netzteil mit 4-Pin- oder Rundstecker.\n30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD Die günstigste Komplettlösung für einen lauffähigen Server:\nKomponente Ungefährer Preis Link Fujitsu Futro S740 20–40 € 🔍 Suche bei Amazon 8 GB DDR4 SODIMM ~10–15 € 🔍 DDR4 SODIMM bei Amazon 120 GB SATA SSD 2,5\" ~15–20 € 🔍 Günstige SSD bei Amazon Gesamt ~50–75 € Damit betreibst du komfortabel:\nHome Assistant (inkl. zigbee-Gateway über USB) Pi-hole zur Werbeblockade im ganzen Netzwerk PiVPN für sicheren Remote-Zugriff 1–2 leichte Docker-Container (z. B. n8n, Watchtower, Uptime Kuma) 70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD Die optimale Ausbaustufe für dein erstes richtiges Homelab:\nKomponente Ungefährer Preis Link Fujitsu Futro S740 20–40 € 🔍 Suche bei Amazon 16 GB DDR4 SODIMM (2×8 GB) ~20–30 € 🔍 DDR4 SODIMM 16 GB Kit bei Amazon 256 GB M.2 NVMe SSD ~25–35 € 🔍 M.2 NVMe SSD 256GB bei Amazon Gesamt ~65–105 € Damit sind folgende Szenarien realistisch:\n3–5 Docker-Container parallel (Postgres, n8n, Jellyfin light, Grafana, Node-RED) Home Assistant + Zigbee2MQTT + InfluxDB + Grafana Leichter NAS-Server über Samba (für kleine Dateien, Backups) AdGuard Home + Unbound als DNS-Resolved Proxmox VE mit 1–2 LXCs (mehr dazu unten) Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen? Ab etwa 120 Euro Gesamtbudget solltest du über Alternativen nachdenken. Ein HP ProDesk 400 G3 (50–100 €) oder ein Lenovo ThinkCentre M720q Tiny (90–200 €) bieten:\nGerät Vorteil gegenüber Futro HP ProDesk 400 G3 i5-6500T (4 Kerne, stärker als Celeron), Intel NIC Lenovo M720q Tiny i5-8500T (6 Kerne!), PCIe-Slot für 10GbE oder SATA-Erweiterung Dell OptiPlex 3070 Micro i5-9500T (6 Kerne), USB-C, extrem stromsparend Der Futro bleibt die Nummer 1, wenn:\nDein Budget unter 80 € liegt Stromverbrauch absolut kritisch ist (24/7-Betrieb) Du Home Assistant oder Pi-hole als primären Use-Case hast Du leise oder lüfterlose Hardware brauchst 👉 HP ProDesk 400 G3 bei Amazon suchen 👉 Lenovo ThinkCentre M720q Tiny bei Amazon suchen\nProxmox auf dem Futro S740 – geht das? Ja, Proxmox VE 8.x läuft auf dem Futro S740, aber mit Einschränkungen:\n✅ Was funktioniert:\n1–3 leichte LXC-Container (z. B. Pi-hole, Home Assistant, Unbound) 1 leichte VM (z. B. Ubuntu Server mit 1 GB RAM) Snapshots, Backups via Proxmox Backup Server ⚠️ Was du beachten musst:\nRealtek NIC: Der integrierte Realtek-Chip (RTL8111G) wird von Proxmox standardmäßig erkannt, aber einige Nutzer berichten von sporadischen Verbindungsabbrüchen. Fix: ethtool -K vmbr0 gro on lro on oder ein Intel-basiertes USB-Ethernet-Adapter (~15€) als Alternative. CEPH oder ZFS sind zu heavy: Der Celeron hat zu wenig Leistung für CEPH oder dedupliziertes ZFS. Verwende ext4 oder einfaches LVM-Thin. Max 2 VMs realistisch: Bei mehr als 2 VMs wird der Celeron zum Flaschenhals. Meine Empfehlung: Nutze den Futro als dedizierten Home-Assistant-Host unter Proxmox, oder betreibe ihn ohne Proxmox als reinen Docker-Host mit Ubuntu Server LTS. Das spart Overhead und läuft butterweich.\nDie besten Use-Cases für den Futro S740 1. Home Assistant (perfekt!) Der Futro S740 ist der ideale Home Assistant Server. Mit 8–16 GB RAM und einer kleinen SSD betreibst du Home Assistant OS, Zigbee2MQTT und Node-RED absolut problemlos. Ein USB-Zigbee-Stick (Conbee II oder Sonoff) wird sofort erkannt.\nVorteile gegenüber Raspberry Pi 5:\nKeine SD-Karten-Probleme (SATA-SSD statt MicroSD) x86-Architektur (keine ARM-Inkompatibilitäten) Mehr RAM möglich (16 GB vs 8 GB beim Pi 5) Robusteres Gehäuse, kein Hitzestau 🔍 Home Assistant (gelb) bei Amazon suchen\n2. Pi-hole + Unbound DNS Mit 4 GB RAM und einer 32-GB-SSD läuft Pi-hole + Unbound nahezu unsichtbar im Hintergrund. Der Futro verbraucht dabei unter 6 Watt – weniger als eine durchschnittliche LED-Lampe.\n3. Docker-Container-Server Betreibe einen Ubuntu-Server als Docker-Host. Typische Container:\nContainer RAM Sinn Watchtower ~50 MB Automatische Updates Uptime Kuma ~100 MB Monitoring + Status-Seite n8n ~300 MB Workflow-Automatisierung Grafana + InfluxDB ~400 MB Metriken-Dashboard Jellyfin (light) ~500 MB Medien-Streaming (nur Audio/leichte Videos) 4. OPNSense / pfSense Firewall (S7010 besser geeignet) Der Futro S7010 (mit J4125) ist besser für OPNSense geeignet, da er die minimal bessere CPU hat. Der S740 kann als Einsteiger-Firewall für 500 Mbit/s-Leitungen dienen.\n📱 Einsteiger-Tipp: Von unterwegs auf dein Homelab zugreifen\nWenn du deinen Futro als Home Assistant oder NAS nutzt, willst du auch von unterwegs darauf zugreifen. Die sicherste und einfachste Methode: Tailscale. Installiere Tailscale auf dem Futro (1 Befehl: curl -fsSL https://tailscale.com/install.sh | sh) und auf deinem Handy. Dann verbindest du dich per Tailscale-IP – verschlüsselt, ohne Port-Freigaben, ohne Cloud-Dienst. Funktioniert auf Android und iOS mit der offiziellen Tailscale-App. Alternativ: WireGuard über PiVPN (etwas mehr Einrichtung, aber ebenfalls top).\nStromverbrauch – die große Stärke des Futro Der Futro S740 glänzt vor allem durch seinen extrem niedrigen Stromverbrauch:\nZustand Verbrauch Kosten pro Jahr (bei 0,30 €/kWh) Idle (Leerlauf) 4–8 Watt ~10,50–21 € Leichte Last 8–12 Watt ~21–31,50 € Volllast 12–18 Watt ~31,50–47 € Zum Vergleich: Ein ausgemusterter Tower-Server (Dell PowerEdge T320) zieht im Idle 80–120 Watt – das sind 210–315 € pro Jahr allein für den Strom. Der Futro spart dir also potenziell bis zu 290 € pro Jahr an Stromkosten (bei 24/7-Betrieb und 0,30 €/kWh, Stand 2026).\n💡 Wer den Futro 3 Jahre betreibt, hat die Anschaffungskosten (30 €) oft bereits nach 2–3 Monaten allein durch die Stromersparnis gegenüber einem älteren Tower-Server wieder drin – bei aktuellen Strompreisen eine realistische Größenordnung.\nPreis-Leistungs-Vergleich: Futro vs. andere Mini-PCs Modell Preis CPU-Kerne RAM max. Idle-Strom PCIe-Slot Fujitsu Futro S740 20–60 € 4 Cores 16–32 GB 4–8 W ❌ HP ProDesk 400 G3 50–100 € 4 Cores 32 GB 8–12 W ❌ HP ProDesk 600 G4 100–180 € 6 Cores 32–64 GB 8–14 W ❌ Lenovo M720q Tiny 90–200 € 6 Cores 32–64 GB 6–12 W ✅ (PCIe x8) Dell OptiPlex 3070 Micro 100–180 € 6 Cores 32–64 GB 6–12 W ❌ GMKtec G3 Pro (neu) 200–280 € 2 Cores 16–32 GB 6–10 W ❌ Minisforum MS-01 (neu) 550–700 € 14 Cores 96 GB 15–25 W ✅ (USB4) Fazit der Tabelle: Der Futro S740 ist unschlagbar günstig und stromsparend. Sobald du mehr als 2 VMs betreiben willst oder PCIe-Erweiterungen brauchst, lohnt sich der Aufstieg zum Lenovo M720q oder HP ProDesk.\nFAQ Kann ich mit dem Futro S740 Windows 11 nutzen? Nein, der Celeron J4105/J4125 wird von Microsoft nicht für Windows 11 unterstützt (kein TPM 2.0 / kein Intel 8. Gen). Windows 10 läuft hingegen problemlos. Für ein Homelab empfehle ich aber Linux (Ubuntu Server LTS oder Debian).\nPasst eine 2,5-Zoll-SSD in den Futro? Ja, der Futro S740 hat drei Storage-Optionen: (1) einen M.2-2280-Slot für NVMe-SSDs (empfohlen fürs Betriebssystem), (2) einen mSATA-Slot für zusätzliche SSDs, und (3) einen internen 2,5-Zoll-SATA-Bay für klassische SATA-SSDs. Die 120-GB-SATA-SSD aus der 50–80-€-Budgetstufe kommt in den 2,5-Zoll-Bay. Wer schnelleren Speicher will, nutzt den M.2-Slot für eine NVMe-SSD.\nKann ich den Arbeitsspeicher aufrüsten? Ja, der Futro hat zwei DDR4 SODIMM-Slots. Offiziell unterstützt Fujitsu 16 GB, in der Community wurden aber auch 32 GB (2× 16 GB) erfolgreich getestet.\nWie laut ist der Futro S740? Sehr leise. Viele Versionen sind passiv gekühlt (völlig lautlos), andere haben einen kleinen Lüfter, der im Leerlauf kaum hörbar ist (\u003c 20 dB).\nIst der Futro S740 für Proxmox geeignet? Ja, aber beschränkt auf 1–3 LXCs oder 1–2 leichte VMs. Für einen reinen Proxmox-Einstieg reicht es völlig, aber für einen Mehrzweck-Cluster ist ein gebrauchter HP ProDesk mit i5-8500T die bessere Wahl.\nWo kaufe ich den Futro S740 am besten? Gebraucht bei Amazon Warehouse Deals, eBay Kleinanzeigen oder Refurbished-Händlern. Achte auf den Zustand “Generalüberholt” oder “Geprüft funktionsfähig” – und ob Netzteil und DisplayPort-Kabel dabei sind.\n🔍 Fujitsu Futro S740 bei Amazon suchen\nFazit – Für wen lohnt sich der Futro S740? Kaufen, wenn:\nDu unter 80 € Gesamtbudget für dein erstes Homelab hast Stromverbrauch deine Hauptsorge ist (24/7-Betrieb) Du Home Assistant, Pi-hole oder leichte Docker-Container betreiben willst Du einen leisen, unauffälligen Server suchst Lieber sparen und größer kaufen, wenn:\nDu mehrere VMs parallel betreiben willst Du PCIe-Erweiterungen (10GbE, SATA-Controller) brauchst Du Proxmox mit ZFS/Ceph planst Mehrere Docker-Container mit rechenintensiven Workloads (z. B. KI-Inferenz, Transkodierung) Meine persönliche Empfehlung: Starte mit einem Futro S740 oder S7010 für 30–50 € und einer kleinen SSD. Betreibe Home Assistant + Pi-hole + einen n8n-Workflow-Automaten darauf. Sobald du mehr brauchst, holst du dir einen HP ProDesk 400 G4 (mit i5-8500T ebenfalls sehr günstig) als zweiten Cluster-Node. Zwei Mini-PCs im Cluster sind besser und günstiger als ein großer Server.\nBudget Meine Empfehlung Bis 60 € Fujitsu Futro S740 + 8 GB RAM + kleine SSD 60–150 € HP ProDesk 400 G3 (i5) + 8–16 GB RAM 150–250 € Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich 250–400 € Dell OptiPlex 7070 Micro (i7, 8 Kerne) 🔗 Weiterlesen: Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren Mini-PC-Vergleich fürs Homelab 2025/2026 an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.\nAls Amazon-Partner verdiene ich an qualifizierten Verkäufen.\n","wordCount":"1986","inLanguage":"de","image":"https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg","datePublished":"2026-06-22T00:00:00Z","dateModified":"2026-06-22T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/"},"publisher":{"@type":"Organization","name":"Homelab Guide","logo":{"@type":"ImageObject","url":"https://makmatas.github.io/homelab-blog/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://makmatas.github.io/homelab-blog/ accesskey=h title="Homelab Guide (Alt + H)">Homelab Guide</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://makmatas.github.io/homelab-blog/categories/ title=Kategorien><span>Kategorien</span></a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://makmatas.github.io/homelab-blog/search/ title="🔍 Suche"><span>🔍 Suche</span></a></li><li><a href=https://makmatas.github.io/homelab-blog/about/ title=Über><span>Über</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/homelab-blog/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/homelab-blog/posts/>Posts</a><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server</h1><div class=post-meta><span title='2026-06-22 00:00:00 +0000 UTC'>22. Juni 2026</span>&nbsp;·&nbsp;<span>10 Minuten</span>&nbsp;|&nbsp;<span>
-<a href=https://github.com/makmatas/homelab-blog/content rel="noopener noreferrer edit" target=_blank>Bearbeiten</a></span></div></header><figure class=entry-cover><img loading=eager srcset='https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_d8240bf73dc15685.jpg 360w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_7cd6778b9328e487.jpg 480w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_14ed0e0dda9092ae.jpg 720w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg 1024w' src=https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg sizes="(min-width: 768px) 720px, 100vw" width=1024 height=1024 alt="Fujitsu Futro S740 Thin Client – der ultimative 30€-Homelab-Server für 2026"></figure><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Inhaltsverzeichnis</span></summary><div class=inner><ul><li><a href=#auf-einen-blick-budget-stufen aria-label="Auf einen Blick: Budget-Stufen">Auf einen Blick: Budget-Stufen</a></li><li><a href=#was-ist-der-fujitsu-futro-s740 aria-label="Was ist der Fujitsu Futro S740?">Was ist der Fujitsu Futro S740?</a><ul><li><a href=#technische-daten-kanonisch aria-label="Technische Daten (kanonisch)">Technische Daten (kanonisch)</a></li><li><a href=#futro-s740-vs-futro-s7010--was-ist-der-unterschied aria-label="Futro S740 vs. Futro S7010 – was ist der Unterschied?">Futro S740 vs. Futro S7010 – was ist der Unterschied?</a></li></ul></li><li><a href=#die-budget-stufen-im-detail aria-label="Die Budget-Stufen im Detail">Die Budget-Stufen im Detail</a><ul><li><a href=#bis-30--der-absolute-einstieg aria-label="Bis 30 €: Der absolute Einstieg">Bis 30 €: Der absolute Einstieg</a></li><li><a href=#3070--futro-s740-mit-8-gb-ram--kleiner-ssd aria-label="30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD">30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD</a></li><li><a href=#70120--futro-s740-mit-16-gb-ram--nvme-ssd aria-label="70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD">70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD</a></li><li><a href=#ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen aria-label="Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?">Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?</a></li></ul></li><li><a href=#proxmox-auf-dem-futro-s740--geht-das aria-label="Proxmox auf dem Futro S740 – geht das?">Proxmox auf dem Futro S740 – geht das?</a></li><li><a href=#die-besten-use-cases-f%c3%bcr-den-futro-s740 aria-label="Die besten Use-Cases für den Futro S740">Die besten Use-Cases für den Futro S740</a><ul><li><a href=#1-home-assistant-perfekt aria-label="1. Home Assistant (perfekt!)">1. Home Assistant (perfekt!)</a></li><li><a href=#2-pi-hole--unbound-dns aria-label="2. Pi-hole + Unbound DNS">2. Pi-hole + Unbound DNS</a></li><li><a href=#3-docker-container-server aria-label="3. Docker-Container-Server">3. Docker-Container-Server</a></li><li><a href=#4-opnsense--pfsense-firewall-s7010-besser-geeignet aria-label="4. OPNSense / pfSense Firewall (S7010 besser geeignet)">4. OPNSense / pfSense Firewall (S7010 besser geeignet)</a></li></ul></li><li><a href=#stromverbrauch--die-gro%c3%9fe-st%c3%a4rke-des-futro aria-label="Stromverbrauch – die große Stärke des Futro">Stromverbrauch – die große Stärke des Futro</a></li><li><a href=#preis-leistungs-vergleich-futro-vs-andere-mini-pcs aria-label="Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs">Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#kann-ich-mit-dem-futro-s740-windows-11-nutzen aria-label="Kann ich mit dem Futro S740 Windows 11 nutzen?">Kann ich mit dem Futro S740 Windows 11 nutzen?</a></li><li><a href=#passt-eine-25-zoll-ssd-in-den-futro aria-label="Passt eine 2,5-Zoll-SSD in den Futro?">Passt eine 2,5-Zoll-SSD in den Futro?</a></li><li><a href=#kann-ich-den-arbeitsspeicher-aufr%c3%bcsten aria-label="Kann ich den Arbeitsspeicher aufrüsten?">Kann ich den Arbeitsspeicher aufrüsten?</a></li><li><a href=#wie-laut-ist-der-futro-s740 aria-label="Wie laut ist der Futro S740?">Wie laut ist der Futro S740?</a></li><li><a href=#ist-der-futro-s740-f%c3%bcr-proxmox-geeignet aria-label="Ist der Futro S740 für Proxmox geeignet?">Ist der Futro S740 für Proxmox geeignet?</a></li><li><a href=#wo-kaufe-ich-den-futro-s740-am-besten aria-label="Wo kaufe ich den Futro S740 am besten?">Wo kaufe ich den Futro S740 am besten?</a></li></ul></li><li><a href=#fazit--f%c3%bcr-wen-lohnt-sich-der-futro-s740 aria-label="Fazit – Für wen lohnt sich der Futro S740?">Fazit – Für wen lohnt sich der Futro S740?</a></li></ul></div></details><div class="post-content md-content"><p><strong>Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten</strong></p><p>Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der <strong>Fujitsu Futro S740</strong> genau das richtige Gerät für dich. Für gerade einmal <strong>20 bis 60 Euro</strong> bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.</p><p>In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.</p><h2 id=auf-einen-blick-budget-stufen>Auf einen Blick: Budget-Stufen<a hidden class=anchor aria-hidden=true href=#auf-einen-blick-budget-stufen>#</a></h2><table><thead><tr><th>Budget</th><th>Konfiguration</th><th>Ideal für</th></tr></thead><tbody><tr><td><strong>~30 €</strong></td><td>Futro S740 pur (gebraucht, ohne Zubehör)</td><td>Wenn du SSD + RAM bereits hast</td></tr><tr><td><strong>50–80 €</strong></td><td>Futro S740 + 8 GB RAM + 120 GB SSD</td><td>Home Assistant, Pi-hole, leichte Dienste</td></tr><tr><td><strong>80–120 €</strong></td><td>Futro S740 + 16 GB RAM + 256 GB NVMe</td><td>Mehrere Docker-Container, NAS light</td></tr><tr><td><strong>120–250 €</strong></td><td>Alternativen: HP ProDesk 400 G3 oder Lenovo M720q</td><td>VMs mit Proxmox, PCIe-Erweiterungen</td></tr></tbody></table><blockquote><p><strong>💡 Einsteiger-Tipp:</strong> Der Futro S740 wird meist ohne RAM und ohne Festplatte verkauft. Achte beim Kauf darauf, ob Netzteil und DisplayPort-Kabel dabei sind.</p></blockquote><h2 id=was-ist-der-fujitsu-futro-s740>Was ist der Fujitsu Futro S740?<a hidden class=anchor aria-hidden=true href=#was-ist-der-fujitsu-futro-s740>#</a></h2><p>Der Fujitsu Futro S740 ist ein <strong>Thin Client</strong> – ein kleiner, stromsparender Büro-Computer, der ursprünglich für Terminalserver-Anbindungen entwickelt wurde. Nach der Ausmusterung aus Unternehmen landen diese Geräte für kleines Geld auf dem Gebrauchtmarkt. Und genau dort werden sie für Homelab-Einsteiger interessant.</p><p><strong>Kompatible Betriebssysteme:</strong> Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind <strong>Ubuntu Server LTS</strong> (einfachster Einstieg), <strong>Debian 12</strong> (ressourcenschonend), <strong>Proxmox VE 8.x</strong> (für Virtualisierung) oder <strong>Home Assistant OS</strong> (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).</p><h3 id=technische-daten-kanonisch>Technische Daten (kanonisch)<a hidden class=anchor aria-hidden=true href=#technische-daten-kanonisch>#</a></h3><table><thead><tr><th>Komponente</th><th>Spezifikation</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>Intel Celeron J4105 (4C/4T, 1.5–2.5 GHz, 10W TDP) oder J4125 (4C/4T, 2.0–2.7 GHz)</td></tr><tr><td><strong>RAM</strong></td><td>2× DDR4 SODIMM, offiziell max. 16 GB (inoffiziell bis 32 GB getestet)</td></tr><tr><td><strong>Storage</strong></td><td>1× M.2 2280 SATA/NVMe + 1× mSATA + 1× 2,5-Zoll-SATA-Bay</td></tr><tr><td><strong>Netzwerk</strong></td><td>1× Realtek Gigabit Ethernet (optional zweiter Port)</td></tr><tr><td><strong>Video</strong></td><td>2× DisplayPort</td></tr><tr><td><strong>USB</strong></td><td>4× USB 3.0</td></tr><tr><td><strong>Stromverbrauch</strong></td><td>4–8 Watt im Leerlauf, 12–18 Watt unter Last</td></tr><tr><td><strong>Lautstärke</strong></td><td>Passiv gekühlt oder extrem leiser Lüfter</td></tr><tr><td><strong>Preis</strong></td><td><strong>20–60 € (gebraucht)</strong></td></tr></tbody></table><h3 id=futro-s740-vs-futro-s7010--was-ist-der-unterschied>Futro S740 vs. Futro S7010 – was ist der Unterschied?<a hidden class=anchor aria-hidden=true href=#futro-s740-vs-futro-s7010--was-ist-der-unterschied>#</a></h3><p>Der neuere <strong>Futro S7010</strong> wird oft mit dem S740 verwechselt. Die wichtigsten Unterschiede:</p><table><thead><tr><th>Merkmal</th><th>Futro S740</th><th>Futro S7010</th></tr></thead><tbody><tr><td>CPU</td><td>Celeron J4105 (älter)</td><td>Celeron J4125 (neuer, minimal schneller)</td></tr><tr><td>Preis</td><td>20–50 €</td><td>30–60 €</td></tr><tr><td>Verbrauch</td><td>4–8 W</td><td>4–8 W</td></tr><tr><td>Ideal für</td><td>Home Assistant, Pi-hole, Docker light</td><td>OPNSense, AdGuard Home, leichte VMs</td></tr></tbody></table><p>Der S7010 hat den minimal besseren J4125-Prozessor und eignet sich besonders gut als <strong>dedizierte Firewall</strong> (OPNSense) – genau das, wofür ich meinen eigenen S7010 einsetze. Der S740 ist jedoch häufiger und günstiger verfügbar.</p><h2 id=die-budget-stufen-im-detail>Die Budget-Stufen im Detail<a hidden class=anchor aria-hidden=true href=#die-budget-stufen-im-detail>#</a></h2><h3 id=bis-30--der-absolute-einstieg>Bis 30 €: Der absolute Einstieg<a hidden class=anchor aria-hidden=true href=#bis-30--der-absolute-einstieg>#</a></h3><p>Für <strong>20–60 Euro</strong> bekommst du das Basismodell. Meist fehlen RAM und Festplatte – aber das ist einkalkuliert. Viele Verkäufer bieten den Futro als &ldquo;ohne RAM/HDD&rdquo; an, was den Preis drückt.</p><p><strong>Was du brauchst:</strong></p><ul><li>✅ Netzteil (meist Fujitsu Original-12V-Netzteil, oft dabei)</li><li>❌ DDR4 SODIMM RAM (brauchst 4–16 GB, ab ~8€ gebraucht)</li><li>❌ SSD (M.2 NVMe oder 2,5-Zoll-SATA, ab ~15€)</li></ul><p>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Fujitsu Futro S740 bei Amazon suchen</a></p><p>Besonders wichtig: <strong>Prüfe vor dem Kauf, ob ein Netzteil dabei ist.</strong> Ohne Netzteil brauchst du ein Fujitsu-kompatibles 12V-Netzteil mit 4-Pin- oder Rundstecker.</p><h3 id=3070--futro-s740-mit-8-gb-ram--kleiner-ssd>30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD<a hidden class=anchor aria-hidden=true href=#3070--futro-s740-mit-8-gb-ram--kleiner-ssd>#</a></h3><p>Die günstigste Komplettlösung für einen lauffähigen Server:</p><table><thead><tr><th>Komponente</th><th>Ungefährer Preis</th><th>Link</th></tr></thead><tbody><tr><td>Fujitsu Futro S740</td><td>20–40 €</td><td>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Suche bei Amazon</a></td></tr><tr><td>8 GB DDR4 SODIMM</td><td>~10–15 €</td><td>🔍 <a href="https://www.amazon.de/s?k=DDR4+SODIMM+8GB&amp;tag=makmatas-homelab-21">DDR4 SODIMM bei Amazon</a></td></tr><tr><td>120 GB SATA SSD 2,5"</td><td>~15–20 €</td><td>🔍 <a href="https://www.amazon.de/s?k=120+GB+SATA+SSD+2.5+Zoll&amp;tag=makmatas-homelab-21">Günstige SSD bei Amazon</a></td></tr><tr><td><strong>Gesamt</strong></td><td><strong>~50–75 €</strong></td><td></td></tr></tbody></table><p>Damit betreibst du komfortabel:</p><ul><li><strong>Home Assistant</strong> (inkl. zigbee-Gateway über USB)</li><li><strong>Pi-hole</strong> zur Werbeblockade im ganzen Netzwerk</li><li><strong>PiVPN</strong> für sicheren Remote-Zugriff</li><li><strong>1–2 leichte Docker-Container</strong> (z. B. n8n, Watchtower, Uptime Kuma)</li></ul><h3 id=70120--futro-s740-mit-16-gb-ram--nvme-ssd>70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD<a hidden class=anchor aria-hidden=true href=#70120--futro-s740-mit-16-gb-ram--nvme-ssd>#</a></h3><p>Die optimale Ausbaustufe für dein erstes richtiges Homelab:</p><table><thead><tr><th>Komponente</th><th>Ungefährer Preis</th><th>Link</th></tr></thead><tbody><tr><td>Fujitsu Futro S740</td><td>20–40 €</td><td>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Suche bei Amazon</a></td></tr><tr><td>16 GB DDR4 SODIMM (2×8 GB)</td><td>~20–30 €</td><td>🔍 <a href="https://www.amazon.de/s?k=DDR4+SODIMM+16GB+Kit&amp;tag=makmatas-homelab-21">DDR4 SODIMM 16 GB Kit bei Amazon</a></td></tr><tr><td>256 GB M.2 NVMe SSD</td><td>~25–35 €</td><td>🔍 <a href="https://www.amazon.de/s?k=M.2+NVMe+256GB+SSD&amp;tag=makmatas-homelab-21">M.2 NVMe SSD 256GB bei Amazon</a></td></tr><tr><td><strong>Gesamt</strong></td><td><strong>~65–105 €</strong></td><td></td></tr></tbody></table><p>Damit sind folgende Szenarien realistisch:</p><ul><li><strong>3–5 Docker-Container</strong> parallel (Postgres, n8n, Jellyfin light, Grafana, Node-RED)</li><li><strong>Home Assistant + Zigbee2MQTT + InfluxDB + Grafana</strong></li><li><strong>Leichter NAS-Server</strong> über Samba (für kleine Dateien, Backups)</li><li><strong>AdGuard Home + Unbound</strong> als DNS-Resolved</li><li><strong>Proxmox VE</strong> mit 1–2 LXCs (mehr dazu unten)</li></ul><h3 id=ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen>Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?<a hidden class=anchor aria-hidden=true href=#ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen>#</a></h3><p>Ab etwa 120 Euro Gesamtbudget solltest du über Alternativen nachdenken. Ein <strong>HP ProDesk 400 G3</strong> (50–100 €) oder ein <strong>Lenovo ThinkCentre M720q Tiny</strong> (90–200 €) bieten:</p><table><thead><tr><th>Gerät</th><th>Vorteil gegenüber Futro</th></tr></thead><tbody><tr><td><strong>HP ProDesk 400 G3</strong></td><td>i5-6500T (4 Kerne, stärker als Celeron), Intel NIC</td></tr><tr><td><strong>Lenovo M720q Tiny</strong></td><td>i5-8500T (6 Kerne!), <strong>PCIe-Slot</strong> für 10GbE oder SATA-Erweiterung</td></tr><tr><td><strong>Dell OptiPlex 3070 Micro</strong></td><td>i5-9500T (6 Kerne), USB-C, extrem stromsparend</td></tr></tbody></table><p>Der Futro bleibt die Nummer 1, wenn:</p><ul><li>Dein Budget <strong>unter 80 €</strong> liegt</li><li>Stromverbrauch <strong>absolut kritisch</strong> ist (24/7-Betrieb)</li><li>Du <strong>Home Assistant oder Pi-hole</strong> als primären Use-Case hast</li><li>Du <strong>leise</strong> oder <strong>lüfterlose</strong> Hardware brauchst</li></ul><p>👉 <a href="https://www.amazon.de/s?k=HP+ProDesk+400+G3+Mini&amp;tag=makmatas-homelab-21">HP ProDesk 400 G3 bei Amazon suchen</a>
-👉 <a href="https://www.amazon.de/s?k=Lenovo+ThinkCentre+M720q+Tiny&amp;tag=makmatas-homelab-21">Lenovo ThinkCentre M720q Tiny bei Amazon suchen</a></p><h2 id=proxmox-auf-dem-futro-s740--geht-das>Proxmox auf dem Futro S740 – geht das?<a hidden class=anchor aria-hidden=true href=#proxmox-auf-dem-futro-s740--geht-das>#</a></h2><p>Ja, <strong>Proxmox VE 8.x</strong> läuft auf dem Futro S740, aber mit Einschränkungen:</p><p><strong>✅ Was funktioniert:</strong></p><ul><li>1–3 leichte LXC-Container (z. B. Pi-hole, Home Assistant, Unbound)</li><li>1 leichte VM (z. B. Ubuntu Server mit 1 GB RAM)</li><li>Snapshots, Backups via Proxmox Backup Server</li></ul><p><strong>⚠️ Was du beachten musst:</strong></p><ul><li><strong>Realtek NIC:</strong> Der integrierte Realtek-Chip (RTL8111G) wird von Proxmox standardmäßig erkannt, aber einige Nutzer berichten von sporadischen Verbindungsabbrüchen. <strong>Fix:</strong> <code>ethtool -K vmbr0 gro on lro on</code> oder ein Intel-basiertes USB-Ethernet-Adapter (~15€) als Alternative.</li><li><strong>CEPH oder ZFS sind zu heavy:</strong> Der Celeron hat zu wenig Leistung für CEPH oder dedupliziertes ZFS. Verwende ext4 oder einfaches LVM-Thin.</li><li><strong>Max 2 VMs realistisch:</strong> Bei mehr als 2 VMs wird der Celeron zum Flaschenhals.</li></ul><p><strong>Meine Empfehlung:</strong> Nutze den Futro als <strong>dedizierten Home-Assistant-Host</strong> unter Proxmox, oder betreibe ihn <strong>ohne Proxmox</strong> als reinen Docker-Host mit Ubuntu Server LTS. Das spart Overhead und läuft butterweich.</p><h2 id=die-besten-use-cases-für-den-futro-s740>Die besten Use-Cases für den Futro S740<a hidden class=anchor aria-hidden=true href=#die-besten-use-cases-für-den-futro-s740>#</a></h2><h3 id=1-home-assistant-perfekt>1. Home Assistant (perfekt!)<a hidden class=anchor aria-hidden=true href=#1-home-assistant-perfekt>#</a></h3><p>Der Futro S740 ist <strong>der ideale Home Assistant Server</strong>. Mit 8–16 GB RAM und einer kleinen SSD betreibst du Home Assistant OS, Zigbee2MQTT und Node-RED absolut problemlos. Ein USB-Zigbee-Stick (Conbee II oder Sonoff) wird sofort erkannt.</p><p><strong>Vorteile gegenüber Raspberry Pi 5:</strong></p><ul><li>Keine SD-Karten-Probleme (SATA-SSD statt MicroSD)</li><li>x86-Architektur (keine ARM-Inkompatibilitäten)</li><li>Mehr RAM möglich (16 GB vs 8 GB beim Pi 5)</li><li>Robusteres Gehäuse, kein Hitzestau</li></ul><p>🔍 <a href="https://www.amazon.de/s?k=Home+Assistant+Gelb&amp;tag=makmatas-homelab-21">Home Assistant (gelb) bei Amazon suchen</a></p><h3 id=2-pi-hole--unbound-dns>2. Pi-hole + Unbound DNS<a hidden class=anchor aria-hidden=true href=#2-pi-hole--unbound-dns>#</a></h3><p>Mit 4 GB RAM und einer 32-GB-SSD läuft Pi-hole + Unbound nahezu unsichtbar im Hintergrund. Der Futro verbraucht dabei <strong>unter 6 Watt</strong> – weniger als eine durchschnittliche LED-Lampe.</p><h3 id=3-docker-container-server>3. Docker-Container-Server<a hidden class=anchor aria-hidden=true href=#3-docker-container-server>#</a></h3><p>Betreibe einen Ubuntu-Server als Docker-Host. Typische Container:</p><table><thead><tr><th>Container</th><th>RAM</th><th>Sinn</th></tr></thead><tbody><tr><td>Watchtower</td><td>~50 MB</td><td>Automatische Updates</td></tr><tr><td>Uptime Kuma</td><td>~100 MB</td><td>Monitoring + Status-Seite</td></tr><tr><td>n8n</td><td>~300 MB</td><td>Workflow-Automatisierung</td></tr><tr><td>Grafana + InfluxDB</td><td>~400 MB</td><td>Metriken-Dashboard</td></tr><tr><td>Jellyfin (light)</td><td>~500 MB</td><td>Medien-Streaming (nur Audio/leichte Videos)</td></tr></tbody></table><h3 id=4-opnsense--pfsense-firewall-s7010-besser-geeignet>4. OPNSense / pfSense Firewall (S7010 besser geeignet)<a hidden class=anchor aria-hidden=true href=#4-opnsense--pfsense-firewall-s7010-besser-geeignet>#</a></h3><p>Der Futro S7010 (mit J4125) ist besser für OPNSense geeignet, da er die minimal bessere CPU hat. Der S740 kann als Einsteiger-Firewall für 500 Mbit/s-Leitungen dienen.</p><blockquote><p><strong>📱 Einsteiger-Tipp: Von unterwegs auf dein Homelab zugreifen</strong></p><p>Wenn du deinen Futro als Home Assistant oder NAS nutzt, willst du auch von unterwegs darauf zugreifen. Die sicherste und einfachste Methode: <strong>Tailscale</strong>. Installiere Tailscale auf dem Futro (1 Befehl: <code>curl -fsSL https://tailscale.com/install.sh | sh</code>) und auf deinem Handy. Dann verbindest du dich per Tailscale-IP – verschlüsselt, ohne Port-Freigaben, ohne Cloud-Dienst. Funktioniert auf Android und iOS mit der offiziellen Tailscale-App. Alternativ: WireGuard über PiVPN (etwas mehr Einrichtung, aber ebenfalls top).</p></blockquote><h2 id=stromverbrauch--die-große-stärke-des-futro>Stromverbrauch – die große Stärke des Futro<a hidden class=anchor aria-hidden=true href=#stromverbrauch--die-große-stärke-des-futro>#</a></h2><p>Der Futro S740 glänzt vor allem durch seinen extrem niedrigen Stromverbrauch:</p><table><thead><tr><th>Zustand</th><th>Verbrauch</th><th>Kosten pro Jahr (bei 0,30 €/kWh)</th></tr></thead><tbody><tr><td>Idle (Leerlauf)</td><td>4–8 Watt</td><td><strong>~10,50–21 €</strong></td></tr><tr><td>Leichte Last</td><td>8–12 Watt</td><td>~21–31,50 €</td></tr><tr><td>Volllast</td><td>12–18 Watt</td><td>~31,50–47 €</td></tr></tbody></table><p>Zum Vergleich: Ein ausgemusterter Tower-Server (Dell PowerEdge T320) zieht im Idle 80–120 Watt – das sind <strong>210–315 € pro Jahr</strong> allein für den Strom. Der Futro spart dir also potenziell <strong>bis zu 290 € pro Jahr</strong> an Stromkosten (bei 24/7-Betrieb und 0,30 €/kWh, Stand 2026).</p><blockquote><p>💡 <strong>Wer den Futro 3 Jahre betreibt, hat die Anschaffungskosten (30 €) oft bereits nach 2–3 Monaten allein durch die Stromersparnis gegenüber einem älteren Tower-Server wieder drin – bei aktuellen Strompreisen eine realistische Größenordnung.</strong></p></blockquote><h2 id=preis-leistungs-vergleich-futro-vs-andere-mini-pcs>Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs<a hidden class=anchor aria-hidden=true href=#preis-leistungs-vergleich-futro-vs-andere-mini-pcs>#</a></h2><table><thead><tr><th>Modell</th><th>Preis</th><th>CPU-Kerne</th><th>RAM max.</th><th>Idle-Strom</th><th>PCIe-Slot</th></tr></thead><tbody><tr><td><strong>Fujitsu Futro S740</strong></td><td><strong>20–60 €</strong></td><td><strong>4 Cores</strong></td><td><strong>16–32 GB</strong></td><td><strong>4–8 W</strong></td><td>❌</td></tr><tr><td>HP ProDesk 400 G3</td><td>50–100 €</td><td>4 Cores</td><td>32 GB</td><td>8–12 W</td><td>❌</td></tr><tr><td>HP ProDesk 600 G4</td><td>100–180 €</td><td><strong>6 Cores</strong></td><td>32–64 GB</td><td>8–14 W</td><td>❌</td></tr><tr><td>Lenovo M720q Tiny</td><td>90–200 €</td><td><strong>6 Cores</strong></td><td>32–64 GB</td><td>6–12 W</td><td>✅ (PCIe x8)</td></tr><tr><td>Dell OptiPlex 3070 Micro</td><td>100–180 €</td><td><strong>6 Cores</strong></td><td>32–64 GB</td><td>6–12 W</td><td>❌</td></tr><tr><td>GMKtec G3 Pro (neu)</td><td>200–280 €</td><td>2 Cores</td><td>16–32 GB</td><td>6–10 W</td><td>❌</td></tr><tr><td>Minisforum MS-01 (neu)</td><td>550–700 €</td><td><strong>14 Cores</strong></td><td>96 GB</td><td>15–25 W</td><td>✅ (USB4)</td></tr></tbody></table><p><strong>Fazit der Tabelle:</strong> Der Futro S740 ist unschlagbar günstig und stromsparend. Sobald du mehr als 2 VMs betreiben willst oder PCIe-Erweiterungen brauchst, lohnt sich der Aufstieg zum Lenovo M720q oder HP ProDesk.</p><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=kann-ich-mit-dem-futro-s740-windows-11-nutzen>Kann ich mit dem Futro S740 Windows 11 nutzen?<a hidden class=anchor aria-hidden=true href=#kann-ich-mit-dem-futro-s740-windows-11-nutzen>#</a></h3><p>Nein, der Celeron J4105/J4125 wird von Microsoft nicht für Windows 11 unterstützt (kein TPM 2.0 / kein Intel 8. Gen). Windows 10 läuft hingegen problemlos. Für ein Homelab empfehle ich aber Linux (Ubuntu Server LTS oder Debian).</p><h3 id=passt-eine-25-zoll-ssd-in-den-futro>Passt eine 2,5-Zoll-SSD in den Futro?<a hidden class=anchor aria-hidden=true href=#passt-eine-25-zoll-ssd-in-den-futro>#</a></h3><p>Ja, der Futro S740 hat drei Storage-Optionen: (1) einen <strong>M.2-2280-Slot</strong> für NVMe-SSDs (empfohlen fürs Betriebssystem), (2) einen <strong>mSATA-Slot</strong> für zusätzliche SSDs, und (3) einen <strong>internen 2,5-Zoll-SATA-Bay</strong> für klassische SATA-SSDs. Die 120-GB-SATA-SSD aus der 50–80-€-Budgetstufe kommt in den 2,5-Zoll-Bay. Wer schnelleren Speicher will, nutzt den M.2-Slot für eine NVMe-SSD.</p><h3 id=kann-ich-den-arbeitsspeicher-aufrüsten>Kann ich den Arbeitsspeicher aufrüsten?<a hidden class=anchor aria-hidden=true href=#kann-ich-den-arbeitsspeicher-aufrüsten>#</a></h3><p>Ja, der Futro hat zwei DDR4 SODIMM-Slots. Offiziell unterstützt Fujitsu 16 GB, in der Community wurden aber auch 32 GB (2× 16 GB) erfolgreich getestet.</p><h3 id=wie-laut-ist-der-futro-s740>Wie laut ist der Futro S740?<a hidden class=anchor aria-hidden=true href=#wie-laut-ist-der-futro-s740>#</a></h3><p>Sehr leise. Viele Versionen sind passiv gekühlt (völlig lautlos), andere haben einen kleinen Lüfter, der im Leerlauf kaum hörbar ist (&lt; 20 dB).</p><h3 id=ist-der-futro-s740-für-proxmox-geeignet>Ist der Futro S740 für Proxmox geeignet?<a hidden class=anchor aria-hidden=true href=#ist-der-futro-s740-für-proxmox-geeignet>#</a></h3><p>Ja, aber beschränkt auf 1–3 LXCs oder 1–2 leichte VMs. Für einen reinen Proxmox-Einstieg reicht es völlig, aber für einen Mehrzweck-Cluster ist ein gebrauchter HP ProDesk mit i5-8500T die bessere Wahl.</p><h3 id=wo-kaufe-ich-den-futro-s740-am-besten>Wo kaufe ich den Futro S740 am besten?<a hidden class=anchor aria-hidden=true href=#wo-kaufe-ich-den-futro-s740-am-besten>#</a></h3><p>Gebraucht bei Amazon Warehouse Deals, eBay Kleinanzeigen oder Refurbished-Händlern. Achte auf den Zustand &ldquo;Generalüberholt&rdquo; oder &ldquo;Geprüft funktionsfähig&rdquo; – und ob Netzteil und DisplayPort-Kabel dabei sind.</p><p>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Fujitsu Futro S740 bei Amazon suchen</a></p><h2 id=fazit--für-wen-lohnt-sich-der-futro-s740>Fazit – Für wen lohnt sich der Futro S740?<a hidden class=anchor aria-hidden=true href=#fazit--für-wen-lohnt-sich-der-futro-s740>#</a></h2><p><strong>Kaufen, wenn:</strong></p><ul><li>Du unter 80 € Gesamtbudget für dein erstes Homelab hast</li><li>Stromverbrauch deine Hauptsorge ist (24/7-Betrieb)</li><li>Du Home Assistant, Pi-hole oder leichte Docker-Container betreiben willst</li><li>Du einen leisen, unauffälligen Server suchst</li></ul><p><strong>Lieber sparen und größer kaufen, wenn:</strong></p><ul><li>Du mehrere VMs parallel betreiben willst</li><li>Du PCIe-Erweiterungen (10GbE, SATA-Controller) brauchst</li><li>Du Proxmox mit ZFS/Ceph planst</li><li>Mehrere Docker-Container mit rechenintensiven Workloads (z. B. KI-Inferenz, Transkodierung)</li></ul><p><strong>Meine persönliche Empfehlung:</strong> Starte mit einem Futro S740 oder S7010 für 30–50 € und einer kleinen SSD. Betreibe Home Assistant + Pi-hole + einen n8n-Workflow-Automaten darauf. Sobald du mehr brauchst, holst du dir einen HP ProDesk 400 G4 (mit i5-8500T ebenfalls sehr günstig) als zweiten Cluster-Node. Zwei Mini-PCs im Cluster sind besser und günstiger als ein großer Server.</p><table><thead><tr><th>Budget</th><th>Meine Empfehlung</th></tr></thead><tbody><tr><td><strong>Bis 60 €</strong></td><td>Fujitsu Futro S740 + 8 GB RAM + kleine SSD</td></tr><tr><td><strong>60–150 €</strong></td><td>HP ProDesk 400 G3 (i5) + 8–16 GB RAM</td></tr><tr><td><strong>150–250 €</strong></td><td>Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich</td></tr><tr><td><strong>250–400 €</strong></td><td>Dell OptiPlex 7070 Micro (i7, 8 Kerne)</td></tr></tbody></table><blockquote><p><strong>🔗 Weiterlesen:</strong> Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren <a href=/homelab-blog/posts/mini-pc-homelab-2025-vergleich/>Mini-PC-Vergleich fürs Homelab 2025/2026</a> an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.</p></blockquote><p><em>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://makmatas.github.io/homelab-blog/tags/fujitsu/>Fujitsu</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/futro/>Futro</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/thin-client/>Thin-Client</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/low-budget/>Low-Budget</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/homelab/>Homelab</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/home-assistant/>Home-Assistant</a></li><li><a href=https://makmatas.github.io/homelab-blog/tags/proxmox/>Proxmox</a></li></ul><nav class=paginav><a class=next href=https://makmatas.github.io/homelab-blog/posts/proxmox-cluster-mini-pc-benchmark-vergleich/><span class=title>Nächste »</span>
-<span>Proxmox Cluster selber bauen: 3 gebrauchte Mini-PCs im Benchmark-Vergleich ab 42 €</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on x" href="https://x.com/intent/tweet/?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&amp;hashtags=fujitsu%2cfutro%2cthin-client%2clow-budget%2chomelab%2chome-assistant%2cproxmox"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&amp;title=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;summary=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;source=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&title=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on whatsapp" href="https://api.whatsapp.com/send?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server%20-%20https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on telegram" href="https://telegram.me/share/url?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on ycombinator" href="https://news.ycombinator.com/submitlink?t=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&u=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://makmatas.github.io/homelab-blog/>Homelab Guide</a></span> ·
-Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Kopieren";function s(){t.innerHTML="Kopiert!",setTimeout(()=>{t.innerHTML="Kopieren"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://makmatas.github.io/homelab-blog/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server",
+      "item": "https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server",
+  "name": "Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server",
+  "description": "Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten\nDu möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.\nIn diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.\n",
+  "keywords": [
+    "fujitsu", "futro", "thin-client", "low-budget", "homelab", "home-assistant", "proxmox"
+  ],
+  "articleBody": "Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten\nDu möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der Fujitsu Futro S740 genau das richtige Gerät für dich. Für gerade einmal 20 bis 60 Euro bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.\nIn diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.\nAuf einen Blick: Budget-Stufen Budget Konfiguration Ideal für ~30 € Futro S740 pur (gebraucht, ohne Zubehör) Wenn du SSD + RAM bereits hast 50–80 € Futro S740 + 8 GB RAM + 120 GB SSD Home Assistant, Pi-hole, leichte Dienste 80–120 € Futro S740 + 16 GB RAM + 256 GB NVMe Mehrere Docker-Container, NAS light 120–250 € Alternativen: HP ProDesk 400 G3 oder Lenovo M720q VMs mit Proxmox, PCIe-Erweiterungen 💡 Einsteiger-Tipp: Der Futro S740 wird meist ohne RAM und ohne Festplatte verkauft. Achte beim Kauf darauf, ob Netzteil und DisplayPort-Kabel dabei sind.\nWas ist der Fujitsu Futro S740? Der Fujitsu Futro S740 ist ein Thin Client – ein kleiner, stromsparender Büro-Computer, der ursprünglich für Terminalserver-Anbindungen entwickelt wurde. Nach der Ausmusterung aus Unternehmen landen diese Geräte für kleines Geld auf dem Gebrauchtmarkt. Und genau dort werden sie für Homelab-Einsteiger interessant.\nKompatible Betriebssysteme: Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind Ubuntu Server LTS (einfachster Einstieg), Debian 12 (ressourcenschonend), Proxmox VE 8.x (für Virtualisierung) oder Home Assistant OS (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).\nTechnische Daten (kanonisch) Komponente Spezifikation CPU Intel Celeron J4105 (4C/4T, 1.5–2.5 GHz, 10W TDP) oder J4125 (4C/4T, 2.0–2.7 GHz) RAM 2× DDR4 SODIMM, offiziell max. 16 GB (inoffiziell bis 32 GB getestet) Storage 1× M.2 2280 SATA/NVMe + 1× mSATA + 1× 2,5-Zoll-SATA-Bay Netzwerk 1× Realtek Gigabit Ethernet (optional zweiter Port) Video 2× DisplayPort USB 4× USB 3.0 Stromverbrauch 4–8 Watt im Leerlauf, 12–18 Watt unter Last Lautstärke Passiv gekühlt oder extrem leiser Lüfter Preis 20–60 € (gebraucht) Futro S740 vs. Futro S7010 – was ist der Unterschied? Der neuere Futro S7010 wird oft mit dem S740 verwechselt. Die wichtigsten Unterschiede:\nMerkmal Futro S740 Futro S7010 CPU Celeron J4105 (älter) Celeron J4125 (neuer, minimal schneller) Preis 20–50 € 30–60 € Verbrauch 4–8 W 4–8 W Ideal für Home Assistant, Pi-hole, Docker light OPNSense, AdGuard Home, leichte VMs Der S7010 hat den minimal besseren J4125-Prozessor und eignet sich besonders gut als dedizierte Firewall (OPNSense) – genau das, wofür ich meinen eigenen S7010 einsetze. Der S740 ist jedoch häufiger und günstiger verfügbar.\nDie Budget-Stufen im Detail Bis 30 €: Der absolute Einstieg Für 20–60 Euro bekommst du das Basismodell. Meist fehlen RAM und Festplatte – aber das ist einkalkuliert. Viele Verkäufer bieten den Futro als “ohne RAM/HDD” an, was den Preis drückt.\nWas du brauchst:\n✅ Netzteil (meist Fujitsu Original-12V-Netzteil, oft dabei) ❌ DDR4 SODIMM RAM (brauchst 4–16 GB, ab ~8€ gebraucht) ❌ SSD (M.2 NVMe oder 2,5-Zoll-SATA, ab ~15€) 🔍 Fujitsu Futro S740 bei Amazon suchen\nBesonders wichtig: Prüfe vor dem Kauf, ob ein Netzteil dabei ist. Ohne Netzteil brauchst du ein Fujitsu-kompatibles 12V-Netzteil mit 4-Pin- oder Rundstecker.\n30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD Die günstigste Komplettlösung für einen lauffähigen Server:\nKomponente Ungefährer Preis Link Fujitsu Futro S740 20–40 € 🔍 Suche bei Amazon 8 GB DDR4 SODIMM ~10–15 € 🔍 DDR4 SODIMM bei Amazon 120 GB SATA SSD 2,5\" ~15–20 € 🔍 Günstige SSD bei Amazon Gesamt ~50–75 € Damit betreibst du komfortabel:\nHome Assistant (inkl. zigbee-Gateway über USB) Pi-hole zur Werbeblockade im ganzen Netzwerk PiVPN für sicheren Remote-Zugriff 1–2 leichte Docker-Container (z. B. n8n, Watchtower, Uptime Kuma) 70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD Die optimale Ausbaustufe für dein erstes richtiges Homelab:\nKomponente Ungefährer Preis Link Fujitsu Futro S740 20–40 € 🔍 Suche bei Amazon 16 GB DDR4 SODIMM (2×8 GB) ~20–30 € 🔍 DDR4 SODIMM 16 GB Kit bei Amazon 256 GB M.2 NVMe SSD ~25–35 € 🔍 M.2 NVMe SSD 256GB bei Amazon Gesamt ~65–105 € Damit sind folgende Szenarien realistisch:\n3–5 Docker-Container parallel (Postgres, n8n, Jellyfin light, Grafana, Node-RED) Home Assistant + Zigbee2MQTT + InfluxDB + Grafana Leichter NAS-Server über Samba (für kleine Dateien, Backups) AdGuard Home + Unbound als DNS-Resolved Proxmox VE mit 1–2 LXCs (mehr dazu unten) Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen? Ab etwa 120 Euro Gesamtbudget solltest du über Alternativen nachdenken. Ein HP ProDesk 400 G3 (50–100 €) oder ein Lenovo ThinkCentre M720q Tiny (90–200 €) bieten:\nGerät Vorteil gegenüber Futro HP ProDesk 400 G3 i5-6500T (4 Kerne, stärker als Celeron), Intel NIC Lenovo M720q Tiny i5-8500T (6 Kerne!), PCIe-Slot für 10GbE oder SATA-Erweiterung Dell OptiPlex 3070 Micro i5-9500T (6 Kerne), USB-C, extrem stromsparend Der Futro bleibt die Nummer 1, wenn:\nDein Budget unter 80 € liegt Stromverbrauch absolut kritisch ist (24/7-Betrieb) Du Home Assistant oder Pi-hole als primären Use-Case hast Du leise oder lüfterlose Hardware brauchst 👉 HP ProDesk 400 G3 bei Amazon suchen 👉 Lenovo ThinkCentre M720q Tiny bei Amazon suchen\nProxmox auf dem Futro S740 – geht das? Ja, Proxmox VE 8.x läuft auf dem Futro S740, aber mit Einschränkungen:\n✅ Was funktioniert:\n1–3 leichte LXC-Container (z. B. Pi-hole, Home Assistant, Unbound) 1 leichte VM (z. B. Ubuntu Server mit 1 GB RAM) Snapshots, Backups via Proxmox Backup Server ⚠️ Was du beachten musst:\nRealtek NIC: Der integrierte Realtek-Chip (RTL8111G) wird von Proxmox standardmäßig erkannt, aber einige Nutzer berichten von sporadischen Verbindungsabbrüchen. Fix: ethtool -K vmbr0 gro on lro on oder ein Intel-basiertes USB-Ethernet-Adapter (~15€) als Alternative. CEPH oder ZFS sind zu heavy: Der Celeron hat zu wenig Leistung für CEPH oder dedupliziertes ZFS. Verwende ext4 oder einfaches LVM-Thin. Max 2 VMs realistisch: Bei mehr als 2 VMs wird der Celeron zum Flaschenhals. Meine Empfehlung: Nutze den Futro als dedizierten Home-Assistant-Host unter Proxmox, oder betreibe ihn ohne Proxmox als reinen Docker-Host mit Ubuntu Server LTS. Das spart Overhead und läuft butterweich.\nDie besten Use-Cases für den Futro S740 1. Home Assistant (perfekt!) Der Futro S740 ist der ideale Home Assistant Server. Mit 8–16 GB RAM und einer kleinen SSD betreibst du Home Assistant OS, Zigbee2MQTT und Node-RED absolut problemlos. Ein USB-Zigbee-Stick (Conbee II oder Sonoff) wird sofort erkannt.\nVorteile gegenüber Raspberry Pi 5:\nKeine SD-Karten-Probleme (SATA-SSD statt MicroSD) x86-Architektur (keine ARM-Inkompatibilitäten) Mehr RAM möglich (16 GB vs 8 GB beim Pi 5) Robusteres Gehäuse, kein Hitzestau 🔍 Home Assistant (gelb) bei Amazon suchen\n2. Pi-hole + Unbound DNS Mit 4 GB RAM und einer 32-GB-SSD läuft Pi-hole + Unbound nahezu unsichtbar im Hintergrund. Der Futro verbraucht dabei unter 6 Watt – weniger als eine durchschnittliche LED-Lampe.\n3. Docker-Container-Server Betreibe einen Ubuntu-Server als Docker-Host. Typische Container:\nContainer RAM Sinn Watchtower ~50 MB Automatische Updates Uptime Kuma ~100 MB Monitoring + Status-Seite n8n ~300 MB Workflow-Automatisierung Grafana + InfluxDB ~400 MB Metriken-Dashboard Jellyfin (light) ~500 MB Medien-Streaming (nur Audio/leichte Videos) 4. OPNSense / pfSense Firewall (S7010 besser geeignet) Der Futro S7010 (mit J4125) ist besser für OPNSense geeignet, da er die minimal bessere CPU hat. Der S740 kann als Einsteiger-Firewall für 500 Mbit/s-Leitungen dienen.\n📱 Einsteiger-Tipp: Von unterwegs auf dein Homelab zugreifen\nWenn du deinen Futro als Home Assistant oder NAS nutzt, willst du auch von unterwegs darauf zugreifen. Die sicherste und einfachste Methode: Tailscale. Installiere Tailscale auf dem Futro (1 Befehl: curl -fsSL https://tailscale.com/install.sh | sh) und auf deinem Handy. Dann verbindest du dich per Tailscale-IP – verschlüsselt, ohne Port-Freigaben, ohne Cloud-Dienst. Funktioniert auf Android und iOS mit der offiziellen Tailscale-App. Alternativ: WireGuard über PiVPN (etwas mehr Einrichtung, aber ebenfalls top).\nStromverbrauch – die große Stärke des Futro Der Futro S740 glänzt vor allem durch seinen extrem niedrigen Stromverbrauch:\nZustand Verbrauch Kosten pro Jahr (bei 0,30 €/kWh) Idle (Leerlauf) 4–8 Watt ~10,50–21 € Leichte Last 8–12 Watt ~21–31,50 € Volllast 12–18 Watt ~31,50–47 € Zum Vergleich: Ein ausgemusterter Tower-Server (Dell PowerEdge T320) zieht im Idle 80–120 Watt – das sind 210–315 € pro Jahr allein für den Strom. Der Futro spart dir also potenziell bis zu 290 € pro Jahr an Stromkosten (bei 24/7-Betrieb und 0,30 €/kWh, Stand 2026).\n💡 Wer den Futro 3 Jahre betreibt, hat die Anschaffungskosten (30 €) oft bereits nach 2–3 Monaten allein durch die Stromersparnis gegenüber einem älteren Tower-Server wieder drin – bei aktuellen Strompreisen eine realistische Größenordnung.\nPreis-Leistungs-Vergleich: Futro vs. andere Mini-PCs Modell Preis CPU-Kerne RAM max. Idle-Strom PCIe-Slot Fujitsu Futro S740 20–60 € 4 Cores 16–32 GB 4–8 W ❌ HP ProDesk 400 G3 50–100 € 4 Cores 32 GB 8–12 W ❌ HP ProDesk 600 G4 100–180 € 6 Cores 32–64 GB 8–14 W ❌ Lenovo M720q Tiny 90–200 € 6 Cores 32–64 GB 6–12 W ✅ (PCIe x8) Dell OptiPlex 3070 Micro 100–180 € 6 Cores 32–64 GB 6–12 W ❌ GMKtec G3 Pro (neu) 200–280 € 2 Cores 16–32 GB 6–10 W ❌ Minisforum MS-01 (neu) 550–700 € 14 Cores 96 GB 15–25 W ✅ (USB4) Fazit der Tabelle: Der Futro S740 ist unschlagbar günstig und stromsparend. Sobald du mehr als 2 VMs betreiben willst oder PCIe-Erweiterungen brauchst, lohnt sich der Aufstieg zum Lenovo M720q oder HP ProDesk.\nFAQ Kann ich mit dem Futro S740 Windows 11 nutzen? Nein, der Celeron J4105/J4125 wird von Microsoft nicht für Windows 11 unterstützt (kein TPM 2.0 / kein Intel 8. Gen). Windows 10 läuft hingegen problemlos. Für ein Homelab empfehle ich aber Linux (Ubuntu Server LTS oder Debian).\nPasst eine 2,5-Zoll-SSD in den Futro? Ja, der Futro S740 hat drei Storage-Optionen: (1) einen M.2-2280-Slot für NVMe-SSDs (empfohlen fürs Betriebssystem), (2) einen mSATA-Slot für zusätzliche SSDs, und (3) einen internen 2,5-Zoll-SATA-Bay für klassische SATA-SSDs. Die 120-GB-SATA-SSD aus der 50–80-€-Budgetstufe kommt in den 2,5-Zoll-Bay. Wer schnelleren Speicher will, nutzt den M.2-Slot für eine NVMe-SSD.\nKann ich den Arbeitsspeicher aufrüsten? Ja, der Futro hat zwei DDR4 SODIMM-Slots. Offiziell unterstützt Fujitsu 16 GB, in der Community wurden aber auch 32 GB (2× 16 GB) erfolgreich getestet.\nWie laut ist der Futro S740? Sehr leise. Viele Versionen sind passiv gekühlt (völlig lautlos), andere haben einen kleinen Lüfter, der im Leerlauf kaum hörbar ist (\u003c 20 dB).\nIst der Futro S740 für Proxmox geeignet? Ja, aber beschränkt auf 1–3 LXCs oder 1–2 leichte VMs. Für einen reinen Proxmox-Einstieg reicht es völlig, aber für einen Mehrzweck-Cluster ist ein gebrauchter HP ProDesk mit i5-8500T die bessere Wahl.\nWo kaufe ich den Futro S740 am besten? Gebraucht bei Amazon Warehouse Deals, eBay Kleinanzeigen oder Refurbished-Händlern. Achte auf den Zustand “Generalüberholt” oder “Geprüft funktionsfähig” – und ob Netzteil und DisplayPort-Kabel dabei sind.\n🔍 Fujitsu Futro S740 bei Amazon suchen\nFazit – Für wen lohnt sich der Futro S740? Kaufen, wenn:\nDu unter 80 € Gesamtbudget für dein erstes Homelab hast Stromverbrauch deine Hauptsorge ist (24/7-Betrieb) Du Home Assistant, Pi-hole oder leichte Docker-Container betreiben willst Du einen leisen, unauffälligen Server suchst Lieber sparen und größer kaufen, wenn:\nDu mehrere VMs parallel betreiben willst Du PCIe-Erweiterungen (10GbE, SATA-Controller) brauchst Du Proxmox mit ZFS/Ceph planst Mehrere Docker-Container mit rechenintensiven Workloads (z. B. KI-Inferenz, Transkodierung) Meine persönliche Empfehlung: Starte mit einem Futro S740 oder S7010 für 30–50 € und einer kleinen SSD. Betreibe Home Assistant + Pi-hole + einen n8n-Workflow-Automaten darauf. Sobald du mehr brauchst, holst du dir einen HP ProDesk 400 G4 (mit i5-8500T ebenfalls sehr günstig) als zweiten Cluster-Node. Zwei Mini-PCs im Cluster sind besser und günstiger als ein großer Server.\nBudget Meine Empfehlung Bis 60 € Fujitsu Futro S740 + 8 GB RAM + kleine SSD 60–150 € HP ProDesk 400 G3 (i5) + 8–16 GB RAM 150–250 € Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich 250–400 € Dell OptiPlex 7070 Micro (i7, 8 Kerne) 🔗 Weiterlesen: Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren Mini-PC-Vergleich fürs Homelab 2025/2026 an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.\nAls Amazon-Partner verdiene ich an qualifizierten Verkäufen.\n",
+  "wordCount" : "1986",
+  "inLanguage": "de",
+  "image":"https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg","datePublished": "2026-06-22T00:00:00Z",
+  "dateModified": "2026-06-22T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Homelab Guide",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://makmatas.github.io/homelab-blog/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://makmatas.github.io/homelab-blog/" accesskey="h" title="Homelab Guide (Alt + H)">Homelab Guide</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://makmatas.github.io/homelab-blog/categories/" title="Kategorien">
+                    <span>Kategorien</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://makmatas.github.io/homelab-blog/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://makmatas.github.io/homelab-blog/search/" title="🔍 Suche">
+                    <span>🔍 Suche</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://makmatas.github.io/homelab-blog/about/" title="Über">
+                    <span>Über</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/homelab-blog/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/homelab-blog/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-06-22 00:00:00 +0000 UTC'>22. Juni 2026</span>&nbsp;·&nbsp;<span>10 Minuten</span>&nbsp;|&nbsp;<span>
+        <a href="https://github.com/makmatas/homelab-blog/content" rel="noopener noreferrer edit" target="_blank">Bearbeiten</a>
+    </span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+            <img loading="eager"
+                srcset='https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_d8240bf73dc15685.jpg 360w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_7cd6778b9328e487.jpg 480w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured_hu_14ed0e0dda9092ae.jpg 720w,https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg 1024w'
+                src="https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/featured.jpg"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="1024" height="1024"
+                alt="Fujitsu Futro S740 Thin Client – der ultimative 30€-Homelab-Server für 2026">
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Inhaltsverzeichnis</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#auf-einen-blick-budget-stufen" aria-label="Auf einen Blick: Budget-Stufen">Auf einen Blick: Budget-Stufen</a></li>
+            <li>
+                <a href="#was-ist-der-fujitsu-futro-s740" aria-label="Was ist der Fujitsu Futro S740?">Was ist der Fujitsu Futro S740?</a><ul>
+                    
+            <li>
+                <a href="#technische-daten-kanonisch" aria-label="Technische Daten (kanonisch)">Technische Daten (kanonisch)</a></li>
+            <li>
+                <a href="#futro-s740-vs-futro-s7010--was-ist-der-unterschied" aria-label="Futro S740 vs. Futro S7010 – was ist der Unterschied?">Futro S740 vs. Futro S7010 – was ist der Unterschied?</a></li></ul>
+            </li>
+            <li>
+                <a href="#die-budget-stufen-im-detail" aria-label="Die Budget-Stufen im Detail">Die Budget-Stufen im Detail</a><ul>
+                    
+            <li>
+                <a href="#bis-30--der-absolute-einstieg" aria-label="Bis 30 €: Der absolute Einstieg">Bis 30 €: Der absolute Einstieg</a></li>
+            <li>
+                <a href="#3070--futro-s740-mit-8-gb-ram--kleiner-ssd" aria-label="30–70 €: Futro S740 mit 8 GB RAM &#43; kleiner SSD">30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD</a></li>
+            <li>
+                <a href="#70120--futro-s740-mit-16-gb-ram--nvme-ssd" aria-label="70–120 €: Futro S740 mit 16 GB RAM &#43; NVMe SSD">70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD</a></li>
+            <li>
+                <a href="#ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen" aria-label="Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?">Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?</a></li></ul>
+            </li>
+            <li>
+                <a href="#proxmox-auf-dem-futro-s740--geht-das" aria-label="Proxmox auf dem Futro S740 – geht das?">Proxmox auf dem Futro S740 – geht das?</a></li>
+            <li>
+                <a href="#die-besten-use-cases-f%c3%bcr-den-futro-s740" aria-label="Die besten Use-Cases für den Futro S740">Die besten Use-Cases für den Futro S740</a><ul>
+                    
+            <li>
+                <a href="#1-home-assistant-perfekt" aria-label="1. Home Assistant (perfekt!)">1. Home Assistant (perfekt!)</a></li>
+            <li>
+                <a href="#2-pi-hole--unbound-dns" aria-label="2. Pi-hole &#43; Unbound DNS">2. Pi-hole + Unbound DNS</a></li>
+            <li>
+                <a href="#3-docker-container-server" aria-label="3. Docker-Container-Server">3. Docker-Container-Server</a></li>
+            <li>
+                <a href="#4-opnsense--pfsense-firewall-s7010-besser-geeignet" aria-label="4. OPNSense / pfSense Firewall (S7010 besser geeignet)">4. OPNSense / pfSense Firewall (S7010 besser geeignet)</a></li></ul>
+            </li>
+            <li>
+                <a href="#stromverbrauch--die-gro%c3%9fe-st%c3%a4rke-des-futro" aria-label="Stromverbrauch – die große Stärke des Futro">Stromverbrauch – die große Stärke des Futro</a></li>
+            <li>
+                <a href="#preis-leistungs-vergleich-futro-vs-andere-mini-pcs" aria-label="Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs">Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#kann-ich-mit-dem-futro-s740-windows-11-nutzen" aria-label="Kann ich mit dem Futro S740 Windows 11 nutzen?">Kann ich mit dem Futro S740 Windows 11 nutzen?</a></li>
+            <li>
+                <a href="#passt-eine-25-zoll-ssd-in-den-futro" aria-label="Passt eine 2,5-Zoll-SSD in den Futro?">Passt eine 2,5-Zoll-SSD in den Futro?</a></li>
+            <li>
+                <a href="#kann-ich-den-arbeitsspeicher-aufr%c3%bcsten" aria-label="Kann ich den Arbeitsspeicher aufrüsten?">Kann ich den Arbeitsspeicher aufrüsten?</a></li>
+            <li>
+                <a href="#wie-laut-ist-der-futro-s740" aria-label="Wie laut ist der Futro S740?">Wie laut ist der Futro S740?</a></li>
+            <li>
+                <a href="#ist-der-futro-s740-f%c3%bcr-proxmox-geeignet" aria-label="Ist der Futro S740 für Proxmox geeignet?">Ist der Futro S740 für Proxmox geeignet?</a></li>
+            <li>
+                <a href="#wo-kaufe-ich-den-futro-s740-am-besten" aria-label="Wo kaufe ich den Futro S740 am besten?">Wo kaufe ich den Futro S740 am besten?</a></li></ul>
+            </li>
+            <li>
+                <a href="#fazit--f%c3%bcr-wen-lohnt-sich-der-futro-s740" aria-label="Fazit – Für wen lohnt sich der Futro S740?">Fazit – Für wen lohnt sich der Futro S740?</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p><strong>Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten</strong></p>
+<p>Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der <strong>Fujitsu Futro S740</strong> genau das richtige Gerät für dich. Für gerade einmal <strong>20 bis 60 Euro</strong> bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.</p>
+<p>In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.</p>
+<h2 id="auf-einen-blick-budget-stufen">Auf einen Blick: Budget-Stufen<a hidden class="anchor" aria-hidden="true" href="#auf-einen-blick-budget-stufen">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Budget</th>
+          <th>Konfiguration</th>
+          <th>Ideal für</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>~30 €</strong></td>
+          <td>Futro S740 pur (gebraucht, ohne Zubehör)</td>
+          <td>Wenn du SSD + RAM bereits hast</td>
+      </tr>
+      <tr>
+          <td><strong>50–80 €</strong></td>
+          <td>Futro S740 + 8 GB RAM + 120 GB SSD</td>
+          <td>Home Assistant, Pi-hole, leichte Dienste</td>
+      </tr>
+      <tr>
+          <td><strong>80–120 €</strong></td>
+          <td>Futro S740 + 16 GB RAM + 256 GB NVMe</td>
+          <td>Mehrere Docker-Container, NAS light</td>
+      </tr>
+      <tr>
+          <td><strong>120–250 €</strong></td>
+          <td>Alternativen: HP ProDesk 400 G3 oder Lenovo M720q</td>
+          <td>VMs mit Proxmox, PCIe-Erweiterungen</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>💡 Einsteiger-Tipp:</strong> Der Futro S740 wird meist ohne RAM und ohne Festplatte verkauft. Achte beim Kauf darauf, ob Netzteil und DisplayPort-Kabel dabei sind.</p></blockquote>
+<h2 id="was-ist-der-fujitsu-futro-s740">Was ist der Fujitsu Futro S740?<a hidden class="anchor" aria-hidden="true" href="#was-ist-der-fujitsu-futro-s740">#</a></h2>
+<p>Der Fujitsu Futro S740 ist ein <strong>Thin Client</strong> – ein kleiner, stromsparender Büro-Computer, der ursprünglich für Terminalserver-Anbindungen entwickelt wurde. Nach der Ausmusterung aus Unternehmen landen diese Geräte für kleines Geld auf dem Gebrauchtmarkt. Und genau dort werden sie für Homelab-Einsteiger interessant.</p>
+<p><strong>Kompatible Betriebssysteme:</strong> Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind <strong>Ubuntu Server LTS</strong> (einfachster Einstieg), <strong>Debian 12</strong> (ressourcenschonend), <strong>Proxmox VE 8.x</strong> (für Virtualisierung) oder <strong>Home Assistant OS</strong> (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).</p>
+<h3 id="technische-daten-kanonisch">Technische Daten (kanonisch)<a hidden class="anchor" aria-hidden="true" href="#technische-daten-kanonisch">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Komponente</th>
+          <th>Spezifikation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>CPU</strong></td>
+          <td>Intel Celeron J4105 (4C/4T, 1.5–2.5 GHz, 10W TDP) oder J4125 (4C/4T, 2.0–2.7 GHz)</td>
+      </tr>
+      <tr>
+          <td><strong>RAM</strong></td>
+          <td>2× DDR4 SODIMM, offiziell max. 16 GB (inoffiziell bis 32 GB getestet)</td>
+      </tr>
+      <tr>
+          <td><strong>Storage</strong></td>
+          <td>1× M.2 2280 SATA/NVMe + 1× mSATA + 1× 2,5-Zoll-SATA-Bay</td>
+      </tr>
+      <tr>
+          <td><strong>Netzwerk</strong></td>
+          <td>1× Realtek Gigabit Ethernet (optional zweiter Port)</td>
+      </tr>
+      <tr>
+          <td><strong>Video</strong></td>
+          <td>2× DisplayPort</td>
+      </tr>
+      <tr>
+          <td><strong>USB</strong></td>
+          <td>4× USB 3.0</td>
+      </tr>
+      <tr>
+          <td><strong>Stromverbrauch</strong></td>
+          <td>4–8 Watt im Leerlauf, 12–18 Watt unter Last</td>
+      </tr>
+      <tr>
+          <td><strong>Lautstärke</strong></td>
+          <td>Passiv gekühlt oder extrem leiser Lüfter</td>
+      </tr>
+      <tr>
+          <td><strong>Preis</strong></td>
+          <td><strong>20–60 € (gebraucht)</strong></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="futro-s740-vs-futro-s7010--was-ist-der-unterschied">Futro S740 vs. Futro S7010 – was ist der Unterschied?<a hidden class="anchor" aria-hidden="true" href="#futro-s740-vs-futro-s7010--was-ist-der-unterschied">#</a></h3>
+<p>Der neuere <strong>Futro S7010</strong> wird oft mit dem S740 verwechselt. Die wichtigsten Unterschiede:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Merkmal</th>
+          <th>Futro S740</th>
+          <th>Futro S7010</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CPU</td>
+          <td>Celeron J4105 (älter)</td>
+          <td>Celeron J4125 (neuer, minimal schneller)</td>
+      </tr>
+      <tr>
+          <td>Preis</td>
+          <td>20–50 €</td>
+          <td>30–60 €</td>
+      </tr>
+      <tr>
+          <td>Verbrauch</td>
+          <td>4–8 W</td>
+          <td>4–8 W</td>
+      </tr>
+      <tr>
+          <td>Ideal für</td>
+          <td>Home Assistant, Pi-hole, Docker light</td>
+          <td>OPNSense, AdGuard Home, leichte VMs</td>
+      </tr>
+  </tbody>
+</table>
+<p>Der S7010 hat den minimal besseren J4125-Prozessor und eignet sich besonders gut als <strong>dedizierte Firewall</strong> (OPNSense) – genau das, wofür ich meinen eigenen S7010 einsetze. Der S740 ist jedoch häufiger und günstiger verfügbar.</p>
+<h2 id="die-budget-stufen-im-detail">Die Budget-Stufen im Detail<a hidden class="anchor" aria-hidden="true" href="#die-budget-stufen-im-detail">#</a></h2>
+<h3 id="bis-30--der-absolute-einstieg">Bis 30 €: Der absolute Einstieg<a hidden class="anchor" aria-hidden="true" href="#bis-30--der-absolute-einstieg">#</a></h3>
+<p>Für <strong>20–60 Euro</strong> bekommst du das Basismodell. Meist fehlen RAM und Festplatte – aber das ist einkalkuliert. Viele Verkäufer bieten den Futro als &ldquo;ohne RAM/HDD&rdquo; an, was den Preis drückt.</p>
+<p><strong>Was du brauchst:</strong></p>
+<ul>
+<li>✅ Netzteil (meist Fujitsu Original-12V-Netzteil, oft dabei)</li>
+<li>❌ DDR4 SODIMM RAM (brauchst 4–16 GB, ab ~8€ gebraucht)</li>
+<li>❌ SSD (M.2 NVMe oder 2,5-Zoll-SATA, ab ~15€)</li>
+</ul>
+<p>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Fujitsu Futro S740 bei Amazon suchen</a></p>
+<p>Besonders wichtig: <strong>Prüfe vor dem Kauf, ob ein Netzteil dabei ist.</strong> Ohne Netzteil brauchst du ein Fujitsu-kompatibles 12V-Netzteil mit 4-Pin- oder Rundstecker.</p>
+<h3 id="3070--futro-s740-mit-8-gb-ram--kleiner-ssd">30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD<a hidden class="anchor" aria-hidden="true" href="#3070--futro-s740-mit-8-gb-ram--kleiner-ssd">#</a></h3>
+<p>Die günstigste Komplettlösung für einen lauffähigen Server:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Komponente</th>
+          <th>Ungefährer Preis</th>
+          <th>Link</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fujitsu Futro S740</td>
+          <td>20–40 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Suche bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td>8 GB DDR4 SODIMM</td>
+          <td>~10–15 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=DDR4+SODIMM+8GB&amp;tag=makmatas-homelab-21">DDR4 SODIMM bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td>120 GB SATA SSD 2,5&quot;</td>
+          <td>~15–20 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=120+GB+SATA+SSD+2.5+Zoll&amp;tag=makmatas-homelab-21">Günstige SSD bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td><strong>Gesamt</strong></td>
+          <td><strong>~50–75 €</strong></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>Damit betreibst du komfortabel:</p>
+<ul>
+<li><strong>Home Assistant</strong> (inkl. zigbee-Gateway über USB)</li>
+<li><strong>Pi-hole</strong> zur Werbeblockade im ganzen Netzwerk</li>
+<li><strong>PiVPN</strong> für sicheren Remote-Zugriff</li>
+<li><strong>1–2 leichte Docker-Container</strong> (z. B. n8n, Watchtower, Uptime Kuma)</li>
+</ul>
+<h3 id="70120--futro-s740-mit-16-gb-ram--nvme-ssd">70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD<a hidden class="anchor" aria-hidden="true" href="#70120--futro-s740-mit-16-gb-ram--nvme-ssd">#</a></h3>
+<p>Die optimale Ausbaustufe für dein erstes richtiges Homelab:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Komponente</th>
+          <th>Ungefährer Preis</th>
+          <th>Link</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fujitsu Futro S740</td>
+          <td>20–40 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Suche bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td>16 GB DDR4 SODIMM (2×8 GB)</td>
+          <td>~20–30 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=DDR4+SODIMM+16GB+Kit&amp;tag=makmatas-homelab-21">DDR4 SODIMM 16 GB Kit bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td>256 GB M.2 NVMe SSD</td>
+          <td>~25–35 €</td>
+          <td>🔍 <a href="https://www.amazon.de/s?k=M.2+NVMe+256GB+SSD&amp;tag=makmatas-homelab-21">M.2 NVMe SSD 256GB bei Amazon</a></td>
+      </tr>
+      <tr>
+          <td><strong>Gesamt</strong></td>
+          <td><strong>~65–105 €</strong></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>Damit sind folgende Szenarien realistisch:</p>
+<ul>
+<li><strong>3–5 Docker-Container</strong> parallel (Postgres, n8n, Jellyfin light, Grafana, Node-RED)</li>
+<li><strong>Home Assistant + Zigbee2MQTT + InfluxDB + Grafana</strong></li>
+<li><strong>Leichter NAS-Server</strong> über Samba (für kleine Dateien, Backups)</li>
+<li><strong>AdGuard Home + Unbound</strong> als DNS-Resolved</li>
+<li><strong>Proxmox VE</strong> mit 1–2 LXCs (mehr dazu unten)</li>
+</ul>
+<h3 id="ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen">Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?<a hidden class="anchor" aria-hidden="true" href="#ab-120--lieber-einen-hp-prodesk-oder-lenovo-tiny-kaufen">#</a></h3>
+<p>Ab etwa 120 Euro Gesamtbudget solltest du über Alternativen nachdenken. Ein <strong>HP ProDesk 400 G3</strong> (50–100 €) oder ein <strong>Lenovo ThinkCentre M720q Tiny</strong> (90–200 €) bieten:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Gerät</th>
+          <th>Vorteil gegenüber Futro</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>HP ProDesk 400 G3</strong></td>
+          <td>i5-6500T (4 Kerne, stärker als Celeron), Intel NIC</td>
+      </tr>
+      <tr>
+          <td><strong>Lenovo M720q Tiny</strong></td>
+          <td>i5-8500T (6 Kerne!), <strong>PCIe-Slot</strong> für 10GbE oder SATA-Erweiterung</td>
+      </tr>
+      <tr>
+          <td><strong>Dell OptiPlex 3070 Micro</strong></td>
+          <td>i5-9500T (6 Kerne), USB-C, extrem stromsparend</td>
+      </tr>
+  </tbody>
+</table>
+<p>Der Futro bleibt die Nummer 1, wenn:</p>
+<ul>
+<li>Dein Budget <strong>unter 80 €</strong> liegt</li>
+<li>Stromverbrauch <strong>absolut kritisch</strong> ist (24/7-Betrieb)</li>
+<li>Du <strong>Home Assistant oder Pi-hole</strong> als primären Use-Case hast</li>
+<li>Du <strong>leise</strong> oder <strong>lüfterlose</strong> Hardware brauchst</li>
+</ul>
+<p>👉 <a href="https://www.amazon.de/s?k=HP+ProDesk+400+G3+Mini&amp;tag=makmatas-homelab-21">HP ProDesk 400 G3 bei Amazon suchen</a>
+👉 <a href="https://www.amazon.de/s?k=Lenovo+ThinkCentre+M720q+Tiny&amp;tag=makmatas-homelab-21">Lenovo ThinkCentre M720q Tiny bei Amazon suchen</a></p>
+<h2 id="proxmox-auf-dem-futro-s740--geht-das">Proxmox auf dem Futro S740 – geht das?<a hidden class="anchor" aria-hidden="true" href="#proxmox-auf-dem-futro-s740--geht-das">#</a></h2>
+<p>Ja, <strong>Proxmox VE 8.x</strong> läuft auf dem Futro S740, aber mit Einschränkungen:</p>
+<p><strong>✅ Was funktioniert:</strong></p>
+<ul>
+<li>1–3 leichte LXC-Container (z. B. Pi-hole, Home Assistant, Unbound)</li>
+<li>1 leichte VM (z. B. Ubuntu Server mit 1 GB RAM)</li>
+<li>Snapshots, Backups via Proxmox Backup Server</li>
+</ul>
+<p><strong>⚠️ Was du beachten musst:</strong></p>
+<ul>
+<li><strong>Realtek NIC:</strong> Der integrierte Realtek-Chip (RTL8111G) wird von Proxmox standardmäßig erkannt, aber einige Nutzer berichten von sporadischen Verbindungsabbrüchen. <strong>Fix:</strong> <code>ethtool -K vmbr0 gro on lro on</code> oder ein Intel-basiertes USB-Ethernet-Adapter (~15€) als Alternative.</li>
+<li><strong>CEPH oder ZFS sind zu heavy:</strong> Der Celeron hat zu wenig Leistung für CEPH oder dedupliziertes ZFS. Verwende ext4 oder einfaches LVM-Thin.</li>
+<li><strong>Max 2 VMs realistisch:</strong> Bei mehr als 2 VMs wird der Celeron zum Flaschenhals.</li>
+</ul>
+<p><strong>Meine Empfehlung:</strong> Nutze den Futro als <strong>dedizierten Home-Assistant-Host</strong> unter Proxmox, oder betreibe ihn <strong>ohne Proxmox</strong> als reinen Docker-Host mit Ubuntu Server LTS. Das spart Overhead und läuft butterweich.</p>
+<h2 id="die-besten-use-cases-für-den-futro-s740">Die besten Use-Cases für den Futro S740<a hidden class="anchor" aria-hidden="true" href="#die-besten-use-cases-für-den-futro-s740">#</a></h2>
+<h3 id="1-home-assistant-perfekt">1. Home Assistant (perfekt!)<a hidden class="anchor" aria-hidden="true" href="#1-home-assistant-perfekt">#</a></h3>
+<p>Der Futro S740 ist <strong>der ideale Home Assistant Server</strong>. Mit 8–16 GB RAM und einer kleinen SSD betreibst du Home Assistant OS, Zigbee2MQTT und Node-RED absolut problemlos. Ein USB-Zigbee-Stick (Conbee II oder Sonoff) wird sofort erkannt.</p>
+<p><strong>Vorteile gegenüber Raspberry Pi 5:</strong></p>
+<ul>
+<li>Keine SD-Karten-Probleme (SATA-SSD statt MicroSD)</li>
+<li>x86-Architektur (keine ARM-Inkompatibilitäten)</li>
+<li>Mehr RAM möglich (16 GB vs 8 GB beim Pi 5)</li>
+<li>Robusteres Gehäuse, kein Hitzestau</li>
+</ul>
+<p>🔍 <a href="https://www.amazon.de/s?k=Home+Assistant+Gelb&amp;tag=makmatas-homelab-21">Home Assistant (gelb) bei Amazon suchen</a></p>
+<h3 id="2-pi-hole--unbound-dns">2. Pi-hole + Unbound DNS<a hidden class="anchor" aria-hidden="true" href="#2-pi-hole--unbound-dns">#</a></h3>
+<p>Mit 4 GB RAM und einer 32-GB-SSD läuft Pi-hole + Unbound nahezu unsichtbar im Hintergrund. Der Futro verbraucht dabei <strong>unter 6 Watt</strong> – weniger als eine durchschnittliche LED-Lampe.</p>
+<h3 id="3-docker-container-server">3. Docker-Container-Server<a hidden class="anchor" aria-hidden="true" href="#3-docker-container-server">#</a></h3>
+<p>Betreibe einen Ubuntu-Server als Docker-Host. Typische Container:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Container</th>
+          <th>RAM</th>
+          <th>Sinn</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Watchtower</td>
+          <td>~50 MB</td>
+          <td>Automatische Updates</td>
+      </tr>
+      <tr>
+          <td>Uptime Kuma</td>
+          <td>~100 MB</td>
+          <td>Monitoring + Status-Seite</td>
+      </tr>
+      <tr>
+          <td>n8n</td>
+          <td>~300 MB</td>
+          <td>Workflow-Automatisierung</td>
+      </tr>
+      <tr>
+          <td>Grafana + InfluxDB</td>
+          <td>~400 MB</td>
+          <td>Metriken-Dashboard</td>
+      </tr>
+      <tr>
+          <td>Jellyfin (light)</td>
+          <td>~500 MB</td>
+          <td>Medien-Streaming (nur Audio/leichte Videos)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="4-opnsense--pfsense-firewall-s7010-besser-geeignet">4. OPNSense / pfSense Firewall (S7010 besser geeignet)<a hidden class="anchor" aria-hidden="true" href="#4-opnsense--pfsense-firewall-s7010-besser-geeignet">#</a></h3>
+<p>Der Futro S7010 (mit J4125) ist besser für OPNSense geeignet, da er die minimal bessere CPU hat. Der S740 kann als Einsteiger-Firewall für 500 Mbit/s-Leitungen dienen.</p>
+<blockquote>
+<p><strong>📱 Einsteiger-Tipp: Von unterwegs auf dein Homelab zugreifen</strong></p>
+<p>Wenn du deinen Futro als Home Assistant oder NAS nutzt, willst du auch von unterwegs darauf zugreifen. Die sicherste und einfachste Methode: <strong>Tailscale</strong>. Installiere Tailscale auf dem Futro (1 Befehl: <code>curl -fsSL https://tailscale.com/install.sh | sh</code>) und auf deinem Handy. Dann verbindest du dich per Tailscale-IP – verschlüsselt, ohne Port-Freigaben, ohne Cloud-Dienst. Funktioniert auf Android und iOS mit der offiziellen Tailscale-App. Alternativ: WireGuard über PiVPN (etwas mehr Einrichtung, aber ebenfalls top).</p></blockquote>
+<h2 id="stromverbrauch--die-große-stärke-des-futro">Stromverbrauch – die große Stärke des Futro<a hidden class="anchor" aria-hidden="true" href="#stromverbrauch--die-große-stärke-des-futro">#</a></h2>
+<p>Der Futro S740 glänzt vor allem durch seinen extrem niedrigen Stromverbrauch:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Zustand</th>
+          <th>Verbrauch</th>
+          <th>Kosten pro Jahr (bei 0,30 €/kWh)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Idle (Leerlauf)</td>
+          <td>4–8 Watt</td>
+          <td><strong>~10,50–21 €</strong></td>
+      </tr>
+      <tr>
+          <td>Leichte Last</td>
+          <td>8–12 Watt</td>
+          <td>~21–31,50 €</td>
+      </tr>
+      <tr>
+          <td>Volllast</td>
+          <td>12–18 Watt</td>
+          <td>~31,50–47 €</td>
+      </tr>
+  </tbody>
+</table>
+<p>Zum Vergleich: Ein ausgemusterter Tower-Server (Dell PowerEdge T320) zieht im Idle 80–120 Watt – das sind <strong>210–315 € pro Jahr</strong> allein für den Strom. Der Futro spart dir also potenziell <strong>bis zu 290 € pro Jahr</strong> an Stromkosten (bei 24/7-Betrieb und 0,30 €/kWh, Stand 2026).</p>
+<blockquote>
+<p>💡 <strong>Wer den Futro 3 Jahre betreibt, hat die Anschaffungskosten (30 €) oft bereits nach 2–3 Monaten allein durch die Stromersparnis gegenüber einem älteren Tower-Server wieder drin – bei aktuellen Strompreisen eine realistische Größenordnung.</strong></p></blockquote>
+<h2 id="preis-leistungs-vergleich-futro-vs-andere-mini-pcs">Preis-Leistungs-Vergleich: Futro vs. andere Mini-PCs<a hidden class="anchor" aria-hidden="true" href="#preis-leistungs-vergleich-futro-vs-andere-mini-pcs">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Modell</th>
+          <th>Preis</th>
+          <th>CPU-Kerne</th>
+          <th>RAM max.</th>
+          <th>Idle-Strom</th>
+          <th>PCIe-Slot</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Fujitsu Futro S740</strong></td>
+          <td><strong>20–60 €</strong></td>
+          <td><strong>4 Cores</strong></td>
+          <td><strong>16–32 GB</strong></td>
+          <td><strong>4–8 W</strong></td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>HP ProDesk 400 G3</td>
+          <td>50–100 €</td>
+          <td>4 Cores</td>
+          <td>32 GB</td>
+          <td>8–12 W</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>HP ProDesk 600 G4</td>
+          <td>100–180 €</td>
+          <td><strong>6 Cores</strong></td>
+          <td>32–64 GB</td>
+          <td>8–14 W</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>Lenovo M720q Tiny</td>
+          <td>90–200 €</td>
+          <td><strong>6 Cores</strong></td>
+          <td>32–64 GB</td>
+          <td>6–12 W</td>
+          <td>✅ (PCIe x8)</td>
+      </tr>
+      <tr>
+          <td>Dell OptiPlex 3070 Micro</td>
+          <td>100–180 €</td>
+          <td><strong>6 Cores</strong></td>
+          <td>32–64 GB</td>
+          <td>6–12 W</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>GMKtec G3 Pro (neu)</td>
+          <td>200–280 €</td>
+          <td>2 Cores</td>
+          <td>16–32 GB</td>
+          <td>6–10 W</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>Minisforum MS-01 (neu)</td>
+          <td>550–700 €</td>
+          <td><strong>14 Cores</strong></td>
+          <td>96 GB</td>
+          <td>15–25 W</td>
+          <td>✅ (USB4)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Fazit der Tabelle:</strong> Der Futro S740 ist unschlagbar günstig und stromsparend. Sobald du mehr als 2 VMs betreiben willst oder PCIe-Erweiterungen brauchst, lohnt sich der Aufstieg zum Lenovo M720q oder HP ProDesk.</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="kann-ich-mit-dem-futro-s740-windows-11-nutzen">Kann ich mit dem Futro S740 Windows 11 nutzen?<a hidden class="anchor" aria-hidden="true" href="#kann-ich-mit-dem-futro-s740-windows-11-nutzen">#</a></h3>
+<p>Nein, der Celeron J4105/J4125 wird von Microsoft nicht für Windows 11 unterstützt (kein TPM 2.0 / kein Intel 8. Gen). Windows 10 läuft hingegen problemlos. Für ein Homelab empfehle ich aber Linux (Ubuntu Server LTS oder Debian).</p>
+<h3 id="passt-eine-25-zoll-ssd-in-den-futro">Passt eine 2,5-Zoll-SSD in den Futro?<a hidden class="anchor" aria-hidden="true" href="#passt-eine-25-zoll-ssd-in-den-futro">#</a></h3>
+<p>Ja, der Futro S740 hat drei Storage-Optionen: (1) einen <strong>M.2-2280-Slot</strong> für NVMe-SSDs (empfohlen fürs Betriebssystem), (2) einen <strong>mSATA-Slot</strong> für zusätzliche SSDs, und (3) einen <strong>internen 2,5-Zoll-SATA-Bay</strong> für klassische SATA-SSDs. Die 120-GB-SATA-SSD aus der 50–80-€-Budgetstufe kommt in den 2,5-Zoll-Bay. Wer schnelleren Speicher will, nutzt den M.2-Slot für eine NVMe-SSD.</p>
+<h3 id="kann-ich-den-arbeitsspeicher-aufrüsten">Kann ich den Arbeitsspeicher aufrüsten?<a hidden class="anchor" aria-hidden="true" href="#kann-ich-den-arbeitsspeicher-aufrüsten">#</a></h3>
+<p>Ja, der Futro hat zwei DDR4 SODIMM-Slots. Offiziell unterstützt Fujitsu 16 GB, in der Community wurden aber auch 32 GB (2× 16 GB) erfolgreich getestet.</p>
+<h3 id="wie-laut-ist-der-futro-s740">Wie laut ist der Futro S740?<a hidden class="anchor" aria-hidden="true" href="#wie-laut-ist-der-futro-s740">#</a></h3>
+<p>Sehr leise. Viele Versionen sind passiv gekühlt (völlig lautlos), andere haben einen kleinen Lüfter, der im Leerlauf kaum hörbar ist (&lt; 20 dB).</p>
+<h3 id="ist-der-futro-s740-für-proxmox-geeignet">Ist der Futro S740 für Proxmox geeignet?<a hidden class="anchor" aria-hidden="true" href="#ist-der-futro-s740-für-proxmox-geeignet">#</a></h3>
+<p>Ja, aber beschränkt auf 1–3 LXCs oder 1–2 leichte VMs. Für einen reinen Proxmox-Einstieg reicht es völlig, aber für einen Mehrzweck-Cluster ist ein gebrauchter HP ProDesk mit i5-8500T die bessere Wahl.</p>
+<h3 id="wo-kaufe-ich-den-futro-s740-am-besten">Wo kaufe ich den Futro S740 am besten?<a hidden class="anchor" aria-hidden="true" href="#wo-kaufe-ich-den-futro-s740-am-besten">#</a></h3>
+<p>Gebraucht bei Amazon Warehouse Deals, eBay Kleinanzeigen oder Refurbished-Händlern. Achte auf den Zustand &ldquo;Generalüberholt&rdquo; oder &ldquo;Geprüft funktionsfähig&rdquo; – und ob Netzteil und DisplayPort-Kabel dabei sind.</p>
+<p>🔍 <a href="https://www.amazon.de/s?k=Fujitsu+Futro+S740&amp;tag=makmatas-homelab-21">Fujitsu Futro S740 bei Amazon suchen</a></p>
+<h2 id="fazit--für-wen-lohnt-sich-der-futro-s740">Fazit – Für wen lohnt sich der Futro S740?<a hidden class="anchor" aria-hidden="true" href="#fazit--für-wen-lohnt-sich-der-futro-s740">#</a></h2>
+<p><strong>Kaufen, wenn:</strong></p>
+<ul>
+<li>Du unter 80 € Gesamtbudget für dein erstes Homelab hast</li>
+<li>Stromverbrauch deine Hauptsorge ist (24/7-Betrieb)</li>
+<li>Du Home Assistant, Pi-hole oder leichte Docker-Container betreiben willst</li>
+<li>Du einen leisen, unauffälligen Server suchst</li>
+</ul>
+<p><strong>Lieber sparen und größer kaufen, wenn:</strong></p>
+<ul>
+<li>Du mehrere VMs parallel betreiben willst</li>
+<li>Du PCIe-Erweiterungen (10GbE, SATA-Controller) brauchst</li>
+<li>Du Proxmox mit ZFS/Ceph planst</li>
+<li>Mehrere Docker-Container mit rechenintensiven Workloads (z. B. KI-Inferenz, Transkodierung)</li>
+</ul>
+<p><strong>Meine persönliche Empfehlung:</strong> Starte mit einem Futro S740 oder S7010 für 30–50 € und einer kleinen SSD. Betreibe Home Assistant + Pi-hole + einen n8n-Workflow-Automaten darauf. Sobald du mehr brauchst, holst du dir einen HP ProDesk 400 G4 (mit i5-8500T ebenfalls sehr günstig) als zweiten Cluster-Node. Zwei Mini-PCs im Cluster sind besser und günstiger als ein großer Server.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Budget</th>
+          <th>Meine Empfehlung</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Bis 60 €</strong></td>
+          <td>Fujitsu Futro S740 + 8 GB RAM + kleine SSD</td>
+      </tr>
+      <tr>
+          <td><strong>60–150 €</strong></td>
+          <td>HP ProDesk 400 G3 (i5) + 8–16 GB RAM</td>
+      </tr>
+      <tr>
+          <td><strong>150–250 €</strong></td>
+          <td>Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich</td>
+      </tr>
+      <tr>
+          <td><strong>250–400 €</strong></td>
+          <td>Dell OptiPlex 7070 Micro (i7, 8 Kerne)</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>🔗 Weiterlesen:</strong> Du willst mehr über die anderen Mini-PC-Kandidaten erfahren? Dann schau dir unseren <a href="/homelab-blog/posts/mini-pc-homelab-2025-vergleich/">Mini-PC-Vergleich fürs Homelab 2025/2026</a> an – mit HP ProDesk, Dell OptiPlex und Lenovo ThinkCentre im Direktvergleich.</p></blockquote>
+<p><em>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</em></p>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/fujitsu/">Fujitsu</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/futro/">Futro</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/thin-client/">Thin-Client</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/low-budget/">Low-Budget</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/homelab/">Homelab</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/home-assistant/">Home-Assistant</a></li>
+      <li><a href="https://makmatas.github.io/homelab-blog/tags/proxmox/">Proxmox</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://makmatas.github.io/homelab-blog/posts/mini-pc-homelab-2025-vergleich/">
+    <span class="title">Nächste »</span>
+    <span>Mini PC fürs Homelab nach Budget: Von 40€ bis 300€ – welcher passt zu dir?</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on x"
+            href="https://x.com/intent/tweet/?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&amp;hashtags=fujitsu%2cfutro%2cthin-client%2clow-budget%2chomelab%2chome-assistant%2cproxmox">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&amp;title=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;summary=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;source=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f&title=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on whatsapp"
+            href="https://api.whatsapp.com/send?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server%20-%20https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on telegram"
+            href="https://telegram.me/share/url?text=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&amp;url=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Fujitsu%20Futro%20S740%20als%20Homelab-Einstieg%202026%3a%20Der%2030%e2%82%ac-Server&u=https%3a%2f%2fmakmatas.github.io%2fhomelab-blog%2fposts%2ffujitsu-futro-s740-homelab-einstieg%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://makmatas.github.io/homelab-blog/">Homelab Guide</a></span> · 
+        Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Kopieren';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Kopiert!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Kopieren';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

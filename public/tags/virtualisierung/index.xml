@@ -1,3 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Virtualisierung on Homelab Guide</title><link>https://makmatas.github.io/homelab-blog/tags/virtualisierung/</link><description>Recent content in Virtualisierung on Homelab Guide</description><image><title>Homelab Guide</title><url>https://makmatas.github.io/homelab-blog/og-image.png</url><link>https://makmatas.github.io/homelab-blog/og-image.png</link></image><generator>Hugo</generator><language>de-de</language><lastBuildDate>Fri, 19 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://makmatas.github.io/homelab-blog/tags/virtualisierung/index.xml" rel="self" type="application/rss+xml"/><item><title>Virtualisierung kostenlos 2026: Proxmox VE als VMware-Alternative im Homelab</title><link>https://makmatas.github.io/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/</link><pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate><guid>https://makmatas.github.io/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/</guid><description>&lt;p>&lt;strong>Aktualisiert: Juni 2026 | Lesezeit: 8 Minuten&lt;/strong>&lt;/p>
-&lt;p>Die Virtualisierungslandschaft hat sich 2026 grundlegend verändert. Mit der Übernahme von VMware durch Broadcom und der Abschaffung der kostenlosen ESXi-Lizenz suchen tausende Homelab-Betreiber und kleine Unternehmen nach einer &lt;strong>leistungsstarken, kostenlosen Alternative&lt;/strong>. Proxmox Virtual Environment (VE) hat sich dabei als klarer Gewinner herausgestellt – und das völlig zurecht.&lt;/p>
-&lt;p>Doch warum ist Virtualisierung überhaupt so wichtig für dein Homelab? Und was macht Proxmox zur besseren Wahl als VMware? Dieser Artikel gibt dir eine vollständige und ehrliche Antwort.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Virtualisierung on Homelab Guide</title>
+    <link>https://makmatas.github.io/homelab-blog/tags/virtualisierung/</link>
+    <description>Recent content in Virtualisierung on Homelab Guide</description>
+    <image>
+      <title>Homelab Guide</title>
+      <url>https://makmatas.github.io/homelab-blog/og-image.png</url>
+      <link>https://makmatas.github.io/homelab-blog/og-image.png</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://makmatas.github.io/homelab-blog/tags/virtualisierung/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virtualisierung kostenlos 2026: Proxmox VE als VMware-Alternative im Homelab</title>
+      <link>https://makmatas.github.io/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/</link>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://makmatas.github.io/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Aktualisiert: Juni 2026 | Lesezeit: 8 Minuten&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Die Virtualisierungslandschaft hat sich 2026 grundlegend verändert. Seit Broadcom VMware übernommen und die kostenlose ESXi-Lizenz abgeschafft hat, suchen Tausende Homelab-Betreiber und kleine Unternehmen nach einer &lt;strong&gt;leistungsstarken, kostenlosen Alternative&lt;/strong&gt;. Proxmox Virtual Environment (VE) hat sich dabei als klarer Gewinner herausgestellt – und das völlig zu Recht.&lt;/p&gt;
+&lt;p&gt;Doch warum ist Virtualisierung überhaupt so wichtig für dein Homelab? Und was macht Proxmox zur besseren Wahl als VMware? Dieser Artikel gibt dir eine vollständige und ehrliche Antwort.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
