@@ -1,7 +1,7 @@
 ---
 title: "Proxmox Cluster selber bauen: 3 gebrauchte Mini-PCs im Benchmark-Vergleich ab 42 €"
 date: 2026-06-22
-draft: true
+draft: false
 image: "benchmark-vergleich.svg"
 cover:
   image: "benchmark-vergleich.svg"
@@ -18,11 +18,11 @@ categories:
   - Hardware
 ---
 
-**Aktualisiert: Juni 2026 | Lesezeit: 10 Minuten**
+**Aktualisiert: Juni 2026 | Lesezeit: 8 Minuten**
 
 Du möchtest dein Homelab auf das nächste Level bringen und mehrere Server zu einem **Proxmox-Cluster** verbinden? Oder du stehst gerade am Anfang und fragst dich, ob ein einzelner Mini-PC reicht – oder ob du lieber gleich mehrere gebrauchte kaufen solltest?
 
-In diesem Artikel habe ich **drei meiner eigenen Proxmox-Server** einem ausführlichen Benchmark-Test unterzogen: einen HP ProDesk 400 G4, einen Dell OptiPlex 3070 Micro und einen Fujitsu Futro S7010. Die Ergebnisse zeigen dir, welcher Server sich für welche Aufgabe am besten eignet – und das alles für **unter 220 Euro Gesamtkosten**.
+In diesem Artikel habe ich **drei meiner eigenen Proxmox-Server** einem ausführlichen Benchmark-Test unterzogen: einen HP ProDesk 400 G4, einen Dell OptiPlex 3070 Micro und einen Fujitsu Futro S7010. Die Ergebnisse zeigen dir, welcher Server sich für welche Aufgabe am besten eignet.
 
 {{< figure src="rollenverteilung.svg" alt="Rollenverteilung der 3 Proxmox Server" width="800" >}}
 
@@ -43,7 +43,9 @@ Ein Proxmox-Cluster ist wie eine **Wohngemeinschaft für deine Server**: Jeder h
 
 ## Die 3 Kandidaten – Gebrauchte Mini-PCs aus dem Jahr 2026
 
-Alle drei Server sind **gebrauchte Business-Mini-PCs**, die ursprünglich tausende Euro gekostet haben und heute für kleines Geld auf dem Gebrauchtmarkt zu haben sind.
+Alle drei Server sind **gebrauchte Business-Mini-PCs**, die ursprünglich mehrere hundert Euro gekostet haben und heute für kleines Geld auf dem Gebrauchtmarkt zu haben sind.
+
+> **Wichtig zu den Preisen:** Die angegebenen Preise beziehen sich auf die Geräte mit **nachgerüstetem RAM und SSD**. Gerade DDR4-RAM ist derzeit leider sehr teuer – kalkuliere beim Kauf eines günstigen Basismodells etwa 20–50 € zusätzlich für ein RAM-Kit ein.
 
 ### 1. HP ProDesk 400 G4 Mini (der Allrounder)
 
@@ -52,8 +54,8 @@ Der HP ProDesk 400 G4 war mein **erster Proxmox-Host** und läuft seit Monaten z
 | Komponente | Details |
 |------------|---------|
 | **CPU** | Intel Core i5-8500T (6 Kerne, 2,1–3,5 GHz, 35W TDP) |
-| **RAM** | 32 GB DDR4 |
-| **Preis (gebraucht)** | ~70–90 € |
+| **RAM** | 32 GB DDR4 (nachgerüstet) |
+| **Preis komplett** | ~120–150 € (mit 2×8 GB RAM + 256 GB NVMe) |
 | **Status** | Live-Homelab-Host (unter Last getestet) |
 
 👉 [HP ProDesk 400 G4 bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21)
@@ -65,28 +67,31 @@ Der Dell OptiPlex 3070 Micro ist mein **neuester Zugang** und soll die Haupt-VM-
 | Komponente | Details |
 |------------|---------|
 | **CPU** | Intel Core i5-9500T (6 Kerne, 2,2–3,7 GHz, 35W TDP) |
-| **RAM** | 32 GB DDR4 |
-| **Preis (gebraucht)** | ~100 € |
+| **RAM** | 32 GB DDR4 (nachgerüstet) |
+| **Preis komplett** | ~120–150 € (mit 2×8 GB RAM + 256 GB NVMe) |
 | **Status** | Frisch eingerichtet (unbelastet getestet) |
 
 👉 [Dell OptiPlex 3070 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+OptiPlex+3070+Micro&tag=makmatas-homelab-21)
 
 ### 3. Fujitsu Futro S7010 (der Sparmeister)
 
-Der Fujitsu Futro S7010 ist der **Überraschungsgast** – ein winziger, extrem stromsparender Mini-PC, der eigentlich als Thin Client gedacht war und nur **42 Euro kostet**.
+Der Fujitsu Futro S7010 ist der **Überraschungsgast** – ein winziger, extrem stromsparender Mini-PC, der eigentlich als Thin Client gedacht war.
+
+> **Einsteiger-Tipp:** Der Futro S7010 wird meist **mit 4 oder 8 GB RAM** verkauft. 4 GB sind etwas dünn, mit 8 GB kann man schon was anfangen. Der interne **eMMC-Speicher** sollte nicht als Hauptdatenträger genutzt werden – rüste eine kleine **64 GB M.2 SATA SSD** nach (wie ich es gemacht habe). Das reicht für den Anfang völlig aus und kostet kaum Aufpreis.
 
 | Komponente | Details |
 |------------|---------|
 | **CPU** | Intel Celeron J4125 (4 Kerne, 2,0–2,7 GHz, 10W TDP) |
-| **RAM** | 16 GB DDR4 |
-| **Preis (gebraucht)** | ~42 € |
-| **Status** | Soll OPNSense-Firewall + AdGuard werden |
+| **RAM** | 16 GB DDR4 (nachgerüstet, offiziell max. 8 GB) |
+| **SSD** | 64 GB M.2 SATA (nachgerüstet) |
+| **Preis komplett** | ~42 € (mit 8 GB RAM + 64 GB SSD) |
+| **Status** | Soll OPNSense-Firewall + Pi-hole/AdGuard werden |
 
 👉 [Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)
 
 ---
 
-**Gesamtkosten aller drei Server: ~212 €** – weniger als ein neuer Gaming-Controller, aber du bekommst ein **komplettes Proxmox-Cluster mit 80 GB RAM und 16 CPU-Kernen**. 🎉
+**Gesamtkosten aller drei Server: ~300–350 €** – du bekommst ein **komplettes Proxmox-Cluster mit 80 GB RAM und 16 CPU-Kernen**. 🎉
 
 ## Die Benchmarks – Was wurde getestet und warum?
 
@@ -119,7 +124,7 @@ Das ist die größte Überraschung: Der **Fujitsu Futro S7010** erreicht **614 E
 
 Warum? Der Celeron J4125 im Futro hat nur **10 Watt TDP**. Bei Prime-Berechnung wird er nicht einmal warm und kann **dauerhaft auf vollem Takt** laufen. Die i5-Prozessoren (35W TDP) treffen dagegen auf ihr Power-Limit und müssen den Takt **runterregeln**. Für reine Single-Thread-Aufgaben ist der kleine Futro also **schneller** als die großen Brüder.
 
-**Was das für dich bedeutet:** Für Router, DNS-Server, Firewalls oder einfache Steuerungsdienste ist ein stromsparender Prozessor oft die **bessere Wahl** als ein High-End-Chip.
+**Was das für dich bedeutet:** Für Firewall, DNS-Server, Pi-hole oder einfache Steuerungsdienste ist ein stromsparender Prozessor oft die **bessere Wahl** als ein High-End-Chip.
 
 ### RAM-Durchsatz: Dell mit 88 % mehr als Futro
 
@@ -161,38 +166,13 @@ Die drei Server haben ganz unterschiedliche Stärken – und genau das macht ein
 |--------|-------|--------|
 | 🖥️ **Dell OptiPlex 3070** | **Haupt-Node** | Bester RAM + Multi-Core – ideal für schwere VMs, Docker, Datenbanken |
 | 🖥️ **HP ProDesk 400 G4** | **Zweit-Node / Backup** | Solide Allround-Leistung, bewährt im Dauerbetrieb |
-| 🖥️ **Fujitsu Futro S7010** | **Firewall / Router** | Single-Core-Stärke und niedriger Stromverbrauch – perfekt für 24/7-Betrieb |
-
-### So greifst du von unterwegs auf deine Daten zu (Einsteiger-Tipp)
-
-Ein Homelab bringt nur etwas, wenn du auch **unterwegs** darauf zugreifen kannst. Die drei Server-Klassen helfen dir dabei:
-
-**1. Über den Futro als Router:**
-
-Der Fujitsu Futro wird später dein **OPNSense-Router** mit WireGuard-VPN. Das bedeutet:
-
-- Du installierst WireGuard auf deinem Handy (App Store / Play Store)
-- Scannst einen QR-Code vom Server ein
-- **Schon bist du im Heimnetzwerk** – als wärst du zuhause
-
-**2. Aufs NAS zugreifen:**
-
-Hast du einen NAS-Container (z.B. OpenMediaVault oder TrueNAS) auf dem **Dell oder HP**, erreichst du ihn über:
-- **SMB/Samba:** Wie ein normaler Netzlaufwerk-Ordner, nur übers Internet
-- **Nextcloud:** Wie Google Drive, aber selbst gehostet – mit Datei-Freigabe-Links für Freunde
-- **Jellyfin:** Deine eigene Netflix-Alternative – Filme und Serien von zuhause streamen
-
-**3. Notfall-Zugriff:**
-
-Fällt der Dell aus, migrierst du einfach die NAS-VM auf den HP – **ohne dass dein Handy-Zugriff unterbrochen wird**. Das nennt sich **Live-Migration** und ist eine der Kernfunktionen von Proxmox-Clustern.
-
-> **Kurzfassung:** 3 Server = 3-fache Sicherheit. Selbst wenn du Experimente machst und einen Server crasht, bist du nie komplett offline.
+| 🖥️ **Fujitsu Futro S7010** | **Firewall / Home Assistant** | Single-Core-Stärke und niedriger Stromverbrauch – perfekt für 24/7-Dienste |
 
 ## Häufig gestellte Fragen (FAQ)
 
 ### Brauche ich wirklich 3 Server? Reicht nicht einer?
 
-Ein einziger Server reicht für den Einstieg völlig aus! Ein **HP ProDesk 400 G4** für ~80 € ist eine perfekte Basis. Wenn du dann merkst, dass dir RAM oder Leistung fehlt, kaufst du einen zweiten dazu. Das Schöne an Proxmox: du kannst dein Cluster **beliebig erweitern**.
+Ein einziger Server reicht für den Einstieg völlig aus! Ein **HP ProDesk 400 G4** für ~120–150 € (mit RAM + SSD) ist eine perfekte Basis. Wenn du dann merkst, dass dir Leistung fehlt, kaufst du einen zweiten dazu. Das Schöne an Proxmox: du kannst dein Cluster **beliebig erweitern**.
 
 ### Kann ich auch verschiedene CPU-Typen mischen?
 
@@ -211,63 +191,41 @@ Das ist weniger als ein Streaming-Abo. 😉
 
 Die Grundinstallation von Proxmox dauert **~15 Minuten** pro Server. Einen Cluster aus 3 Nodes einzurichten ist danach eine Sache von **30 Minuten** über die Weboberfläche. Für den Einstieg reichen **grundlegende Linux-Kenntnisse** – und die lernst du schnell dazu.
 
-### Kann ich mit einem Handy auf meine Daten zugreifen?
-
-Ja, absolut! Der einfachste Weg:
-1. **Nextcloud** in einem LXC-Container installieren (gibt es fertige Scripts dafür)
-2. Über den **Router (Futro)** ein WireGuard-VPN einrichten
-3. App auf dem Handy installieren → **fertig**
-
-Dateien öffnen, Fotos hochladen, Musik streamen – alles vom Handy aus, als wärst du zuhause.
-
-## Welche Hardware empfehle ich für dein Homelab?
+### Welche Hardware empfehle ich für dein Homelab?
 
 Je nach Budget und Zielsetzung:
 
-### Einsteiger (bis 100 €)
+**Einsteiger (bis 100 €)** – 👉 **[HP ProDesk 400 G4 bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21)** (~70–90 € ohne RAM/SSD)
+Perfekt für erste Proxmox-Erfahrungen, läuft leise und zuverlässig. RAM und SSD selbst nachrüsten.
 
-👉 **[HP ProDesk 400 G4 bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21)** (~70–90 € gebraucht)
-Perfekt für erste Proxmox-Erfahrungen, läuft leise und zuverlässig.
-
-### Fortgeschritten (100–200 €)
-
-👉 **[Dell OptiPlex 3070 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+OptiPlex+3070+Micro&tag=makmatas-homelab-21)** (~100 € gebraucht)
+**Fortgeschritten (100–200 €)** – 👉 **[Dell OptiPlex 3070 Micro bei Amazon suchen](https://www.amazon.de/s?k=Dell+OptiPlex+3070+Micro&tag=makmatas-homelab-21)** (~100 € ohne RAM/SSD)
 Der Leistungsträger – bester RAM-Durchsatz und Multi-Core für deine VMs.
 
-### Low-Budget-Spezial (unter 50 €)
-
-👉 **[Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)** (~42 € gebraucht)
-Der 10W-Dauerläufer für Router, DNS, Firewall – stromsparend und überraschend stark im Single-Core.
-
-### Zubehör, das du brauchst
-
-- 👉 **[Samsung 990 Pro NVMe (1 TB)](https://www.amazon.de/s?k=Samsung+990+Pro+NVMe+1TB&tag=makmatas-homelab-21)** – Empfohlene SSD für den Proxmox-Root-Pool
-- 👉 **[Crucial DDR4 SODIMM 32 GB](https://www.amazon.de/s?k=Crucial+DDR4+SODIMM+32GB&tag=makmatas-homelab-21)** – RAM-Upgrade für deine Mini-PCs
-- 👉 **[USB-C zu Gigabit-Adapter](https://www.amazon.de/s?k=USB-C+Gigabit+Ethernet+Adapter&tag=makmatas-homelab-21)** – Nützlich für den Futro als zweite NIC
+**Low-Budget-Spezial (unter 50 €)** – 👉 **[Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)** (~42 € mit RAM + SSD)
+Der 10W-Dauerläufer für Home Assistant, Pi-hole, AdGuard, Firewall – stromsparend und überraschend stark im Single-Core.
 
 ## Fazit: 3 gebrauchte Mini-PCs schlagen einen neuen Server
 
 Die Benchmark-Ergebnisse zeigen deutlich: **Jeder der drei Server hat seine eigene Stärke**.
 
 - Der **Dell OptiPlex 3070** ist der **Leistungssieger** (5× Gold) – perfekt für schwere VMs, Datenbanken und Docker-Workloads
-- Der **Fujitsu Futro S7010** ist der **Überraschungssieger** (2× Gold) – mit nur 42 € und 10 Watt Stromverbrauch die perfekte Firewall
+- Der **Fujitsu Futro S7010** ist der **Überraschungssieger** (2× Gold) – mit nur 42 € und 10 Watt Stromverbrauch die perfekte Firewall oder Home-Automation-Zentrale
 - Der **HP ProDesk 400 G4** ist der **bewährte Allrounder** – und das unter Dauerlast im Live-Betrieb
 
-Zusammen kosten sie **weniger als 220 Euro** und ersetzen einen Neu-Server für das Vierfache. Du bekommst:
+Zusammen kosten sie **rund 300–350 Euro** und ersetzen einen Neu-Server für das Mehrfache. Du bekommst:
 
 ✅ **16 CPU-Kerne** für parallele Workloads  
 ✅ **80 GB RAM** für viele gleichzeitige VMs  
 ✅ **Echtes Proxmox-Cluster** mit Live-Migration und Hochverfügbarkeit  
 ✅ **Redundanz** – fällt einer aus, laufen die anderen weiter  
-✅ **Von überall Zugriff** auf deine Daten – per VPN vom Handy aus  
 
-**Meine Empfehlung:** Fang mit einem Server an (z.B. HP ProDesk für ~80 €) und bau dein Cluster nach und nach aus. Der Fujitsu Futro für 42 € ist ein No-Brainer – den kannst du auch als Router oder AdGuard-Host nebenher laufen lassen, während er kaum Strom zieht.
+**Meine Empfehlung:** Fang mit einem Server an (z.B. HP ProDesk für ~80 € Basis + selbst nachgerüstetem RAM) und bau dein Cluster nach und nach aus. Der Fujitsu Futro für 42 € ist ein No-Brainer – den kannst du auch als Home Assistant für Heim-Automation oder AdGuard/Pi-hole nebenher laufen lassen, während er kaum Strom zieht.
 
 ---
 
 ## Weiterführende Artikel
 
 - 🔗 [Virtualisierung kostenlos 2026: Proxmox VE als VMware-Alternative](/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/) — Warum Proxmox die beste kostenlose Virtualisierungsplattform ist
-- 🔗 [Mini PC fürs Homelab nach Budget: Von 50€ bis 650€](/homelab-blog/posts/mini-pc-homelab-2025-vergleich/) — Welcher Mini-PC passt zu deinem Budget?
+- 🔗 [Mini PC fürs Homelab nach Budget: Von 40€ bis 300€](/homelab-blog/posts/mini-pc-homelab-2025-vergleich/) — Welcher Mini-PC passt zu deinem Budget?
 
 *Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.*

@@ -42,7 +42,7 @@
   <text x="80" y="175" fill="#94a3b8" font-size="11">Dell OptiPlex 3070</text>
   <rect x="180" y="161" width="366" height="20" rx="4" fill="url(#bar1)"/>
   <text x="555" y="176" fill="#38bdf8" font-size="12" font-weight="bold">2.617</text>
-  <text x="565" y="176" fill="#fbbf24" font-size="10">🥇</text>
+  <text x="585" y="176" fill="#fbbf24" font-size="10">🥇</text>
 
   <!-- Futro - 2359 -->
   <text x="80" y="208" fill="#94a3b8" font-size="11">Fujitsu Futro S7010</text>
@@ -66,7 +66,7 @@
   <text x="80" y="348" fill="#94a3b8" font-size="11">Fujitsu Futro S7010</text>
   <rect x="180" y="334" width="159" height="20" rx="4" fill="url(#bar3)" filter="url(#glow)"/>
   <text x="349" y="349" fill="#fb923c" font-size="12" font-weight="bold">614</text>
-  <text x="360" y="349" fill="#fbbf24" font-size="10">🥇</text>
+  <text x="380" y="349" fill="#fbbf24" font-size="10">🥇</text>
 
   <!-- === RAM Durchsatz === -->
   <text x="400" y="392" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="bold">RAM Durchsatz (MiB/sec, höher = besser)</text>
@@ -80,7 +80,7 @@
   <text x="80" y="455" fill="#94a3b8" font-size="11">Dell OptiPlex 3070</text>
   <rect x="240" y="441" width="292" height="20" rx="4" fill="url(#bar1)"/>
   <text x="542" y="456" fill="#38bdf8" font-size="12" font-weight="bold">21.663</text>
-  <text x="552" y="456" fill="#fbbf24" font-size="10">🥇</text>
+  <text x="575" y="456" fill="#fbbf24" font-size="10">🥇</text>
 
   <!-- Futro - 11540 -->
   <text x="80" y="488" fill="#94a3b8" font-size="11">Fujitsu Futro S7010</text>
@@ -99,7 +99,7 @@
   <text x="80" y="595" fill="#94a3b8" font-size="11">Dell OptiPlex 3070</text>
   <rect x="240" y="581" width="280" height="20" rx="4" fill="url(#bar1)"/>
   <text x="530" y="596" fill="#38bdf8" font-size="12" font-weight="bold">32.101</text>
-  <text x="540" y="596" fill="#fbbf24" font-size="10">🥇</text>
+  <text x="565" y="596" fill="#fbbf24" font-size="10">🥇</text>
 
   <!-- Futro - 11671 -->
   <text x="80" y="628" fill="#94a3b8" font-size="11">Fujitsu Futro S7010</text>
@@ -118,7 +118,7 @@
   <text x="80" y="735" fill="#94a3b8" font-size="11">Dell OptiPlex 3070</text>
   <rect x="220" y="721" width="320" height="20" rx="4" fill="url(#bar1)"/>
   <text x="550" y="736" fill="#38bdf8" font-size="12" font-weight="bold">5.585</text>
-  <text x="560" y="736" fill="#fbbf24" font-size="10">🥇</text>
+  <text x="585" y="736" fill="#fbbf24" font-size="10">🥇</text>
 
   <!-- Futro - 2842 -->
   <text x="80" y="768" fill="#94a3b8" font-size="11">Fujitsu Futro S7010</text>
