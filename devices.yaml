@@ -222,70 +222,102 @@ devices:
       - "Lenovo PSREF: M920q Tiny"
 
   # === Fujitsu Futro Serie (Ultra-Budget) ===
+  fujitsu_futro_s7010:
+    brand: "Fujitsu"
+    model: "Futro S7010"
+    form_factor: "Thin Client (sehr kompakt)"
+    cpu: "Intel Celeron J4125 (4C/4T, 2.0-2.7 GHz, 10W TDP)"
+    ram_type: "DDR4 SODIMM"
+    ram_slots: 1
+    ram_max_official: "8 GB"
+    ram_max_unofficial: "16 GB (getestet)"
+    storage:
+      - "1× M.2 2280 SATA/NVMe"
+    network: "1× Realtek Gigabit Ethernet"
+    pcie_slots: "Keine"
+    video_outputs: ["1× DisplayPort", "1× VGA"]
+    usb_ports: "4× USB 3.0 + 2× USB 2.0"
+    idle_power_watts: 4-7
+    load_power_watts: 10-15
+    noise_level: "Sehr leise"
+    price_range_german: "30-50 € (gebraucht)"
+    ideal_for: "Ultra-Budget-Server, Pi-hole, Home Assistant, Docker (leicht)"
+    pros:
+      - "Günstigster Homelab-Server überhaupt (ab 30€)"
+      - "Intel J4125 mit 4 Kernen – besser als erwartet"
+      - "Extrem stromsparend (4-7W idle)"
+      - "Leise im Betrieb"
+    cons:
+      - "Nur 1 RAM-Slot (max 8GB offiziell)"
+      - "Realtek NIC (kein Intel – potenzielle Proxmox-Probleme)"
+      - "Nur M.2 SATA/NVMe (kein separater SATA-Port)"
+    amazon_link: "https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21"
+    sources:
+      - "Intel ARK: Celeron J4125"
+      - "Fujitsu Datasheet: Futro S7010"
+
   fujitsu_futro_s740:
     brand: "Fujitsu"
     model: "Futro S740"
     form_factor: "Thin Client (sehr kompakt)"
-    cpu_options:
-      - "Intel Celeron J4105 (4C/4T, 1.5-2.5 GHz, 10W TDP)"
-      - "Intel Celeron J4125 (4C/4T, 2.0-2.7 GHz, 10W TDP)"
+    cpu: "Intel Celeron J4105 (4C/4T, 1.5-2.5 GHz, 10W TDP)"
     ram_type: "DDR4 SODIMM"
-    ram_slots: 2
-    ram_max_official: "16 GB"
-    ram_max_unofficial: "32 GB"
+    ram_slots: 1
+    ram_max_official: "8 GB"
+    ram_max_unofficial: "16 GB (getestet)"
     storage:
       - "1× M.2 2280 SATA/NVMe"
-      - "1× mSATA"
-    network: "1× Realtek Gigabit Ethernet + 1× optional (je nach Konfiguration)"
+    network: "1× Realtek Gigabit Ethernet"
     pcie_slots: "Keine"
     video_outputs: ["2× DisplayPort"]
     usb_ports: "4× USB 3.0"
-    idle_power_watts: 4-8
-    load_power_watts: 12-18
-    noise_level: "Passiv oder extrem leise"
-    price_range_german: "20-60 € (gebraucht)"
-    ideal_for: "Ultra-Budget-Server, Home Assistant, Pi-hole, leichte Dienste"
+    idle_power_watts: 4-7
+    load_power_watts: 10-15
+    noise_level: "Sehr leise"
+    price_range_german: "30-60 € (gebraucht)"
+    ideal_for: "Ultra-Budget, dünner Client, Home Assistant"
     pros:
-      - "Billigster Homelab-Server überhaupt (ab 20€)"
-      - "Extrem stromsparend (oft < 6W)"
-      - "Lüfterlos oder sehr leise"
+      - "Sehr günstig"
+      - "Extrem stromsparend"
+      - "2× DisplayPort"
     cons:
-      - "Nur Celeron CPU (schwach für VMs)"
-      - "Max 16-32 GB RAM"
-      - "Realtek NIC (kein Intel – potenzielle Proxmox-Probleme)"
+      - "Nur 1 RAM-Slot"
+      - "J4105 etwas langsamer als J4125"
+      - "Realtek NIC"
     amazon_link: "https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21"
     sources:
-      - "Fujitsu Datasheet: Futro S740"
-      - "Intel ARK: Celeron J4125"
+      - "Intel ARK: Celeron J4105"
 
   # === GMKtec (Neugeräte) ===
-  gmktec_g3_pro:
+  gmktec_g3s:
     brand: "GMKtec"
-    model: "G3 Pro"
+    model: "G3S"
     form_factor: "Mini PC (Neugerät)"
-    cpu: "Intel Core i3-10110U (2C/4T, 2.1-4.1 GHz, 15W TDP)"
-    ram: "16 GB DDR4 (verlötet bei einigen Varianten – vor Kauf prüfen!)"
-    ram_max: "16-32 GB (je nach Variante)"
-    storage: "512 GB M.2 NVMe"
-    network: "1× 2.5GbE Realtek RTL8125BG + Wi-Fi 6"
+    cpu: "Intel Alder Lake N95 (4C/4T, bis 3.4 GHz, 15W TDP)"
+    ram_type: "DDR4 SODIMM"
+    ram_slots: 1
+    ram_config: "8 GB / 16 GB DDR4 2666 MT/s"
+    ram_max: "16 GB"
+    storage: "Bis zu 8 TB M.2 SSD (PCIe & SATA)"
+    network: "1× Gigabit Ethernet"
     pcie_slots: "Keine"
-    video_outputs: ["2× HDMI 2.0"]
-    usb_ports: "3× USB 3.2 Gen1"
-    idle_power_watts: 6-10
-    load_power_watts: 20-30
-    price_range_german: "200-280 € (neu)"
-    ideal_for: "Neugerät mit Garantie, Docker-Server, Mediencenter"
+    video_outputs: ["2× HDMI 2.0 (max. 4K)"]
+    usb_ports: "3× USB 3.2"
+    idle_power_watts: 5-8
+    load_power_watts: 15-25
+    price_range_german: "200-230 € (neu)"
+    ideal_for: "Neugerät mit Garantie, Docker, Home Assistant, Office"
     pros:
+      - "Intel N95 (Alder Lake) – modernere Architektur als J4125"
       - "Neugerät mit Herstellergarantie"
-      - "2.5GbE onboard (schneller als gebrauchte 1L-PCs)"
-      - "Windows 11 Pro inklusive"
+      - "Bis 16 GB DDR4"
     cons:
-      - "Nur 2 Kerne / 4 Threads"
-      - "RAM teilweise verlötet"
+      - "Nur 1 RAM-Slot (max 16 GB)"
       - "Kein PCIe-Slot"
-    amazon_link: "https://www.amazon.de/dp/B0F9FS819H/?tag=makmatas-homelab-21"
+      - "Nur Gigabit Ethernet (kein 2.5GbE)"
+    amazon_link: "https://www.amazon.de/s?k=GMKtec+G3S+N95&tag=makmatas-homelab-21"
     sources:
-      - "Intel ARK: i3-10110U"
+      - "Intel ARK: N95"
       - "GMKtec Produktseite"
 
   # === Minisforum ===

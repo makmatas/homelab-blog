@@ -1,141 +1,184 @@
 ---
-title: "Mini PC fürs Homelab nach Budget: Von 50€ bis 650€ – welcher passt zu dir?"
-date: 2026-06-18
+title: "Mini PC fürs Homelab nach Budget: Von 40€ bis 300€ – welcher passt zu dir?"
+date: 2026-06-19
 draft: false
 image: "featured.jpg"
 cover:
   image: "featured.jpg"
-  alt: "Gebrauchte Business-Mini-PCs fürs Homelab – HP, Lenovo, Dell, Fujitsu"
+  alt: "Mini-PCs und Thin Clients fürs Homelab – Fujitsu, HP, Dell, Lenovo, GMKtec"
   relative: true
-# cover image entfernt (KI-Bild zeigte falsche Modelle)
 tags:
   - hardware
   - mini-pc
   - kaufberatung
   - homelab
+  - budget
+  - thin-client
 categories:
   - Hardware
 ---
 
-**Aktualisiert: Juni 2026 | Lesezeit: 7 Minuten**
+**Aktualisiert: Juni 2026 | Lesezeit: 8 Minuten**
 
-Ein Mini-PC ist die ideale Grundlage für dein Homelab – leise, stromsparend und leistungsstark genug für Proxmox, Docker und erste KI-Experimente. Doch welches Modell lohnt sich wirklich für dein Budget?
+Ein Mini-PC ist die ideale Grundlage für dein Homelab – leise, stromsparend und leistungsstark genug für Proxmox, Docker und erste KI-Experimente. Aber welches Modell lohnt sich wirklich für dein Budget?
 
-Statt einer generischen Rangliste zeige ich dir hier die besten Mini-PCs **nach Preisklasse** – vom 50-Euro-Gebrauchtkauf bis zur 650-Euro-Proxmox-Maschine.
+Statt einer generischen Rangliste zeige ich dir hier die besten Optionen **nach Preisklasse** – vom 40-Euro-Thin-Client bis zur 300-Euro-Neumaschine.
 
 <!--more-->
 
 ## Auf einen Blick
 
-| Budget | Modell | Zustand | Ideal für |
-|--------|--------|---------|-----------|
-| **Bis 100 €** | HP ProDesk 400 G3 Mini | Gebraucht | **Homelab-Einstieg** – Proxmox, Pi-hole, Docker |
-| **100–200 €** | Lenovo ThinkCentre M720q Tiny | Gebraucht | **Erweiterbares Homelab** – PCIe-Slot für NICs |
-| **200–300 €** | GMKtec G3 Pro | Neu | **Neugerät mit Garantie** – Office, Docker, Medien |
-| **Über 300 €** | Minisforum MS-01 | Neu | **Proxmox-Spitzenklasse** – 10GbE, viele Kerne |
+| Budget | Modell(e) | Zustand | Highlight |
+|--------|-----------|---------|-----------|
+| **Bis 50 €** | Fujitsu Futro S7010 | Gebraucht | **Günstigster Einstieg** – 4 Kerne, extrem sparsam |
+| **50–150 €** | HP ProDesk 400 G3/G4 Mini **oder** Dell OptiPlex 3060/3070 Micro | Gebraucht | **Freie Wahl** – nimm was günstiger ist |
+| **150–200 €** | Lenovo ThinkCentre M720q Tiny | Gebraucht | **PCIe-Slot** – erweiterbar wie kein anderer |
+| **200–300 €** | GMKtec G3S (Intel N95) | Neu | **Neugerät** – Alder Lake, Garantie, 16 GB |
 
 ---
 
-## Bis 100 €: HP ProDesk 400 G3 Mini – Der perfekte Homelab-Einstieg
+## Bis 50 €: Fujitsu Futro S7010 – Der 40-Euro-Server
+
+{{< figure src="/homelab-blog/images/products/fujitsu-s7010.jpg" alt="Fujitsu Futro S7010 Thin Client" width="400" >}}
+
+Der Fujitsu Futro S7010 ist der absolute Budget-Champion. Gebraucht bekommst du ihn mit 4 GB RAM und 64 GB SSD bereits ab **30–50 €** – und er ist erstaunlich brauchbar für seinen Preis.
+
+Die CPU ist ein **Intel Celeron J4125** (4 Kerne / 4 Threads, 2,0–2,7 GHz). Das ist ein Gemini-Lake-Refresh aus dem Jahr 2019 mit nur 10 Watt TDP – also extrem stromsparend.
+
+- **CPU:** Intel Celeron J4125 (4C/4T, 2,0–2,7 GHz, 10 W TDP)
+- **RAM:** 4–8 GB DDR4 (1 Slot, max. 8 GB offiziell)
+- **Storage:** 64 GB M.2 SATA (aufrüstbar)
+- **Netzwerk:** 1× Realtek Gigabit Ethernet
+- **Stromverbrauch:** ca. 4–7 W im Leerlauf – **kaum messbar**
+- **Abmessungen:** Winzig – passt in jede Tasche
+
+**👍 Vorteile:** Extrem günstig (ab 30 €). Sehr stromsparend. 4 Kerne (besser als erwartet). Kompakte Bauweise. Leise.
+
+**👎 Nachteile:** Nur 1 RAM-Slot (max. 8 GB offiziell). Realtek-NIC (kein Intel – kann bei Proxmox Probleme machen). Kein separater SATA-Port.
+
+**Ideal für:** Pi-hole, Home Assistant, einfache Docker-Container, leichter Dateiserver. Perfekt als **erster Server** zum Ausprobieren, ohne Geld zu verbrennen.
+
+🔍 [Fujitsu Futro S7010 bei Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21)
+
+---
+
+## 50–150 €: HP ProDesk G3/G4 Mini oder Dell OptiPlex 3060/3070 Micro
+
+In dieser Preiskategorie hast du die **freie Wahl** – nimm einfach das Modell, das du gerade günstiger findest. Beide Hersteller liefern solide Business-Mini-PCs, die sich perfekt fürs Homelab eignen.
+
+### HP ProDesk 400 G3 Mini
 
 {{< figure src="/homelab-blog/images/products/hp-prodesk-400-g3.jpg" alt="HP ProDesk 400 G3 Mini" width="400" >}}
 
-Der HP ProDesk 400 G3 Mini ist der absolute Budget-König fürs Homelab. Gebraucht bekommst du ihn bereits ab **50–100 €** – und er ist dabei vollkommen ausreichend für die ersten Schritte im Homelab.
+Den **HP ProDesk 400 G3 Mini** bekommst du gebraucht für **50–100 €**. Mit Intel Core i5-6500T oder i5-7500T (je 4 Kerne / 4 Threads, kein Hyperthreading), bis zu 32 GB DDR4 und 1× M.2 NVMe/SATA + 1× 2,5"-SATA ist er ein solider Allrounder.
 
-- **CPU:** Intel Core i5-6500T / i5-7500T (je 4 Kerne / 4 Threads)
-- **RAM:** Bis zu 32 GB DDR4
-- **Storage:** 1× M.2 NVMe + 1× SATA
-- **Netzwerk:** 1× 1GbE
-- **Preis gebraucht:** 50–100 €
-- **Stromverbrauch:** ca. 15–20 W im Betrieb
+- **CPU:** i5-6500T (4C/4T, 2,5–3,1 GHz) oder i5-7500T (4C/4T, 2,7–3,3 GHz)
+- **RAM:** Bis 32 GB DDR4 SODIMM
+- **Storage:** 1× M.2 2280 NVMe/SATA + 1× 2,5" SATA
+- **Netzwerk:** 1× Intel I219-LM Gigabit Ethernet
+- **Preis:** 50–100 € gebraucht
 
-**👍 Vorteile:** Extrem günstig. Riesiges Angebot auf dem Gebrauchtmarkt. Sehr stromsparend. Leise und gut aufrüstbar.
-
-**👎 Nachteile:** Nur 4 Kerne. Kein 10GbE. Maximal 32 GB RAM. Gebrauchtkauf ohne Herstellergarantie.
-
-**Ideal für:** Proxmox mit 2–3 VMs, Pi-hole, Docker und leichte NAS-Aufgaben. Perfekt als **erster Homelab-Server** zum Ausprobieren ohne großes Risiko.
+**Ideal für:** Erster Proxmox-Server, Pi-hole, Docker, leichte NAS-Aufgaben.
 
 🔍 [HP ProDesk 400 G3 Mini bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G3+Mini&tag=makmatas-homelab-21)
 
+### HP ProDesk 600 G4 Mini
+
+Der **HP ProDesk 600 G4 Mini** ist die leistungsstärkere Business-Linie mit neueren CPUs der 8. Intel-Generation. Hier bekommst du oft den **i5-8500T (6 Kerne / 6 Threads, kein Hyperthreading)** – also spürbar mehr Leistung als beim G3. Ein besonderer Vorteil: Der RAM-Ausbau ist inoffiziell auf bis zu **64 GB** getestet worden.
+
+- **CPU:** i5-8500T (6C/6T, 2,1–3,5 GHz) oder i7-8700T (6C/12T, 2,4–4,0 GHz)
+- **RAM:** Bis 32 GB DDR4 SODIMM offiziell (64 GB inoffiziell getestet)
+- **Storage:** 1× M.2 2280 NVMe/SATA + 1× 2,5" SATA
+- **Netzwerk:** 1× Intel I219-LM Gigabit Ethernet
+- **Preis:** 100–180 € gebraucht
+
+**Ideal für:** Mehrere VMs unter Proxmox, Docker-Stack mit 5+ Containern.
+
+🔍 [HP ProDesk 600 G4 Mini bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+600+G4+Mini&tag=makmatas-homelab-21)
+
+### Dell OptiPlex 3060 Micro
+
+Der **Dell OptiPlex 3060 Micro** ist die direkte Konkurrenz zum HP ProDesk. Identisches Preisniveau, ähnliche Specs – der entscheidende Vorteil: **USB-C-Anschluss**, den HP in dieser Generation nicht bietet.
+
+- **CPU:** i5-8500T (6C/6T, kein Hyperthreading) oder i3-8100T (4C/4T)
+- **RAM:** Bis 32 GB DDR4 SODIMM
+- **Netzwerk:** 1× Intel I219-LM Gigabit Ethernet
+- **Besonderheit:** 1× USB 3.1 Type-C
+- **Preis:** 80–150 € gebraucht
+
+### Dell OptiPlex 3070 Micro
+
+Der **Dell OptiPlex 3070 Micro** bringt die 9. Intel-Generation (i5-9500T mit bis zu **6 Kernen**). Preislich liegt er meist etwas über dem 3060er, aber die neuere CPU-Generation macht einen spürbaren Unterschied.
+
+- **CPU:** i5-9500T (6C/6T) oder i3-9100T (4C/4T, 3,1–3,7 GHz)
+- **RAM:** Bis 64 GB DDR4 SODIMM (offiziell max. 32 GB)
+- **Storage:** 1× M.2 2230/2280 NVMe + 1× 2,5" SATA
+- **Netzwerk:** 1× Intel I219-LM Gigabit Ethernet
+- **Preis:** 100–180 € gebraucht
+
+🔍 [Dell OptiPlex 3060/3070 bei Amazon suchen](https://www.amazon.de/s?k=Dell+OptiPlex+Micro&tag=makmatas-homelab-21)
+
+**Meine Meinung zur Kategorie 50–150 €:** Egal ob HP oder Dell – nimm das Modell, das du gerade günstiger siehst. Ein ProDesk 600 G4 mit i5-8500T für 110 € ist genauso gut wie ein OptiPlex 3060 für 100 €. Der Dell hat USB-C, der HP hat manchmal bessere Verfügbarkeit. Kauf nach Angebotslage.
+
 ---
 
-## 100–200 €: Lenovo ThinkCentre M720q Tiny – Der Erweiterbare
+## 150–200 €: Lenovo ThinkCentre M720q Tiny – Der Erweiterbare
 
 {{< figure src="/homelab-blog/images/products/lenovo-m720q-tiny.jpg" alt="Lenovo ThinkCentre M720q Tiny" width="400" >}}
 
-Der Lenovo ThinkCentre M720q Tiny ist die Geheimwaffe für Homelab-Betreiber, die mehr wollen: **Er verfügt über einen PCIe-Slot.** Das bedeutet, du kannst eine 10GbE-Netzwerkkarte, eine SATA-Erweiterungskarte oder sogar eine kompakte GPU einbauen – eine Möglichkeit, die kaum ein anderer Mini-PC dieser Preisklasse bietet.
+Der Lenovo ThinkCentre M720q Tiny ist die Geheimwaffe für Homelab-Betreiber, die mehr wollen: **Er verfügt über einen PCIe-Slot.** Das bedeutet, du kannst eine 10GbE-Netzwerkkarte, eine SATA-Erweiterungskarte oder sogar eine kompakte GPU nachrüsten – eine Möglichkeit, die kaum ein anderer Mini-PC dieser Preisklasse bietet.
 
-- **CPU:** Intel Core i5-8500T (6 Kerne / 6 Threads) oder i7-8700T (6 Kerne / 12 Threads)
-- **RAM:** Bis zu 32 GB DDR4
-- **Storage:** 1× M.2 NVMe + **PCIe-Slot für Erweiterungen**
-- **Netzwerk:** 1× 1GbE (über PCIe auf 10GbE erweiterbar)
-- **Preis gebraucht:** 100–200 €
-- **Besonderheit:** **PCIe x8-Slot** – in dieser Geräteklasse äußerst selten
+- **CPU:** Intel Core i5-8500T (6C/6T, 2,1–3,5 GHz, kein Hyperthreading) oder i7-8700T (6C/12T, 2,4–4,0 GHz)
+- **RAM:** Bis zu 32 GB DDR4 SODIMM offiziell (64 GB inoffiziell getestet)
+- **Storage:** 1× M.2 2280 NVMe + 1× 2,5" SATA (Adapter erforderlich)
+- **Netzwerk:** 1× Intel I219-V Gigabit Ethernet (über PCIe-Riser auf 10GbE erweiterbar)
+- **Besonderheit:** **PCIe x8-Slot (Riser-kompatibel)** – in dieser Geräteklasse äußerst selten
+- **Preis gebraucht:** 90–200 €
 
 **👍 Vorteile:** PCIe-Erweiterbarkeit (10GbE, GPU, SATA). 6 Kerne beim i5-8500T. Sehr kompaktes Design. Große und aktive Lenovo-Community.
 
-**👎 Nachteile:** Nur 1GbE onboard. Gebrauchtkauf. Unter Last etwas lauter als der HP ProDesk.
+**👎 Nachteile:** Nur 1 GbE onboard. Gebrauchtkauf. Unter Last etwas lauter als HP/Dell.
 
-**Ideal für:** Homelab mit **10GbE-Ambitionen** (NIC via PCIe-Slot), Proxmox-Cluster und fortgeschrittene Docker-Setups.
+**Ideal für:** Homelab mit **10GbE-Ambitionen** (NIC via PCIe-Slot), Proxmox-Cluster, fortgeschrittene Docker-Setups.
 
 🔍 [Lenovo ThinkCentre M720q bei Amazon suchen](https://www.amazon.de/s?k=Lenovo+ThinkCentre+M720q+Tiny&tag=makmatas-homelab-21)
 
 ---
 
-## 200–300 €: GMKtec G3 Pro – Neugerät mit Garantie
+## 200–300 €: GMKtec G3S – Neugerät mit Garantie
 
-{{< figure src="/homelab-blog/images/products/gmktec-g3-pro.jpg" alt="GMKtec G3 Pro Mini PC" width="400" >}}
+{{< figure src="/homelab-blog/images/products/gmktec-g3s.jpg" alt="GMKtec G3S Intel N95 Mini PC" width="400" >}}
 
-Der GMKtec G3 Pro ist die beste Wahl, wenn du ein **Neugerät mit Garantie** möchtest und nicht auf dem Gebrauchtmarkt suchen willst. Mit einem Intel Core i3-10110U und 16 GB RAM ist er ein solider Allrounder für den Homelab-Alltag – und der 2,5GbE-Anschluss hebt ihn klar von den günstigeren Gebrauchtmodellen ab.
+Der GMKtec G3S ist die beste Wahl, wenn du ein **Neugerät mit Garantie** möchtest und nicht auf dem Gebrauchtmarkt suchen willst. Mit dem **Intel N95** (Alder Lake, 4 Kerne / 4 Threads, bis 3,4 GHz, 15 W TDP) und 16 GB DDR4 ist er moderner als viele gebrauchte Business-PCs und für den Homelab-Alltag bestens geeignet.
 
-- **CPU:** Intel Core i3-10110U (2 Kerne / 4 Threads, bis 4,1 GHz)
-- **RAM:** 16 GB DDR4
-- **Storage:** 512 GB M.2 NVMe
-- **Netzwerk:** **1× 2,5GbE** + Wi-Fi 6
-- **Preis neu:** ca. 230–280 €
-- **Besonderheit:** 2× HDMI, 3× USB 3.2, Windows 11 Pro vorinstalliert
+- **CPU:** Intel Alder Lake N95 (4C/4T, bis 3,4 GHz, 15 W TDP)
+- **RAM:** 8 oder 16 GB DDR4 (1 Slot)
+- **Storage:** M.2 SSD (PCIe & SATA, bis 8 TB)
+- **Netzwerk:** 1× Gigabit Ethernet
+- **Video:** 2× HDMI 2.0 (4K)
+- **Preis neu:** ca. 200–230 €
 
-**👍 Vorteile:** Neugerät mit Herstellergarantie. 2,5GbE – schnelleres Netzwerk als bei den Gebrauchtmodellen. Kompakt und leise. Windows 11 Pro inklusive.
+**👍 Vorteile:** Neugerät mit Herstellergarantie. Aktuelle Alder-Lake-Architektur. Bis 8 TB Speicher erweiterbar. Sehr niedriger Stromverbrauch (15 W TDP).
 
-**👎 Nachteile:** Nur 2 Kerne / 4 Threads (i3-10110U) – weniger als beim Lenovo M720q. Kein PCIe-Erweiterungsslot. RAM bei einigen Varianten verlötet – vor dem Kauf prüfen.
+**👎 Nachteile:** Nur 1 RAM-Slot. Kein PCIe-Erweiterungsslot. Nur Gigabit Ethernet. Schwächere CPU als gebrauchte i5-8500T-Geräte in ähnlicher Preislage.
 
-**Ideal für:** **Docker-Server**, Office-Homelab, Mediencenter und Home Assistant. Optimal für alle, die Neuware und Garantie priorisieren und den Gebrauchtmarkt meiden möchten.
+**Ideal für:** Docker-Server, Home Assistant, Office-Homelab, Mediencenter. Optimal für alle, die Neuware mit Garantie bevorzugen.
 
-👉 [GMKtec G3 Pro jetzt bei Amazon ansehen](https://www.amazon.de/dp/B0F9FS819H/?tag=makmatas-homelab-21)
-
----
-
-## Über 300 €: Minisforum MS-01 – Der Proxmox-König
-
-{{< figure src="/homelab-blog/images/products/minisforum-ms01.jpg" alt="Minisforum MS-01 Mini Workstation" width="400" >}}
-
-Der Minisforum MS-01 ist 2026 der unangefochtene Spitzenreiter für Homelab-Betreiber, die maximale Leistung im kompakten Format suchen. Mit **10GbE onboard** und einem Intel Core i9-13900H ist er eine vollwertige Workstation im Mini-Format.
-
-- **CPU:** Intel Core i9-13900H (14 Kerne / 20 Threads)
-- **RAM:** Bis zu 96 GB DDR5
-- **Storage:** 2× M.2 NVMe + 1× SATA
-- **Netzwerk:** **2× 10GbE SFP+** + 2× 2,5GbE
-- **Preis neu:** ca. 600–700 €
-- **Besonderheit:** Zwei PCIe-Slots + USB4
-
-**👍 Vorteile:** 10GbE onboard – kein teures Switch-Upgrade erforderlich. 14 Kerne für anspruchsvolle Proxmox-VMs. Zukunftssicher dank DDR5 und PCIe 4.0.
-
-**👎 Nachteile:** Hoher Anschaffungspreis. Wird unter Volllast spürbar warm.
-
-**Ideal für:** **Anspruchsvolle Proxmox-Umgebungen**, viele parallele VMs, KI-Experimente und 10GbE-Cluster-Setups.
-
-👉 [Minisforum MS-01 jetzt bei Amazon ansehen](https://www.amazon.de/dp/B0D45JQCN7/?tag=makmatas-homelab-21)
+👉 [GMKtec G3S bei GMKtec ansehen](https://de.gmktec.com/products/gmktec-g3s-intel-alder-lake-n95-mini-pc)
 
 ---
 
 ## Preis-Leistungs-Vergleich aller Modelle
 
-| Modell | Preis | CPU | RAM max. | Netzwerk | Besonderheit |
-|--------|-------|-----|----------|----------|--------------|
-| HP ProDesk 400 G3 | **~80 €** | i5-7500T (4C/4T) | 32 GB | 1GbE | Günstigster Einstieg |
-| Lenovo M720q Tiny | **~150 €** | i5-8500T (6C/6T) | 32 GB | 1GbE + PCIe | **PCIe-Slot** |
-| GMKtec G3 Pro | **~260 €** | i3-10110U (2C/4T) | 16 GB | **2,5GbE** | Neugerät + Garantie |
-| Minisforum MS-01 | **~650 €** | i9-13900H (14C/20T) | **96 GB** | **2× 10GbE** | Absolute Spitzenklasse |
+| Modell | Preis | CPU | RAM max. (offiziell) | Netzwerk | Besonderheit |
+|--------|-------|-----|----------------------|----------|--------------|
+| Fujitsu Futro S7010 | **~40 €** | J4125 (4C/4T) | 8 GB DDR4 | 1 GbE | Günstigster Einstieg |
+| HP ProDesk 400 G3 | **~80 €** | i5-7500T (4C/4T) | 32 GB DDR4 | 1 GbE (Intel) | Riesiges Angebot |
+| HP ProDesk 600 G4 | **~120 €** | i5-8500T (6C/6T) | 32 GB DDR4 | 1 GbE (Intel) | 6 Kerne, 64 GB inoffiziell |
+| Dell OptiPlex 3060 | **~120 €** | i5-8500T (6C/6T) | 32 GB DDR4 | 1 GbE (Intel) | USB-C |
+| Dell OptiPlex 3070 | **~150 €** | i5-9500T (6C/6T) | 32 GB DDR4 | 1 GbE (Intel) | 9. Gen Intel |
+| Lenovo M720q Tiny | **~150 €** | i5-8500T (6C/6T) | 32 GB DDR4 | 1 GbE (Intel) | **PCIe x8-Slot** |
+| GMKtec G3S | **~220 €** | Intel N95 (4C/4T) | 16 GB DDR4 | 1 GbE | Neugerät + Garantie |
 
 ---
 
@@ -151,7 +194,8 @@ Der Minisforum MS-01 ist 2026 der unangefochtene Spitzenreiter für Homelab-Betr
 ### Worauf du beim Gebrauchtkauf achten solltest
 
 - SSD und RAM sind meistens nachrüstbar – lieber ein günstiges Basismodell kaufen und selbst aufrüsten
-- Auf die CPU-Generation achten: Ab Intel der 6. / 7. Generation (Skylake / Kaby Lake) ist die Leistung für Proxmox ausreichend
+- Bei Thin Clients (Fujitsu Futro): RAM ist oft auf 1 Slot begrenzt – vorher prüfen!
+- Auf die CPU-Generation achten: Ab Intel der 6./7. Generation ist die Leistung für Proxmox ausreichend
 - Bevorzugt bei gewerblichen Händlern kaufen – diese bieten häufig 12 Monate Gewährleistung
 
 ---
@@ -162,10 +206,10 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 
 | Budget | KI-Nutzung |
 |--------|------------|
-| **Bis 100 €** | Ollama auf CPU, kleine Modelle (1–3B Parameter) |
-| **100–200 €** | Ollama + Open WebUI, 7B-Modelle (langsam) |
-| **200–300 €** | 7B-Modelle nutzbar, aber durch nur 2 Kerne begrenzt – Bildgenerierung kaum möglich |
-| **Über 300 €** | 7B+-Modelle, NPU-Beschleunigung, GPU via PCIe (M720q) |
+| **Bis 50 €** | Ollama auf CPU, kleine Modelle (1–3B Parameter) |
+| **50–150 €** | Ollama + Open WebUI, 7B-Modelle (langsam) |
+| **150–200 €** | 7B-Modelle nutzbar, GPU via PCIe-Riser (M720q) |
+| **200–300 €** | 7B-Modelle auf CPU, effizienter durch Alder-Lake-Architektur |
 
 ---
 
@@ -173,14 +217,14 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 
 | Dein Budget | Unsere Empfehlung |
 |-------------|-------------------|
-| **50–100 €** | 👉 **HP ProDesk 400 G3 Mini** – günstiger Homelab-Einstieg ohne Risiko |
-| **100–200 €** | 👉 **Lenovo ThinkCentre M720q Tiny** – erweiterbar per PCIe-Slot |
-| **200–300 €** | 👉 **GMKtec G3 Pro** – Neugerät mit Garantie und 2,5GbE |
-| **300–650 €** | 👉 **Minisforum MS-01** – 10GbE, 14 Kerne, absolute High-End-Lösung |
+| **40–50 €** | 👉 **Fujitsu Futro S7010** – günstigster Einstieg überhaupt |
+| **50–150 €** | 👉 **HP ProDesk 400 G3/600 G4** oder **Dell OptiPlex 3060/3070** – je nach Angebot |
+| **150–200 €** | 👉 **Lenovo M720q Tiny** – PCIe macht den Unterschied |
+| **200–300 €** | 👉 **GMKtec G3S** – Neugerät mit Garantie |
 
-**Meine persönliche Empfehlung:** Der **Lenovo M720q Tiny** ist der interessanteste Allrounder in dieser Liste – vor allem wegen des PCIe-Slots, der ihn klar von allen anderen Modellen abhebt. Wer 10GbE ins Homelab bringen möchte, findet hier die günstigste Einstiegsmöglichkeit. Und der **HP ProDesk für rund 80 €** ist ideal, um ohne großen Einsatz einfach loszulegen.
+**Meine persönliche Empfehlung:** Wer **unter 100 €** bleiben will, greift zum Fujitsu Futro S7010 (ab 40 €) für leichte Dienste oder spart auf 80–120 € für einen HP/Dell mit 6 Kernen. Der **Lenovo M720q Tiny** ist der interessanteste Allrounder – der PCIe x8-Slot hebt ihn klar von allen anderen ab. Wer dagegen einfach ein **Neugerät mit Garantie** will, ist mit dem GMKtec G3S für ~220 € gut bedient – muss aber wissen, dass der N95 CPU-seitig schwächer ist als ein gebrauchter i5-8500T.
 
-**Jetzt bist du dran:** Welches Budget planst du für dein Homelab ein? Schreib es in die Kommentare – ich freue mich auf den Austausch!
+**Jetzt bist du dran:** Welches Budget hast du für dein Homelab eingeplant? Schreib es in die Kommentare!
 
 
 
@@ -188,6 +232,8 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 
 ## Weiterführende Artikel
 
+- 🔗 [Proxmox Cluster selber bauen: 3 gebrauchte Mini-PCs im Benchmark-Vergleich ab 42 €](/homelab-blog/posts/proxmox-cluster-mini-pc-benchmark-vergleich/) — *(Thema: proxmox,hardware)*
+- 🔗 [Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server](/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/) — *(Thema: fujitsu,futro)*
 - 🔗 [Virtualisierung kostenlos 2026: Proxmox VE als VMware-Alternative im Homelab](/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/) — *(Thema: proxmox,virtualisierung)*
 
 *Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Für dich ändert sich der Preis dadurch nicht.*
