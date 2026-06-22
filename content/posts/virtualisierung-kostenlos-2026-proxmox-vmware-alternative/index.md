@@ -110,7 +110,7 @@ Proxmox läuft auch auf älteren Rechnern und unterstützt praktisch jeden hande
 | **Festplatte (Storage)** | 256 GB SSD | 1 TB NVMe + HDD für Backups |
 | **Netzwerk** | 1 Gigabit-Anschluss | 2,5 oder 10 Gigabit |
 
-> **Tipp zur aktuellen Version:** Proxmox VE 9.2 basiert auf Debian 13.5 und bringt den aktuellen Linux-Kernel 7.0 sowie aktuelle Versionen von QEMU (für VMs), LXC (für Container) und ZFS (für die Datenhaltung). Wichtige Neuerungen sind ein automatischer Lastausgleich zwischen mehreren Servern, erweiterte Netzwerkfunktionen und ein übersichtlicheres Web-Interface für Mobilgeräte.
+> **Gut zu wissen:** Zum Zeitpunkt dieses Artikels ist Proxmox VE 9.2 die aktuelle Version. Sie bringt einen automatischen Lastausgleich zwischen mehreren Servern, ein für Mobilgeräte optimiertes Web-Interface und aktuelle Versionen aller enthaltenen Komponenten. Wichtig für dich als Einsteiger: **Die Installation und Bedienung ändert sich kaum von Version zu Version** – du kannst diese Anleitung auch in zwei Jahren noch nutzen.
 
 ---
 
@@ -195,10 +195,10 @@ High-End-SSDs wie die Samsung 990 Pro (150+ €) lohnen sich im Homelab selten. 
 - **Fujitsu Futro S7010/S740** unterstützt **nur M.2 SATA** (langsamerer Standard, ~560 MB/s). Hier ist die **WD Blue SA510** (SATA) die richtige Wahl.
 - **HP ProDesk, Dell Optiplex und Lenovo M720q** unterstützen **NVMe** (schneller Standard, bis 6.000 MB/s). Hier passt die **Kingston NV3**.
 
-| Modell | Preis (ca.) | Typ | Passt zu |
-|--------|------------|-----|----------|
-| [Kingston NV3 1 TB](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de) | ~139 € | NVMe PCIe 4.0 (sehr schnell) | HP, Dell, Lenovo ab 100€ |
-| [WD Blue SA510 1 TB](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de) | ~135 € | SATA (M.2, langsamer) | Fujitsu Futro (passt auch in HP/Dell) |
+| Modell | Preis (ca.) | Typ | Passt zu | Besonderheit |
+|--------|------------|-----|----------|-------------|
+| [Kingston NV3 1 TB](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de) | ~139 € | NVMe PCIe 4.0 (sehr schnell) | HP, Dell, Lenovo ab 100€ | Nur für Geräte mit NVMe-Support |
+| [WD Blue SA510 1 TB](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de) | ~135 € | SATA (M.2, langsamer) | Fujitsu Futro (passt auch in HP/Dell) | ⬅️ **Genau diese brauchst du für den Fujitsu Futro!** |
 
 ---
 
@@ -212,20 +212,31 @@ Die Installation von Proxmox ist überraschend einfach – eine der großen Stä
 - Einen USB-Stick (mindestens 4 GB)
 - Einen Monitor und eine Tastatur (nur für die Installation, danach nicht mehr nötig)
 
-### Die 5 Schritte
+### Die 5 Schritte (mit allen praktischen Details)
 
 1. **ISO herunterladen** – Gehe auf [proxmox.com](https://www.proxmox.com/downloads) und lade die Installations-Datei (ISO) herunter. Das ist kostenlos, keine Registrierung nötig.
 
 2. **Auf USB-Stick schreiben** – Mit [Rufus](https://rufus.ie/de/) (Windows) oder Balena Etcher (Mac/Linux) wird die ISO-Datei auf den USB-Stick übertragen. Der Stick wird dabei komplett gelöscht, also vorher leeren, wenn noch Daten drauf sind.
 
-3. **Vom USB-Stick booten** – Stecke den USB-Stick in den Mini-PC, schließe Monitor und Tastatur an, schalte den PC ein. Drücke direkt nach dem Einschalten mehrfach F2, F10 oder F12 (je nach Hersteller) und wähle im Boot-Menü den USB-Stick aus.
+3. **Vorbereitung: Alles anschließen** – Bevor du den PC einschaltest:
+   - **Monitor** an den Mini-PC anschließen (HDMI oder DisplayPort)
+   - **Tastatur** an den Mini-PC anschließen (USB)
+   - **LAN-Kabel** vom Mini-PC zum Router (WLAN haben die meisten Mini-PCs nicht)
+   - USB-Stick mit der Proxmox-Installation einstecken
+   - **Dann** den Mini-PC einschalten und mehrfach F2, F10 oder F12 drücken (je nach Hersteller), bis ein Menü erscheint. Dort den USB-Stick als Startlaufwerk auswählen.
 
-4. **Installations-Assistent folgen** – Nach dem Booten erscheint ein Text-Bildschirm. Folgende Angaben werden abgefragt:
+4. **Dem Installations-Assistenten folgen** – Nach dem Booten erscheint ein Text-Bildschirm. Folgende Angaben werden abgefragt:
    - **Festplatte auswählen:** Hier die SSD des Mini-PCs auswählen (Vorsicht: alle Daten werden gelöscht)
    - **Passwort vergeben:** Ein sicheres Passwort für den Administrator-Zugang
-   - **IP-Adresse eingeben:** Proxmox braucht eine feste IP-Adresse im Heimnetz. Ein Beispiel: Wenn dein Router die Adresse 192.168.1.1 hat, kannst du 192.168.1.100 eintragen. Wichtig: Eine Nummer zwischen 192.168.1.2 und 192.168.1.254, die noch kein anderes Gerät im Haus hat. Die "Subnetzmaske" ist meist 255.255.255.0 und das "Gateway" ist die Adresse deines Routers (meist 192.168.1.1).
+   - **IP-Adresse eingeben:** Proxmox braucht eine feste IP-Adresse im Heimnetz. Du musst sie dir nicht ausdenken – so findest du die richtige: Schau auf deinem Router nach (meist auf einem Aufkleber auf der Unterseite: "IP-Adresse: 192.168.X.X" oder "Gateway: 192.168.X.1"). Merke dir die ersten drei Zahlen (z. B. 192.168.1). Dann gib in Proxmox eine Nummer zwischen 2 und 254 ein, die noch kein anderes Gerät im Haus hat – z. B. **192.168.1.99**. Die "Subnetzmaske" ist fast immer **255.255.255.0** und das "Gateway" ist die Adresse deines Routers (meist 192.168.1.1 oder 192.168.0.1).
 
-5. **Fertig – die Weboberfläche aufrufen** – Nach der Installation (dauert ca. 5 Minuten) kannst du Monitor und Tastatur vom Mini-PC abstecken. Der PC kommt in den Keller, Schrank oder unters Bett – solange er Strom und Netzwerkkabel hat, läuft er. Ab jetzt steuerst du alles über **deinen normalen Laptop oder PC**: Öffne den Browser und gib ein: `https://192.168.1.100:8006` (die IP, die du in Schritt 4 eingetragen hast, plus :8006). Es erscheint eine Sicherheitswarnung (weil das Zertifikat selbst erstellt ist) – klicke auf "Trotzdem fortfahren". Jetzt siehst du das Proxmox-Dashboard: Herzlichen Glückwunsch, dein Homelab läuft!
+5. **Fertig – umstecken und loslegen** – Nach der Installation (dauert ca. 5 Minuten) passiert Folgendes:
+   - Der Mini-PC startet neu (USB-Stick abziehen, wenn er dazu auffordert)
+   - Jetzt kannst du **Monitor und Tastatur vom Mini-PC abstecken**
+   - Der Mini-PC bleibt mit **Strom und LAN-Kabel** verbunden – stell ihn in den Keller, Schrank oder unters Bett. Er läuft von jetzt an ohne Monitor und Tastatur.
+   - Setz dich an **deinen normalen Laptop oder PC**, öffne den Browser und gib ein: `https://192.168.1.99:8006` (die IP, die du in Schritt 4 eingetragen hast, plus :8006).
+   - Es erscheint eine Sicherheitswarnung (Zertifikat-Warnung) – das ist normal, weil Proxmox ein selbst erstelltes Zertifikat verwendet. Klicke auf "Trotzdem fortfahren" oder "Erweitert" → "Weiter zur Website".
+   - **Herzlichen Glückwunsch!** Du siehst jetzt das Proxmox-Dashboard. Dein Homelab läuft!
 
 ---
 
@@ -250,7 +261,7 @@ Automatische, platzsparende Backups deiner VMs und Container. Ideal als zweite v
 
 Ab 32 GB RAM kannst du kleine KI-Modelle direkt auf deinem Proxmox-Host laufen lassen – ohne Internet, ohne Abo, ohne dass deine Daten nach extern gehen. **Phi-3-mini** (ein kompaktes Sprachmodell von Microsoft) läuft mit über 10 Tokens/s auf der CPU – völlig flüssig für Chat und Textaufgaben.
 
-**Wichtig für Einsteiger:** Die Einrichtung über "Docker in einem LXC-Container" erfordert ein paar Terminal-Befehle (das blaue Fenster mit weißer Schrift). Das ist nicht schwer, aber anders als die Proxmox-Installation selbst nicht rein mit Mausklicks erledigt. Es gibt gute Schritt-für-Schritt-Anleitungen dafür – such einfach nach "Ollama Proxmox LXC installieren".
+**Ehrliche Ansage zur Einrichtung:** Die Installation von Ollama erfordert ein paar Schritte im Terminal (dem schwarzen Fenster mit weißer Schrift). Du musst Docker in einem LXC-Container einrichten, was das Setzen von "Root-Rechten" und das Anpassen von Konfigurationsdateien bedeutet. Das ist machbar, aber nicht in 15 Minuten und nicht rein per Mausklick. Such einfach nach "Ollama Proxmox LXC installieren" – es gibt gute Schritt-für-Schritt-Anleitungen. Sobald es einmal läuft, steuerst du alles übers Web-Interface (Open WebUI) – dann wieder ohne Terminal.
 
 ### 3. Home Assistant via LXC – Smart Home Zentrale
 
