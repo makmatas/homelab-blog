@@ -232,7 +232,6 @@ Lokale KI-Modelle sind 2026 auch im Homelab längst angekommen:
 
 ## Weiterführende Artikel
 
-- 🔗 [Proxmox Cluster selber bauen: 3 gebrauchte Mini-PCs im Benchmark-Vergleich ab 42 €](/homelab-blog/posts/proxmox-cluster-mini-pc-benchmark-vergleich/) — *(Thema: proxmox,hardware)*
 - 🔗 [Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server](/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/) — *(Thema: fujitsu,futro)*
 - 🔗 [Virtualisierung kostenlos 2026: Proxmox VE als VMware-Alternative im Homelab](/homelab-blog/posts/virtualisierung-kostenlos-2026-proxmox-vmware-alternative/) — *(Thema: proxmox,virtualisierung)*
 

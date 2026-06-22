@@ -1,7 +1,7 @@
 ---
 title: "Proxmox Cluster selber bauen: 3 gebrauchte Mini-PCs im Benchmark-Vergleich ab 42 €"
 date: 2026-06-22
-draft: false
+draft: true
 image: "benchmark-vergleich.svg"
 cover:
   image: "benchmark-vergleich.svg"
