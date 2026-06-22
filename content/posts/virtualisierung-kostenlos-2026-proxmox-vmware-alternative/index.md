@@ -133,7 +133,7 @@ Nach der Installation findest du im Web-UI eine übersichtliche Oberfläche:
 - **Node-Ansicht:** Detaillierte Hardware-Informationen eines Hosts
 - **VM/CT-Ansicht:** Konsole, Monitoring und Einstellungen pro Maschine
 
-> **Tipp:** Proxmox VE 9.0 (basierend auf Debian 13 „Trixie“) bringt den modernen Linux-6.14-Kernel, QEMU 10.0.2, LXC 6.0.4 sowie ZFS 2.3.3 – die aktuellste Version mit verbesserter Hardware-Unterstützung und neuen Funktionen wie Snapshots für Thick-Provisioned LVM und SDN-Fabrics.
+> **Tipp:** Proxmox VE 9.2 (basierend auf Debian 13.5 „Trixie“) bringt den modernen Linux-Kernel 7.0, QEMU 11.0, LXC 7.0 sowie ZFS 2.4 – die neueste Version mit Dynamic Load Balancer, erweitertem SDN, HA-Arm/Disarm und verwaltbaren CPU-Profilen.
 
 ## Drei Tools, die dein Proxmox-Homelab auf das nächste Level bringen
 
