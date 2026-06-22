@@ -31,10 +31,10 @@ In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cas
 
 | Budget | Konfiguration | Ideal für |
 |--------|--------------|-----------|
-| **~30 €** | Futro S740 pur (gebraucht, ohne Zubehör) | Wenn du SSD + RAM bereits hast |
-| **50–80 €** | Futro S740 + 8 GB RAM + 120 GB SSD | Home Assistant, Pi-hole, leichte Dienste |
-| **80–120 €** | Futro S740 + 16 GB RAM + 256 GB NVMe | Mehrere Docker-Container, NAS light |
-| **120–250 €** | Alternativen: HP ProDesk 400 G3 oder Lenovo M720q | VMs mit Proxmox, PCIe-Erweiterungen |
+| **~45 €** | Futro S740 pur (gebraucht, oft mit 4 GB RAM + 16 GB SSD) | Günstigster Einstieg, Home Assistant light |
+| **~120 €** | Futro S740 + 8 GB RAM + 120 GB SSD aufrüsten | Home Assistant, Pi-hole, leichte Docker |
+| **~200 €** | Futro S740 + 16 GB RAM (Dual Rank) + 500 GB M.2 SATA-SSD | Mehrere Docker-Container, NAS light, Proxmox |
+| **ab 120 €** | Alternativen: HP ProDesk 400 G3 oder Lenovo M720q | VMs mit Proxmox, PCIe-Erweiterungen |
 
 > **💡 Einsteiger-Tipp:** Der Futro S740 wird oft **mit RAM und SSD** verkauft – achte beim Kauf auf die Angebotsbeschreibung (Links unten). **Achtung beim Monitor-Anschluss:** Der Futro hat **DisplayPort**, kein HDMI. Prüf kurz, ob dein Monitor einen DisplayPort-Eingang hat (runde Buchse mit abgeschrägter Ecke). Falls nicht: Du brauchst einen **DisplayPort-auf-HDMI-Adapter (ca. 5 €)** für die Ersteinrichtung.
 
@@ -42,7 +42,7 @@ In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cas
 
 Der Fujitsu Futro S740 ist ein **Thin Client** – ein kleiner, stromsparender Büro-Computer, der ursprünglich für Terminalserver-Anbindungen entwickelt wurde. Nach der Ausmusterung aus Unternehmen landen diese Geräte für kleines Geld auf dem Gebrauchtmarkt. Und genau dort werden sie für Homelab-Einsteiger interessant.
 
-**Kompatible Betriebssysteme:** Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind **Ubuntu Server LTS** (einfachster Einstieg), **Debian 12** (ressourcenschonend), **Proxmox VE 8.x** (für Virtualisierung) oder **Home Assistant OS** (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).
+**Kompatible Betriebssysteme:** Der Futro S740 läuft mit nahezu jedem gängigen Linux – besonders empfehlenswert sind **Ubuntu Server LTS** (einfachster Einstieg), **Debian 12** (ressourcenschonend), **Proxmox VE** (für Virtualisierung) oder **Home Assistant OS** (dedizierter Smarthome-Server). Windows 10 funktioniert ebenfalls, Windows 11 wird allerdings nicht unterstützt (siehe FAQ).
 
 ### Technische Daten (kanonisch)
 
@@ -92,16 +92,17 @@ Für **20–60 Euro** bekommst du das Basismodell. Viele Angebote enthalten bere
 
 Besonders wichtig: **Prüfe vor dem Kauf, ob ein Netzteil dabei ist.** Ohne Netzteil brauchst du ein Fujitsu-kompatibles 12V-Netzteil mit 4-Pin- oder Rundstecker.
 
-### 30–70 €: Futro S740 mit 8 GB RAM + kleiner SSD
+### ~120 €: Futro S740 mit 8 GB RAM + kleiner SSD
 
-Die günstigste Komplettlösung für einen lauffähigen Server:
+Die günstigste Komplettlösung für einen lauffähigen Server. Tipp: Oft wird der Futro **mit 4 GB RAM und 16 GB SSD** verkauft – dann sparst du dir den SSD-Kauf fürs Erste.
 
 | Komponente | Ungefährer Preis | Link |
 |-----------|-----------------|------|
-| Fujitsu Futro S740 | 20–40 € | 🔍 [Suche bei Amazon](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) |
-| 8 GB DDR4 SODIMM | ~10–15 € | 🔍 [DDR4 SODIMM bei Amazon](https://www.amazon.de/s?k=DDR4+SODIMM+8GB&tag=makmatas-homelab-21) |
-| 120 GB SATA SSD 2,5" | ~15–20 € | 🔍 [Günstige SSD bei Amazon](https://www.amazon.de/s?k=120+GB+SATA+SSD+2.5+Zoll&tag=makmatas-homelab-21) |
-| **Gesamt** | **~50–75 €** | |
+| Fujitsu Futro S740 | ~45 € | 🔍 [Suche bei Amazon](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) |
+| 8 GB DDR4 SODIMM | ~50 € | 🔍 [DDR4 SODIMM bei Amazon](https://www.amazon.de/s?k=DDR4+SODIMM+8GB&tag=makmatas-homelab-21) |
+| 120 GB SATA SSD 2,5" | ~30 € | 🔍 [Günstige SSD bei Amazon](https://www.amazon.de/s?k=120+GB+SATA+SSD+2.5+Zoll&tag=makmatas-homelab-21) |
+| DisplayPort-HDMI-Adapter | ~7 € | 🔍 [Adapter bei Amazon](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
+| **Gesamt (ohne vorhandene Teile)** | **~130 €** | |
 
 Damit betreibst du komfortabel:
 - **Home Assistant** (inkl. zigbee-Gateway über USB)
@@ -109,22 +110,23 @@ Damit betreibst du komfortabel:
 - **PiVPN** für sicheren Remote-Zugriff
 - **1–2 leichte Docker-Container** (z. B. n8n, Watchtower, Uptime Kuma)
 
-### 70–120 €: Futro S740 mit 16 GB RAM + NVMe SSD
+### ~200 €: Futro S740 mit 16 GB RAM + 500 GB SSD
 
-Die optimale Ausbaustufe für dein erstes richtiges Homelab:
+Die optimale Ausbaustufe für dein erstes richtiges Homelab. Achtung bei 16 GB: Der Futro braucht zwingend einen **Dual-Rank-Riegel** (2Rx8) – nicht jeder RAM funktioniert.
 
 | Komponente | Ungefährer Preis | Link |
 |-----------|-----------------|------|
-| Fujitsu Futro S740 | 20–40 € | 🔍 [Suche bei Amazon](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) |
-| 16 GB DDR4 SODIMM (2×8 GB) | ~20–30 € | 🔍 [DDR4 SODIMM 16 GB Kit bei Amazon](https://www.amazon.de/s?k=DDR4+SODIMM+16GB+Kit&tag=makmatas-homelab-21) |
-| 256 GB M.2 NVMe SSD | ~25–35 € | 🔍 [M.2 NVMe SSD 256GB bei Amazon](https://www.amazon.de/s?k=M.2+NVMe+256GB+SSD&tag=makmatas-homelab-21) |
-| **Gesamt** | **~65–105 €** | |
+| Fujitsu Futro S740 | ~45 € | 🔍 [Suche bei Amazon](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) |
+| 16 GB DDR4 SODIMM Dual Rank | ~100 € | 🔍 [DDR4 16GB Dual Rank bei Amazon](https://www.amazon.de/s?k=DDR4+16GB+Dual+Rank+SODIMM&tag=makmatas-homelab-21) |
+| 500 GB M.2 SATA SSD | ~60 € | 🔍 [M.2 SATA SSD 500GB bei Amazon](https://www.amazon.de/s?k=M.2+SATA+500GB+SSD&tag=makmatas-homelab-21) |
+| DisplayPort-HDMI-Adapter | ~7 € | 🔍 [Adapter bei Amazon](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
+| **Gesamt** | **~210 €** | |
 
 Damit sind folgende Szenarien realistisch:
 - **3–5 Docker-Container** parallel (Postgres, n8n, Jellyfin light, Grafana, Node-RED)
 - **Home Assistant + Zigbee2MQTT + InfluxDB + Grafana**
 - **Leichter NAS-Server** über Samba (für kleine Dateien, Backups)
-- **AdGuard Home + Unbound** als DNS-Resolved
+- **AdGuard Home + Unbound** als DNS-Resolver
 - **Proxmox VE** mit 1–2 LXCs (mehr dazu unten)
 
 ### Ab 120 €: Lieber einen HP ProDesk oder Lenovo Tiny kaufen?
@@ -301,8 +303,9 @@ Damit du am Ende genau weißt, was du bestellen musst:
 
 | Budget | Meine Empfehlung |
 |--------|-----------------|
-| **Bis 60 €** | Fujitsu Futro S740 + 8 GB RAM + kleine SSD |
-| **60–150 €** | HP ProDesk 400 G3 (i5) + 8–16 GB RAM |
+| **Bis 60 €** | Fujitsu Futro S740 (oft mit 4 GB RAM + 16 GB SSD) – Home Assistant light |
+| **~130 €** | Futro S740 + 8 GB RAM + 120 GB SSD aufgerüstet – Home Assistant, Pi-hole, Docker |
+| **~210 €** | Futro S740 + 16 GB RAM + 500 GB SSD – vollwertiges Homelab, Proxmox |
 | **150–250 €** | Lenovo M720q Tiny (i5) + 16 GB RAM → PCIe-Upgrade möglich |
 | **250–400 €** | Dell OptiPlex 7070 Micro (i7, 8 Kerne) |
 
