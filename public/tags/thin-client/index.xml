@@ -14,12 +14,13 @@
     <lastBuildDate>Mon, 22 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://makmatas.github.io/homelab-blog/tags/thin-client/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Fujitsu Futro S740 als Homelab-Einstieg 2026: Der 30€-Server</title>
-      <link>https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/</link>
+      <title>Fujitsu Futro S7010 als Homelab-Einstieg 2026: Der 40€-Server</title>
+      <link>https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s7010-homelab-einstieg/</link>
       <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s740-homelab-einstieg/</guid>
+      <guid>https://makmatas.github.io/homelab-blog/posts/fujitsu-futro-s7010-homelab-einstieg/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Aktualisiert: Juni 2026 | Lesezeit: 9 Minuten&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der &lt;strong&gt;Fujitsu Futro S740&lt;/strong&gt; genau das richtige Gerät für dich. Für gerade einmal &lt;strong&gt;20 bis 60 Euro&lt;/strong&gt; bekommst du einen fertigen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, Docker-Container und leichte Virtualisierung eignet.&lt;/p&gt;
+&lt;p&gt;Du möchtest in die Welt der Homelabs einsteigen, hast aber kein Budget für teure Server-Hardware? Dann ist der &lt;strong&gt;Fujitsu Futro S7010&lt;/strong&gt; genau das richtige Gerät für dich. Für gerade einmal &lt;strong&gt;30 bis 50 Euro&lt;/strong&gt; bekommst du einen lüfterlosen, extrem stromsparenden Server, der sich perfekt für Home Assistant, Pi-hole, eine Firewall und leichte Docker-Container eignet.&lt;/p&gt;
+&lt;p&gt;Genau so ein Gerät habe ich selbst für ~40 € gekauft und betreibe es seit Monaten als OPNSense-Firewall und AdGuard-DNS – absolut lautlos, 24/7, ohne einen einzigen Absturz.&lt;/p&gt;
 &lt;p&gt;In diesem Artikel zeige ich dir, was der kleine Thin Client kann, welche Use-Cases realistisch sind und welche Komponenten du für den Start benötigst.&lt;/p&gt;</description>
     </item>
     <item>
