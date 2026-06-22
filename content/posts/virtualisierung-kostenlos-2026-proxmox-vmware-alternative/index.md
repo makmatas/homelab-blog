@@ -114,8 +114,8 @@ Proxmox läuft selbst auf älterer Hardware hervorragend. Anders als VMware ESXi
 👉 [Fujitsu Futro S740 oder S7010 (gebraucht)](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) – Ultragünstiger Einstieg ab rund 40–60 € gebraucht. Lüfterlos, sehr leise, ideal für erste Proxmox-Experimente oder als dedizierten Backup- bzw. Monitoring-Node.
 
 👉 Günstige NVMe-SSD für den ZFS-Root-Pool – teure High-End-SSDs lohnen sich im Homelab selten. Empfehlenswert:
-   - [Kingston NV3 NVMe PCIe 4.0 (1 TB, ~55 €)](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de)
-   - [Western Digital WD Blue SA510 (1 TB, ~60 €)](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de)
+   - [Kingston NV3 NVMe PCIe 4.0 (1 TB, ~139 €)](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de)
+   - [Western Digital WD Blue SA510 (1 TB, ~135 €)](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de)
 
 ## Proxmox einrichten – Die ersten Schritte
 
@@ -133,7 +133,7 @@ Nach der Installation findest du im Web-UI eine übersichtliche Oberfläche:
 - **Node-Ansicht:** Detaillierte Hardware-Informationen eines Hosts
 - **VM/CT-Ansicht:** Konsole, Monitoring und Einstellungen pro Maschine
 
-> **Tipp:** Proxmox VE 8.x (basierend auf Debian 12) bringt den modernen Linux-6.8-Kernel sowie aktualisierte Treiber – ideal für aktuelle Hardware.
+> **Tipp:** Proxmox VE 9.0 (basierend auf Debian 13 „Trixie“) bringt den modernen Linux-6.14-Kernel, QEMU 10.0.2, LXC 6.0.4 sowie ZFS 2.3.3 – die aktuellste Version mit verbesserter Hardware-Unterstützung und neuen Funktionen wie Snapshots für Thick-Provisioned LVM und SDN-Fabrics.
 
 ## Drei Tools, die dein Proxmox-Homelab auf das nächste Level bringen
 
@@ -200,7 +200,7 @@ Wenn du dein Homelab mit Proxmox starten möchtest, empfehle ich dir für den Ei
 1. 👉 **Empfohlener Proxmox-Host:** [HP ProDesk 400 G4/G5 Mini oder Dell Optiplex 3060/3070 Micro](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21) – gebraucht ab rund 70–100 €, leise, stromsparend
 2. 👉 **Budget-Host:** [Fujitsu Futro S740 oder S7010](https://www.amazon.de/s?k=Fujitsu+Futro+S740&tag=makmatas-homelab-21) – gebraucht ab rund 40–60 €, lüfterlos
 3. 👉 **Günstiger Einstieg gebraucht:** [HP ProDesk 400 G4 bei Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21) – ab rund 70 €
-4. 👉 **Günstige NVMe-SSD:** [Kingston NV3 1 TB (~55 €)](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de) oder [WD Blue SA510 1 TB (~60 €)](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de)
+4. 👉 **Günstige NVMe-SSD:** [Kingston NV3 1 TB (~139 €)](https://geizhals.de/kingston-nv3-nvme-pcie-4-0-ssd-1tb-snv3s-1000g-a3248579.html?hloc=de) oder [WD Blue SA510 1 TB (~135 €)](https://geizhals.de/western-digital-wd-blue-sa510-ssd-1tb-wds100t3b0b-wdbb8h0010bnc-a2736547.html?hloc=de)
 
 Die VMware-Ära im Homelab ist vorbei. Proxmox ist die logische, kostenlose und leistungsfähigere Alternative. Starte noch heute – dein zukünftiges Ich wird es dir danken, wenn du 500 € im Jahr sparst und gleichzeitig mehr Flexibilität gewinnst.
 
