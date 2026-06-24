@@ -72,13 +72,13 @@ Home Assistant läuft auch auf einem Raspberry Pi – aber ein **x86-Mini-PC**
 | **Strom (Idle)** | 4–8 Watt |
 | **Preis** | **30–50 € gebraucht** |
 | **HA OS** | ✅ Ja – läuft flüssig |
-| **Geräte** | 100+ Zigbee/Shelly (Frigate/KI brauchen Upgrade) |
+| **Optimal für** | HA OS, Zigbee, Shelly, ESPHome, Automationen |
 | **Add-ons** | Zigbee2MQTT, Node-RED, ESPHome |
 | **KI-Sprache** | ❌ Nicht empfohlen |
 
 **Aus meiner Erfahrung:** Der S7010 läuft seit Monaten stabil mit Home Assistant OS, 16 GB RAM und einer 64 GB M.2 SATA SSD. Über 20 Zigbee-Geräte, mehrere Shelly-WLAN-Steckdosen und diverse Automationen – alles flüssig, keine Verzögerungen. Der einzige Moment, wo er nachdenkt: Beim Start von Home Assistant nach einem Update.
 
-**Zur Einordnung der Geräteanzahl:** Reine Zigbee- und Shelly-Geräte sind für den Futro kein Problem – er schafft **locker 100+ Geräte** und Automationen, ohne in die Knie zu gehen. Der wahre Hardware-Fresser sind **Kameras (Frigate)** und **lokale KI-Sprachassistenten**. Wer diese plant, braucht ein Upgrade-Modell.
+**Zur Einordnung:** Reine Zigbee- und Shelly-Geräte sind für den Futro kein Problem – die Home-Assistant-Automation läuft flüssig, auch mit vielen Sensoren und Aktoren. Der wahre Hardware-Fresser sind **Kameras (Frigate)** und **lokale KI-Sprachassistenten**. Wer diese zusätzlich betreiben will, braucht ein Upgrade-Modell.
 
 **Orientierung – welcher PC für welches Setup:**
 - Nur HA + Zigbee/Shelly → **Futro S7010** reicht völlig
@@ -95,7 +95,7 @@ Home Assistant läuft auch auf einem Raspberry Pi – aber ein **x86-Mini-PC**
 
 ## 💰 Upgrade-Modelle auf einen Blick
 
-Wer mehr Leistung braucht (Kameras, KI-Sprachassistent, 50+ Geräte), findet hier die Alternativen:
+Wer mehr Leistung braucht (Kameras mit Frigate, lokale KI-Sprachassistenten, Parallelbetrieb mehrerer Dienste), findet hier die Alternativen:
 
 | Gerät | CPU | RAM | SSD | Lüfterlos? | Idle (W) | Preis | Amazon |
 |-------|-----|-----|-----|-----------|----------|-------|--------|
@@ -191,9 +191,25 @@ Linux installieren (Ubuntu Server LTS), dann Home Assistant als Docker-Container
 
 ---
 
-## Ausblick für Fortgeschrittene: Dein PC kann mit dir wachsen
+## Ausblick: Wenn dein Smart Home größer wird
 
-Dein Mini-PC kann mehr als nur Home Assistant. Mit **Proxmox** (kostenlose Virtualisierung) machst du aus ihm einen Multi-Server: Home Assistant als VM, Pi-hole, Paperless-ngx und Ollama für lokale KI – alles auf einem Rechner. Die Modelle mit 6 Kernen (HP, Dell, Lenovo) sind dafür optimal.
+Viele Nutzer starten mit Home Assistant und merken schnell, dass ihr Mini-PC noch mehr kann. Irgendwann kommen weitere Self-Hosting-Dienste dazu – und aus der Smarthome-Zentrale wird ein kleiner Heimserver.
+
+**Typische Dienste, die auf dem gleichen Rechner laufen können:**
+
+* **AdGuard Home** – Werbeblocker fürs ganze Netzwerk
+* **Paperless-ngx** – Dokumentenverwaltung, digitales Archiv
+* **Immich** – Self-hosted Google-Fotos-Alternative
+* **Jellyfin** – eigener Streaming-Server für Filme und Serien
+* **Frigate** – Kamera-Überwachung mit KI-Objekterkennung
+
+**Welches Setup passt zu deinem geplanten Ausbau?**
+
+| Geplante Nutzung | Empfehlung |
+|-----------------|------------|
+| Nur Home Assistant | Futro-Setup |
+| Home Assistant + einige zusätzliche Dienste | HP-Setup |
+| Proxmox, mehrere Container/VMs, Frigate | Lenovo-Setup |
 
 ---
 
@@ -235,7 +251,7 @@ Je nach Budget und Zielsetzung gibt es drei klare Pfade. Alle Links enthalten de
 | Budget | Empfehlung |
 |--------|-----------|
 | **~45–75 €** | Fujitsu Futro S7010 + Sonoff-Stick – günstigster Einstieg |
-| **~120–150 €** | HP ProDesk 400 G4 – bester Kompromiss für 50+ Geräte |
+| **~120–150 €** | HP ProDesk 400 G4 – solide Leistung für Frigate und mehrere Dienste |
 | **~150–200 €** | Lenovo M720q + 32 GB RAM – KI + Erweiterbarkeit |
 
 Home Assistant auf einem Mini-PC ist **der beste Weg ins Smart Home**: Mehr Leistung als ein Raspberry Pi, günstiger als Fertig-Boxen und die Freiheit, später aufzurüsten.
