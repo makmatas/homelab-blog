@@ -245,6 +245,22 @@ devices:
     ram_max_unofficial: "16 GB (getestet)"
     price_range_german: "30-50 € (gebraucht)"
     ideal_for: "Ultra-Budget-Server, Pi-hole, Home Assistant, leichte Docker-Dienste"
+    ideal_for_tags:
+      - home_assistant
+      - zigbee
+      - shelly
+      - pihole
+      - adguard
+      - docker_leicht
+    not_for:
+      - frigate
+      - mehrere_vms
+      - lokale_ki
+      - proxmox_cluster
+    target_user:
+      - beginner
+      - low_budget
+      - first_server
     pros:
       - "Günstigster Homelab-Server überhaupt (ab 30€)"
       - "Intel J4125 mit 4 Kernen – erstaunlich brauchbar"
