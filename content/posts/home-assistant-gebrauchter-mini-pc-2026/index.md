@@ -72,11 +72,18 @@ Home Assistant läuft auch auf einem Raspberry Pi – aber ein **x86-Mini-PC**
 | **Strom (Idle)** | 4–8 Watt |
 | **Preis** | **30–50 € gebraucht** |
 | **HA OS** | ✅ Ja – läuft flüssig |
-| **Geräte** | 5–25 Zigbee-Geräte |
+| **Geräte** | 100+ Zigbee/Shelly (Frigate/KI brauchen Upgrade) |
 | **Add-ons** | Zigbee2MQTT, Node-RED, ESPHome |
 | **KI-Sprache** | ❌ Nicht empfohlen |
 
-**Aus meiner Erfahrung:** Der S7010 läuft seit Monaten stabil mit Home Assistant OS, 16 GB RAM und einer 64 GB M.2 SATA SSD. 15–20 Zigbee-Geräte plus ein paar WLAN-Steckdosen – alles flüssig. Der einzige Moment, wo er nachdenkt: Beim Start von Home Assistant nach einem Update. Aber im laufenden Betrieb merkst du nichts.
+**Aus meiner Erfahrung:** Der S7010 läuft seit Monaten stabil mit Home Assistant OS, 16 GB RAM und einer 64 GB M.2 SATA SSD. Über 20 Zigbee-Geräte, mehrere Shelly-WLAN-Steckdosen und diverse Automationen – alles flüssig, keine Verzögerungen. Der einzige Moment, wo er nachdenkt: Beim Start von Home Assistant nach einem Update.
+
+**Zur Einordnung der Geräteanzahl:** Reine Zigbee- und Shelly-Geräte sind für den Futro kein Problem – er schafft **locker 100+ Geräte** und Automationen, ohne in die Knie zu gehen. Der wahre Hardware-Fresser sind **Kameras (Frigate)** und **lokale KI-Sprachassistenten**. Wer diese plant, braucht ein Upgrade-Modell.
+
+**Orientierung – welcher PC für welches Setup:**
+- Nur HA + Zigbee/Shelly → **Futro S7010** reicht völlig
+- HA + 2–4 Kameras (Frigate) → **HP ProDesk 400 G4** oder **Dell OptiPlex 3070**
+- HA + Proxmox + viele VMs + Frigate + lokale KI → **Lenovo M720q** oder **GMKtec G3S**
 
 **⚠️ Dual-Rank-Riegel nötig:** Für 16 GB brauchst du zwingend einen **Dual-Rank-Riegel (2Rx8)**. Single-Rank wird nicht erkannt – der Futro bootet dann nicht. Geprüfter Riegel: Samsung M471A2K43BB1-CRC.
 
@@ -99,6 +106,14 @@ Wer mehr Leistung braucht (Kameras, KI-Sprachassistent, 50+ Geräte), findet hie
 | **GMKtec G3S** (neu) | N95 (4C) | 1 Sl. max 16 GB | M.2 NVMe | ❌ Nein | 5–8 | ~210 € | 🔍 [Suchen](https://www.amazon.de/s?k=GMKtec+G3S+N95&tag=makmatas-homelab-21) |
 
 **Kurz gesagt:** Der HP ProDesk ist der beste Allrounder (6 Kerne, 2 RAM-Slots, günstig). Der Lenovo M720q hat den seltenen PCIe-Slot für Erweiterungen. Der GMKtec G3S ist das Neugerät mit Garantie.
+
+**Bezugsquellen für Refurbished-Mini-PCs:** Gute Angebote findest du auf **eBay** und **Kleinanzeigen**. Spezialisierte Händler mit Gewährleistung sind **AfB** (Social Green IT), **ITSCO** und **GreenPanda** – dort bekommst du geprüfte Business-Geräte oft mit 12 Monaten Garantie.
+
+| Dauerverbrauch | Stromkosten / Jahr (bei 35 ct/kWh) |
+|----------------|-----------------------------------|
+| 5 W (Futro S7010) | ~15 € |
+| 10 W (HP/Dell) | ~31 € |
+| 15 W (Lenovo M720q) | ~46 € |
 
 ---
 
@@ -182,12 +197,34 @@ Dein Mini-PC kann mehr als nur Home Assistant. Mit **Proxmox** (kostenlose Virtu
 
 ---
 
-## 🛒 Einkaufsliste
+## 🛒 Drei Starter-Konfigurationen – von Budget bis Homelab
 
+Je nach Budget und Zielsetzung gibt es drei klare Pfade. Alle Links enthalten den Affiliate-Tag – für dich ändert sich der Preis nicht.
+
+### Das 80€-Budget-Setup (für Einsteiger)
 | Was | Empfehlung | Preis | Link |
 |-----|-----------|-------|------|
-| **Mini-PC (Budget)** | Fujitsu Futro S7010 | ~45 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21) |
-| **Mini-PC (Empfohlen)** | HP ProDesk 400 G4 | ~120 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21) |
+| **Mini-PC** | Fujitsu Futro S7010 (gebraucht) | ~45 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Fujitsu+Futro+S7010&tag=makmatas-homelab-21) |
+| **RAM** | 8 GB DDR4 SO-DIMM | ~15 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=DDR4+8GB+SO-DIMM&tag=makmatas-homelab-21) |
+| **SSD** | 64 GB M.2 SATA | ~10 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=M.2+SATA+64GB+SSD&tag=makmatas-homelab-21) |
+| **Zigbee-Stick** | Sonoff Zigbee 3.0 Dongle P | ~18 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Sonoff+Zigbee+3.0+USB+Dongle+P&tag=makmatas-homelab-21) |
+| **Adapter** | DisplayPort → HDMI | ~7 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
+
+### Das 150€-Power-Setup (für Smarthome-Fans)
+| Was | Empfehlung | Preis | Link |
+|-----|-----------|-------|------|
+| **Mini-PC** | HP ProDesk 400 G4 (gebraucht) | ~100 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=HP+ProDesk+400+G4+Mini&tag=makmatas-homelab-21) |
+| **RAM** | 16 GB DDR4 SO-DIMM | ~25 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=16GB+DDR4+SO-DIMM&tag=makmatas-homelab-21) |
+| **SSD** | 256 GB M.2 NVMe | ~25 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=256GB+M.2+NVMe+SSD&tag=makmatas-homelab-21) |
+| **Zigbee-Stick** | Sonoff Zigbee 3.0 Dongle P | ~18 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Sonoff+Zigbee+3.0+USB+Dongle+P&tag=makmatas-homelab-21) |
+| **Adapter** | DisplayPort → HDMI | ~7 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
+
+### Das 250€-Homelab-Setup (für Enthusiasten)
+| Was | Empfehlung | Preis | Link |
+|-----|-----------|-------|------|
+| **Mini-PC** | Lenovo M720q Tiny (gebraucht) | ~150 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Lenovo+M720q+Tiny&tag=makmatas-homelab-21) |
+| **RAM** | 32 GB DDR4 SO-DIMM | ~45 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=32GB+DDR4+SO-DIMM&tag=makmatas-homelab-21) |
+| **SSD** | 512 GB M.2 NVMe | ~40 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=512GB+M.2+NVMe+SSD&tag=makmatas-homelab-21) |
 | **Zigbee-Stick** | Sonoff Zigbee 3.0 Dongle P | ~18 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=Sonoff+Zigbee+3.0+USB+Dongle+P&tag=makmatas-homelab-21) |
 | **Adapter** | DisplayPort → HDMI | ~7 € | 🔍 [Amazon suchen](https://www.amazon.de/s?k=DisplayPort+HDMI+Adapter&tag=makmatas-homelab-21) |
 
