@@ -57,6 +57,11 @@ buildDrafts = false
   name = "Über"
   url = "/about/"
   weight = 40
+[[menu.main]]
+  identifier = "empfehlungen"
+  name = "⭐ Empfehlungen"
+  url = "/links/"
+  weight = 50
 
 [markup]
   [markup.goldmark]
