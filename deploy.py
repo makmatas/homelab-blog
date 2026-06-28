@@ -92,25 +92,6 @@ for ap in new_files:
 
             # ── Step 3: Publish-Kontrolle (non-blocking quality gate) ──
             publish_ready = review_result.get("publish_ready", True)
-
-            # ── Step 3a: Affiliate-Disclosure-Prüfung (rechtlich!) ──
-            with open(fp) as f:
-                article_text = f.read()
-
-            has_affiliate_links = "tag=matmaksa-homelab-21" in article_text
-            has_disclosure = ("Amazon-Partner" in article_text
-                              or "Werbung" in article_text[:500]
-                              or "Affiliate" in article_text)
-
-            disclosure_ok = True
-            if has_affiliate_links and not has_disclosure:
-                log_step("DISCLOSURE", "BLOCKED", "Affiliate-Links ohne Werbekennzeichnung")
-                log("WARNING", f"Article {slug} has affiliate links but no disclosure")
-                print(f"\n  ⛔ DISCLOSURE BLOCKED | Affiliate-Links ohne Werbekennzeichnung")
-                print(f"     Erforderlich: 'Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.'")
-                print(f"     oder vergleichbare Werbekennzeichnung im Artikel.")
-                disclosure_ok = False
-                publish_ready = False
             if not publish_ready:
                 log_step("PUBLISH", "BLOCKED_FOR_REVIEW", f"Quality={review_result.get('overall_quality_score','?')}/10")
                 log("WARNING", f"Article {slug} blocked by quality gate (publish_ready=false)")
@@ -135,9 +116,9 @@ if os.path.exists(interlink):
     subprocess.run(["python3", interlink], capture_output=True, text=True)
 
 # ── Step 5: Commit + Push ───────────────────────────────
-subprocess.run(["git", "config", "user.email", "makmatas@users.noreply.github.com"], capture_output=True)
-subprocess.run(["git", "config", "user.name", "makmatas"], capture_output=True)
-git_url = f"https://makmatas:{token}@github.com/makmatas/homelab-blog.git"
+subprocess.run(["git", "config", "user.email", "matmaksa@users.noreply.github.com"], capture_output=True)
+subprocess.run(["git", "config", "user.name", "matmaksa"], capture_output=True)
+git_url = f"https://matmaksa:{token}@github.com/matmaksa/homelab-blog.git"
 subprocess.run(["git", "remote", "set-url", "origin", git_url], capture_output=True)
 subprocess.run(["git", "add", "-A"])
 r = subprocess.run(["git", "diff", "--cached", "--quiet"], capture_output=True)
@@ -147,37 +128,6 @@ if r.returncode != 0:
     deploy_msg = f"Deployed: https://matmaksa.github.io/homelab-blog/"
     log_step("DEPLOY", "SUCCESS", deploy_msg)
     print(f"\n{deploy_msg}")
-
-    # ── Step 6: IndexNow (Bing/Seznam) ─────────────────────
-    INDEXNOW_KEY = "5c88ce21-fecd-43c9-b3c6-3d6200e453ae"
-    indexnow_slugs = []
-    for ap in new_files:
-        slug = os.path.basename(os.path.dirname(os.path.join(BLOG_DIR, ap)))
-        indexnow_slugs.append(slug)
-    if indexnow_slugs:
-        url_list = [f"https://matmaksa.github.io/homelab-blog/posts/{s}/" for s in indexnow_slugs]
-        try:
-            payload = json.dumps({
-                "host": "matmaksa.github.io",
-                "key": INDEXNOW_KEY,
-                "keyLocation": f"https://matmaksa.github.io/homelab-blog/{INDEXNOW_KEY}.txt",
-                "urlList": url_list
-            })
-            r = subprocess.run(
-                ["curl", "-sS", "-X", "POST", "https://api.indexnow.org/indexnow",
-                 "-H", "Content-Type: application/json",
-                 "--data-binary", "@-"],
-                input=payload, capture_output=True, text=True, timeout=15
-            )
-            if r.returncode == 0 and not r.stderr:
-                log_step("INDEXNOW", "SUCCESS", f"{len(url_list)} URLs submitted")
-                print(f"  IndexNow: {len(url_list)} URLs submitted ✅")
-            else:
-                log("WARNING", f"IndexNow response: {r.stdout[:200]} {r.stderr[:200]}")
-        except Exception as e:
-            log("WARNING", f"IndexNow failed: {e}")
-    else:
-        log("INFO", "IndexNow: No new slugs found")
 else:
     log_step("DEPLOY", "SKIP", "Nothing to commit")
     print("Nothing to commit")

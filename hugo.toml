@@ -20,7 +20,7 @@ buildDrafts = false
   images = ["/homelab-blog/og-image.png"]
 
   [params.editPost]
-    URL = "https://github.com/makmatas/homelab-blog/content"
+    URL = "https://github.com/matmaksa/homelab-blog/content"
     Text = "Bearbeiten"
 
   [params.footer]
@@ -32,10 +32,10 @@ buildDrafts = false
 
 [[params.socialIcons]]
   name = "github"
-  url = "https://github.com/makmatas/homelab-blog"
+  url = "https://github.com/matmaksa/homelab-blog"
 [[params.socialIcons]]
   name = "instagram"
-  url = "https://instagram.com/makmatas"
+  url = "https://instagram.com/matmaksa"
 
 [[menu.main]]
   identifier = "categories"
